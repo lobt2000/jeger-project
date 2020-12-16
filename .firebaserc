@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jeger-49c21": {
+      "hosting": {
+        "jegermaster": [
+          "jeger-49c21"
+        ]
+      }
+    }
+  }
+}

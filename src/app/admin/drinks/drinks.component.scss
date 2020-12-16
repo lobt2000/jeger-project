@@ -1,0 +1,188 @@
+.mydrinks{
+width: 100%;
+min-height: 10vh;
+display: flex;
+flex-flow: column;
+// align-items: center;
+justify-content: center;
+
+    
+    h1{
+        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-transform: uppercase;
+        font-size: 30px;
+    }
+    input{
+        width: 100%;
+        margin-top: 10px;
+        background-color: transparent;
+        border: none;
+        border-bottom:3px solid sandybrown ;
+    color: bisque;
+    }
+    input:focus{
+        background-color: transparent;
+        color: bisque;
+        border-color: #86b7fe;
+        outline: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+    }
+    
+    textarea{
+        margin-top: 10px;
+        background-color: transparent;
+        border: none;
+        border-bottom:3px solid sandybrown ;
+    }
+    textarea:focus{
+        background-color: transparent;
+        color: bisque;
+    }
+    .formStyle{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display:flex; 
+        justify-content: space-around;
+         width:100%;
+         align-items: center;
+         flex-flow: row wrap;
+         &__input{
+             margin-top: 10px;
+             width: 40%;
+             min-height: 10vh;
+             display: flex;
+             flex-flow: column;
+             justify-content: space-between;
+             align-items: center;
+             &--button{
+                 height: 5vh;
+                 width: 30%;
+                 border-radius: 10px;
+                 background: #198754;
+                 border: 2px solid #198754;
+                 color: white;
+                 text-align: center;
+                 transition: background .250s linear, color .250s linear, border .250s linear;
+             }
+             &--button:focus{
+                border-color: #198754;
+                outline: 0;
+                border-radius: 10px;
+                box-shadow: 0 0 0 0.25rem rgba(13, 253, 109, 0.25);
+             }
+             &--button:hover{
+                 background: transparent;
+                 color: #198754;
+             }
+             &--upload{
+                margin-top: 10px;
+                width: 100%;
+                min-height: 15vh;
+                display: flex;
+                flex-flow: column;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 16px;
+             }
+    
+         }
+       
+             
+         
+    }
+    .formStyle-last{
+        margin-top: 20px;
+        display:flex; 
+        justify-content: space-around;
+         width:100%;
+         align-items: center;
+         flex-flow: row wrap;
+    
+            button{
+                margin-top: 5px;
+            }
+    }
+    .mybuttom{
+        width: 50%;
+        border-radius: 20px;
+        border: 1px solid orangered;
+        background: orangered;
+        height: 6vh;
+        color: white;
+        transition: background .250s linear, color .250s linear, border .250s linear;
+    }
+    .mybuttom:hover{
+    background: transparent;
+    color: orangered;
+    }
+    
+    // .mytable{
+    //     margin-top: 50px;
+    // }
+    
+    hr{
+        margin-top: 50px;
+    }
+    table{
+        color: #dee2e6;
+        
+    }
+    th{
+        // border: 1px solid #dee2e6;  
+    }
+}
+
+
+
+@media screen and (max-width: 696px){
+    .mydrinks{
+        .formStyle{
+            font-size: 20px;
+            flex-flow: column wrap;
+             &__input{
+                 flex-flow: row wrap;
+                 width: 100%;
+             }
+           }
+           table {
+            display: flex;
+            overflow-x: scroll;
+        color: white;
+          }
+        
+          td {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        
+          th {
+            margin-right: 0 !important;
+            border: 1px solid #dee2e6;
+          }
+        
+          tr {
+            border: 1px solid #dee2e6;
+            display: flex;
+            flex-flow: column;
+          }
+        
+          tbody {
+            display: flex;
+          }
+    }
+   
+}
+
+@media screen and (max-width: 696px){
+    .mydrinks{
+        .formStyle{
+            font-size: 16px;
+            flex-flow: column wrap;
+             &__input{
+                 flex-flow: row wrap;
+                 width: 100%;
+             }
+           }
+        }
+    }

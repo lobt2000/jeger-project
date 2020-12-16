@@ -1,0 +1,165 @@
+<header>
+  <nav class="navBar">
+    <div class="navBar__container">
+      <div class="navBar__container__item">
+        <div class="navBar__container__item__logo">
+          <div class="mobi_manu">
+            <div class="menu_icon" [style.backgroundImage]="isMenu ? backImg : backImg " (click)="apearMenu()"></div>
+          </div>
+          <a [routerLink]="[ 'home' ]" routerLinkActive="active"></a>
+        </div>
+        <div class="navBar__container__item__text ">
+          <div class="navBar__container__item__text__adapt">
+            <div class="navBar__container__item__text__adapt__desc">
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
+                routerLinkActive="active">History</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link">Products</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link">Drinks</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="navBar__container__item">
+        <button class="navBar__container__item__signIn"  *ngIf="!isUser; else logout" (click)="modalSignIn()">
+          <div class="navBar__container__item__signIn__icon"></div>
+        </button>
+        <ng-template #logout>
+          <button class="navBar__container__item__signOut" (click)="modalSignOut()" *ngIf="isUser">
+            <div class="navBar__container__item__signOut__icon"></div>
+          </button>
+        </ng-template>
+        <button class="navBar__container__item__signUp" (click)="modalSignUp()" *ngIf="!userSign; else profile" >
+          <div class="navBar__container__item__signUp__icon"></div>
+        </button>
+
+        <ng-template #profile>
+          <button class="navBar__container__item__user" *ngIf="!admin" [routerLink]="[ 'profile' ]"
+          routerLinkActive="active">
+            <div class="navBar__container__item__user__icon"></div>
+          </button>
+          <button class="navBar__container__item__admin" *ngIf="admin" [routerLink]="[ 'admin' ]">
+            <div class="navBar__container__item__admin__icon"></div>
+          </button>
+        </ng-template>
+        
+
+        <button class="navBar__container__item__insta">
+          <div class="navBar__container__item__insta__icon"></div>
+        </button>
+        <button class="navBar__container__item__basket">
+          <div class="navBar__container__item__basket__icon"></div>
+        </button>
+      </div>
+    </div>
+
+  </nav>
+  <section class="navBar__mobi__item__text " [style.transform]="isMenu ? transition : transition">
+    <div class="navBar__mobi__item__text__adapt">
+      <div class="navBar__mobi__item__text__adapt__desc">
+        <a href="" class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
+          routerLinkActive="active">History</a>
+        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Products</a>
+        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Drinks</a>
+        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Contact</a>
+      </div>
+      <div class="navBar__mobi__item__text__adapt__mobi">
+        <button class="navBar__mobi__item__text__adapt__mobi__insta">
+          <div class="navBar__mobi__item__text__adapt__mobi__insta__icon"></div>
+        </button>
+        <button class="navBar__mobi__item__text__adapt__mobi__signIn" (click)="modalSignIn()" *ngIf="!isUser; else logout1">
+          <div class="navBar__mobi__item__text__adapt__mobi__signIn__icon"></div>
+        </button>
+        <ng-template #logout1>
+          <button class="navBar__mobi__item__text__adapt__mobi__signOut" (click)="modalSignOut()" *ngIf="isUser">
+            <div class="navBar__mobi__item__text__adapt__mobi__signOut__icon"></div>
+          </button>
+        </ng-template>
+        
+        <button class="navBar__mobi__item__text__adapt__mobi__signUp" (click)="modalSignUp()" *ngIf="!userSign; else profile1">
+          <div class="navBar__mobi__item__text__adapt__mobi__signUp__icon"></div>
+        </button>
+        <ng-template #profile1>
+          <button class="navBar__mobi__item__text__adapt__mobi__user" *ngIf="!admin"  [routerLink]="[ 'profile' ]"
+          routerLinkActive="active" >
+            <div class="navBar__mobi__item__text__adapt__mobi__user__icon"  [routerLink]="[ 'profile' ]"
+            routerLinkActive="active"></div>
+          </button>
+          <button class="navBar__mobi__item__text__adapt__mobi__admin" *ngIf="admin"  [routerLink]="[ 'admin' ]">
+            <div class="navBar__mobi__item__text__adapt__mobi__admin__icon"></div>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+
+  <section class="modalI" [style.background]="isSignIn ? colorI : colorI"
+    [style.position]="isSignIn ? positionI : positionI">
+    <div class="modalI__signIn" [style.transform]="isSignIn ? transformI : transformI">
+      <div class="modalI__signIn--cross" (click)="modalSignIn()"> <img src="../../../assets/image/times-solid.svg"
+          alt=""></div>
+      <div class="modalI__signIn--title">Sign In</div>
+      <div class="modalI__signIn--text">You can enter to your club account here</div>
+      <div class="modalI__signIn--form">
+        <label for="clubNumber">Club number</label>
+        <input type="text" [(ngModel)]="inputUser"  name="inputUser" id="clubNumber" placeholder="Please enter your club number">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="inputPass" name="inputPass" id="password" placeholder="Please enter your password">
+      </div>
+      <div class="modalI__signIn--logIn">
+        <button class="login" (click)="signIN()" (click)="modalSignIn()">Sign In</button>
+      </div>
+    </div>
+  </section>
+  <section class="modalU" [style.background]="isSignUp ? colorU : colorU"
+  [style.position]="isSignUp ? positionU : positionU">
+    <div class="modalU__signUp" [style.transform]="isSignUp ? transformU : transformU">
+      <div class="modalU__signUp--cross" (click)="modalSignUp()"> <img src="../../../assets/image/times-solid.svg" alt=""></div>
+      <div class="modalU__signUp--title">Sign Up</div>
+      <div class="modalU__signUp--text">Make registration to become a member of the club</div>
+      <div class="modalU__signUp--form">
+        <div class="user-form">
+          <div class="userFname">
+            <label for="fname" >First name</label>
+            <input [(ngModel)]="userFname" name="userFname" id="fname" type="text" placeholder="Please enter your first name">
+          </div>
+          <div class="userSname">
+            <label for="sname">Second Name</label>
+            <input type="text" [(ngModel)]="userSname" name="userSname" id="sname" placeholder="Please enter your second name">
+          </div>
+
+        </div>
+        <div class="regist-form">
+          <div class="userEmail">
+            <label for="email">Email</label>
+            <input type="text" [(ngModel)]="userEmail" name="userEmail" id="email"  placeholder="Please enter your email">
+          </div>
+         <div class="userPass">
+          <label for="userPassword">Password</label>
+          <input type="password" [(ngModel)]="userPassword" name="userPassword" id="userPassword" placeholder="Please enter your password">
+         </div>
+          
+        </div>
+      </div>
+      <div class="modalU__signUp--logUp">
+        <button class="regist" (click)="signUP()" (click)="modalSignUp()">Sign Up</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="modalO" [style.background]="isSignOut ? colorO : colorO"
+    [style.position]="isSignOut ? positionO : positionO">
+    <div class="modalO__signOut" [style.transform]="isSignOut ? transformO : transformO">
+      <div class="modalO__signOut--cross" (click)="modalSignOut()"> <img src="../../../assets/image/times-solid.svg"
+          alt=""></div>
+      <div class="modalO__signOut--title">Sign Out</div>
+      <div class="modalO__signOut--text">Are you shure to sign out from your account?</div>
+      <div class="modalO__signOut--form">
+        <button class="dismiss" (click)="modalSignOut()">Dismiss</button>
+        <button class="logout" (click)="signOUT()" (click)="modalSignOut()">Sign Out</button>
+      </div>
+    </div>
+  </section>
+</header>

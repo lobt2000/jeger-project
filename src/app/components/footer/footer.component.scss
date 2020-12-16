@@ -1,0 +1,328 @@
+@import "../../../assets/style/mixins";
+
+.footer {
+  background: url(../../../assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat,
+    linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 100%),
+    url(../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
+  //   position: absolute;
+  background-size: auto 100%, auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 27vh;
+  @include flexbox(column, wrap, space-around, space-around);
+  border-left: 0.75rem rgb(221, 90, 18) solid;
+  padding: 2rem 2rem 0;
+
+  &__menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // height: 14vh;
+
+    &__link {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      flex-flow: wrap;
+      margin-top: 10px;
+
+      &__item {
+        margin-right: 20px;
+        font-size: 20px;
+        text-decoration: none;
+        color: darkgray;
+        margin-bottom: 10px;
+
+      }
+
+      &__item:hover {
+        color: rgb(221, 90, 18);
+      }
+    }
+
+    &__button {
+      @include flexbox(row, wrap, flex-end, none);
+      width: 100%;
+
+      // height: 3rem;
+      &__icon {
+        display: inline-block;
+        vertical-align: middle;
+        height: 3.5rem;
+        line-height: 3.5rem;
+        min-width: 3rem;
+        background-color: #d45511;
+        background-size: 80%;
+        border-radius: 8px;
+        position: relative;
+        transition: all 300ms ease-in-out;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        width: 2rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 3rem;
+        width: 3rem;
+        transform-origin: 0 0;
+        background-image: url('../../../assets/image/instagram.svg');
+        margin-bottom: 10px;
+        margin-left: 10px;
+
+      }
+
+      &__icon::before {
+        color: orange;
+        opacity: 0;
+        z-index: 0;
+        line-height: 0.7;
+        top: 34%;
+        left: 0;
+        position: absolute;
+        content: 'Conect';
+        transform: translate3d(0, -1px, 0);
+        transform: translate3d(-1.2rem, -1rem, 0);
+        transition: transform 300ms ease-in-out;
+        color: rgba(255, 255, 255, .9);
+        font-size: 20px;
+        font-weight: bolder;
+        text-align: center;
+      }
+
+      &__icon:hover::before {
+        opacity: 1;
+        z-index: 1;
+        transform: translate3d(0, 0, 0);
+        background: transparent;
+        color: white;
+        text-align: center;
+        left: calc(20%);
+      }
+
+      &__icon:hover {
+        background-color: orangered;
+        background-size: 0%;
+        width: 7.5rem;
+        border-radius: 50px;
+      }
+
+      &__icon:focus {
+        border: 1px solid rgb(221, 90, 18);
+        outline: none;
+        border-radius: 8px;
+        border-color: rgb(221, 90, 18);
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(228, 107, 43);
+        border-radius: 50px;
+
+      }
+
+      &__face {
+        @extend .footer__menu__button__icon;
+        background-color: blue;
+        background-image: url('../../../assets/image/facebook-f-brands.svg');
+
+        margin-bottom: 10px;
+        margin-left: 10px;
+
+      }
+
+      &__face::before {
+        // color: orange;
+        opacity: 0;
+        z-index: 0;
+        line-height: 0.7;
+        top: 34%;
+        left: 0;
+        position: absolute;
+        content: 'Conect';
+        transform: translate3d(0, -1px, 0);
+        transform: translate3d(-1.2rem, -1rem, 0);
+        transition: transform 300ms ease-in-out;
+        color: rgba(255, 255, 255, .9);
+        font-size: 20px;
+        font-weight: bolder;
+        text-align: center;
+      }
+
+      &__face:hover::before {
+        opacity: 1;
+        z-index: 1;
+        transform: translate3d(0, 0, 0);
+        background: transparent;
+        color: white;
+        text-align: center;
+        left: calc(20%);
+      }
+
+      &__face:hover {
+        background-color: darkblue;
+        background-size: 0%;
+        width: 7.5rem;
+        border-radius: 50px;
+      }
+
+      &__face:focus {
+        border: 1px solid rgb(22, 22, 177);
+        outline: none;
+        border-radius: 8px;
+        border-color: rgb(22, 22, 177);
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(22, 22, 177);
+        border-radius: 50px;
+
+      }
+
+    }
+
+  }
+
+
+}
+
+@media screen and (max-width:990px) {
+  .footer {
+    &__menu {
+      &__button {
+        margin-top: 10px;
+
+        &__icon {
+          display: inline-block;
+          vertical-align: middle;
+          height: 3rem;
+          line-height: 3rem;
+          min-width: 3rem;
+          background-color: rgb(221, 90, 18);
+          background-size: 80%;
+          border-radius: 8px;
+          position: relative;
+          transition: all 300ms ease-in-out;
+          text-align: center;
+          cursor: pointer;
+          border: none;
+          width: 2rem;
+          background-repeat: no-repeat;
+          background-position: center center;
+          height: 3rem;
+          width: 3rem;
+          transform-origin: 0 0;
+          background-image: url('../../../assets/image/instagram.svg');
+          margin-bottom: 10px;
+          margin-left: 10px;
+
+        }
+
+        &__icon::before {
+          color: orange;
+          opacity: 0;
+          z-index: 0;
+          line-height: 0.7;
+          top: 35%;
+          left: 0;
+          position: absolute;
+          content: 'Conect';
+          transform: translate3d(0, -1px, 0);
+          transform: translate3d(-1.2rem, -1rem, 0);
+          transition: transform 300ms ease-in-out;
+          color: rgba(255, 255, 255, .9);
+          font-weight: bolder;
+          text-align: center;
+        }
+
+        &__icon:hover::before {
+          opacity: 1;
+          z-index: 1;
+          transform: translate3d(0, 0, 0);
+          background: transparent;
+          color: white;
+          text-align: center;
+          left: calc(15%);
+          font-size: 15px;
+        }
+
+        &__icon:hover {
+          background-color: orangered;
+          background-size: 0%;
+          width: 4.5rem;
+          border-radius: 50px;
+          font-size: 15px;
+        }
+
+        &__icon:focus {
+          border: 1px solid rgb(221, 90, 18);
+          outline: none;
+          border-radius: 8px;
+          border-color: rgb(221, 90, 18);
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgb(228, 107, 43);
+          border-radius: 50px;
+
+        }
+
+        &__face {
+          @extend .footer__menu__button__icon;
+          background-color: blue;
+          background-image: url('../../../assets/image/facebook-f-brands.svg');
+
+          margin-bottom: 10px;
+          margin-left: 10px;
+
+        }
+
+        &__face::before {
+          // color: orange;
+          opacity: 0;
+          z-index: 0;
+          line-height: 0.7;
+          top: 35%;
+          left: 0;
+          position: absolute;
+          content: 'Conect';
+          transform: translate3d(0, -1px, 0);
+          transform: translate3d(-1.2rem, -1rem, 0);
+          transition: transform 300ms ease-in-out;
+          color: rgba(255, 255, 255, .9);
+          font-weight: bolder;
+          text-align: center;
+        }
+
+        &__face:hover::before {
+          opacity: 1;
+          z-index: 1;
+          transform: translate3d(0, 0, 0);
+          background: transparent;
+          color: white;
+          text-align: center;
+          left: calc(15%);
+          font-size: 15px;
+
+        }
+
+        &__face:hover {
+          background-color: darkblue;
+          background-size: 0%;
+          width: 4.5rem;
+          border-radius: 50px;
+        }
+
+        &__face:focus {
+          border: 1px solid rgb(22, 22, 177);
+          outline: none;
+          border-radius: 8px;
+          border-color: rgb(22, 22, 177);
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgb(22, 22, 177);
+          border-radius: 50px;
+
+        }
+
+      }
+
+    }
+
+
+  }
+}
