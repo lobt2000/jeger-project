@@ -1,4 +1,59 @@
+
 <div class="mydrinks">
+  <section class="modalI" [style.background]="isIngred ? colorI : colorI"
+[style.top]="isIngred ? positionI : positionI">
+<div class="modalI__ingred" [style.transform]="isIngred ? transformI : transformI">
+  <div class="modalI__ingred--cross" (click)="createIngredient()"> <img src="../../../assets/image/times-cross.svg"
+      alt=""></div>
+  <div class="modalI__ingred--title">Add ingredient</div>
+  <div class="modalI__ingred--text"></div>
+   <div class="modalI__ingred--style">
+      <div class="input">
+        <label for="ingred"> ingredient: </label>
+        <input type="text" [(ngModel)]="ingred" name="ingred"  id="ingred">
+        <div class="input__upload">
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload a file</button>
+            <input (change)="uploadFileIngred($event)" type="file">
+          </div>
+      </div>
+      </div>
+    </div> 
+  
+  <div class="modalI__ingred--form">
+    <button class="dismiss" (click)="createIngredient()">Dismiss</button>
+    <button class="logout" (click)="addIngred()" (click)="createIngredient()" *ngIf="!editIngredStatus">Add</button>
+    <button class="logout" (click)="saveIngred()" (click)="createIngredient()"  *ngIf="editIngredStatus">Save</button>
+  </div>
+</div>
+</section>
+  <section class="modalS" [style.background]="isStep ? colorS : colorS"
+[style.top]="isStep ? positionS : positionS">
+<div class="modalS__step" [style.transform]="isStep ? transformS : transformS">
+  <div class="modalS__step--cross" (click)="createSteps()"> <img src="../../../assets/image/times-cross.svg"
+      alt=""></div>
+  <div class="modalS__step--title">Add ingredient</div>
+  <div class="modalS__step--text"></div>
+   <div class="modalS__step--style">
+      <div class="input">
+        <label for="stepsOfCook"> Step of cooking: </label>
+        <input type="text" [(ngModel)]="stepsOfCook" name="stepsOfCook"  id="stepsOfCook">
+        <div class="input__upload">
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload a file</button>
+            <input (change)="uploadFileStep($event)" type="file">
+          </div>
+      </div>
+      </div>
+    </div> 
+  
+  <div class="modalI__ingred--form">
+    <button class="dismiss" (click)="createSteps()">Dismiss</button>
+    <button class="logout" (click)="addSteps()" (click)="createSteps()" *ngIf="!editStepStatus">Add</button>
+    <button class="logout" (click)="saveStep()" (click)="createSteps()" *ngIf="editStepStatus">Save</button>
+  </div>
+</div>
+</section>
   <h1 class="w-100 text-center mb-3 font-bolder">Drinks</h1>
   <form>
     <div class="formStyle">
@@ -13,55 +68,110 @@
       </div>
     </div>
     <div class="formStyle">
-      <div class="formStyle__input">
+      <!-- <div class="formStyle__input">
           <label for="countIng">Count of ingredient: </label>
           <input name="counts" class="text-center" [(ngModel)]="counts" type="text"  id="countIng">
-        </div>
-  
+        </div> -->
+        <div class="formStyle__input">
+          <label for="countS">Add count of step</label>
+        <button (click)="createSteps()" class="formStyle__input--button">Add</button>
+      </div>
       <div class="formStyle__input">
-          <label for="countIng">Add count of ingredient</label>
+          <label for="countIng">Add ingredient</label>
         <button (click)="createIngredient()" class="formStyle__input--button"  >Add</button>
       </div>
     </div>
     
+
     <div class="formStyle">
-      <div *ngFor="let ing of ingredients; let i = index" class="formStyle__input">
-        <label for="ingred"> ingredient: </label>
-        <input  [(ngModel)]="ing.ingredient" name="ing.ingredient" (change)="checkIngred(ing.ingredient, i)" type="text"  id="ingred">
-        <div class="formStyle__input--upload">
-        <input type="file" id="inputGroupFile04" (change)="uploadFileIngred($event, i)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+      <div class="formStyle__input">
+        <table class="table mytable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Step</th>
+              <th scope="col">Image</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of steps; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>
+                      {{ s.step }}
+                    </td>
+                    <td>
+                        <img [attr.src]="s.image" style="width: 100px;" alt="">
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" (click)="editStep(s, i)">edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteStep(i)">delete</button>
+                    </td>
+                </tr>
+          </tbody>
+        </table>
+        
       </div>
+      <div class="formStyle__input">
+        <table class="table mytable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ingredients</th>
+              <th scope="col">Image</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingred of ingredients; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>
+                      {{ ingred.ingredient }}
+                    </td>
+                    <td>
+                        <img [attr.src]="ingred.image" style="width: 100px;" alt="">
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" (click)="editIngred(ingred, i)">edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteIngred(i)">delete</button>
+                    </td>
+                </tr>
+          </tbody>
+        </table>
+        
       </div>
+     
     </div>
     <div class="formStyle">
       <div class="formStyle__input">
-          <label for="countSteps">Count of step of cooking: </label>
-          <input name="counts" class="text-center" [(ngModel)]="countStep" type="text"  id="countSteps">
-        </div>
-  
-      <div class="formStyle__input">
-          <label for="countS">Add count of step</label>
-        <button (click)="createSteps()" class="formStyle__input--button">Add</button>
+        <label for="taste">Taste: </label>
+        <input [(ngModel)]="taste" name="taste" type="text"  id="taste">
       </div>
+
     </div>
-    
-    <div class="formStyle">
+    <!-- <div class="formStyle">
       <div *ngFor="let s of steps; index as i" class="formStyle__input">
         <label for="stepCook"> Step of cooking: </label>
         <input [(ngModel)]="s.step" name="s"  (change)="checkSteps(s.step, i)" type="text"  id="stepCook">
         <div class="formStyle__input--upload">
-          <input type="file" class=" mt-3" id="inputGroupFile04" (change)="uploadFileIngred($event, i)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+          <input type="file" class=" mt-3" id="inputGroupFile04" (change)="uploadFileStep($event, i)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
           <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
         </div>
         
       </div>
+    </div> -->
+    <div class="formStyle-last">
+      <div class="upload-btn-wrapper">
+        <button class="btn">Upload a file</button>
+        <input type="file" (change)="uploadFile($event)" name="myfile" />
+      </div>
     </div>
-    <div class="input-group formStyle-last">
-      <input type="file" class="form-control" id="inputGroupFile04" (change)="uploadFileStep($event)" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-      <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-    </div>
-    
     <div class="progress mt-3 mb-3">
       <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
               [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
@@ -69,8 +179,8 @@
   
   
     <div class="formStyle">
-      <button type="button" class="mybuttom" *ngIf="!editStatus" >ADD</button>
-      <button type="button" class="mybuttom bg-success" *ngIf="editStatus" >SAVE</button>
+      <button type="button" class="mybuttom" *ngIf="!editStatus"  (click)="addDrink()">ADD</button>
+      <button type="button" class="mybuttom bg-success" *ngIf="editStatus" (click)="saveDrink()">SAVE</button>
       <!-- <button type="button" class="btn but btn-info">Save</button> -->
     </div>
   
@@ -110,10 +220,10 @@
                   <img [attr.src]="drink?.image" style="width: 100px;" alt="">
               </td>
               <td>
-                  <button class="btn btn-warning" (click)="editProduct(prod)">edit</button>
+                  <button class="btn btn-warning" (click)="editDrink(drink)">edit</button>
               </td>
               <td>
-                  <button class="btn btn-danger" (click)="deleteProduct(prod)">delete</button>
+                  <button class="btn btn-danger" (click)="deleteDrink(drink)">delete</button>
               </td>
           </tr>
     </tbody>

@@ -5,6 +5,7 @@
     linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 100%),
     url(../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
   //   position: absolute;
+  font-family: sans-serif;
   background-size: auto 100%, auto;
   left: 0;
   right: 0;
@@ -58,7 +59,7 @@
         background-size: 80%;
         border-radius: 8px;
         position: relative;
-        transition: all 300ms ease-in-out;
+        transition: width 300ms ease-in-out, border-radius 300ms ease-in-out,background-size  300ms ease-in-out, background-color  300ms ease-in-out;
         text-align: center;
         cursor: pointer;
         border: none;
@@ -75,18 +76,17 @@
       }
 
       &__icon::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
         top: 34%;
         left: 0;
         position: absolute;
-        content: 'Conect';
+        content: 'Connect';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -99,7 +99,7 @@
         background: transparent;
         color: white;
         text-align: center;
-        left: calc(20%);
+        left: calc(18%);
       }
 
       &__icon:hover {
@@ -138,11 +138,11 @@
         top: 34%;
         left: 0;
         position: absolute;
-        content: 'Conect';
+        content: 'Connect';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -155,7 +155,7 @@
         background: transparent;
         color: white;
         text-align: center;
-        left: calc(20%);
+        left: calc(18%);
       }
 
       &__face:hover {
@@ -216,18 +216,18 @@
         }
 
         &__icon::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
           top: 35%;
           left: 0;
           position: absolute;
-          content: 'Conect';
+          content: 'Connect';
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
-          transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+
+          color: transparent;
           font-weight: bolder;
           text-align: center;
         }
@@ -246,7 +246,7 @@
         &__icon:hover {
           background-color: orangered;
           background-size: 0%;
-          width: 4.5rem;
+          width: 5rem;
           border-radius: 50px;
           font-size: 15px;
         }
@@ -280,13 +280,13 @@
           top: 35%;
           left: 0;
           position: absolute;
-          content: 'Conect';
+          content: 'Connect';
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
-          transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
           font-weight: bolder;
           text-align: center;
+          color: transparent;
         }
 
         &__face:hover::before {
@@ -304,7 +304,7 @@
         &__face:hover {
           background-color: darkblue;
           background-size: 0%;
-          width: 4.5rem;
+          width: 5rem;
           border-radius: 50px;
         }
 

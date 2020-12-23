@@ -19,6 +19,12 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { BlogComponent } from './admin/blog/blog.component';
 import { DrinksComponent } from './admin/drinks/drinks.component';
 import { ProductsComponent } from './admin/products/products.component';
+import { ProductComponent } from './pages/product/product.component';
+import { ProdDetailsComponent } from './pages/prod-details/prod-details.component';
+import { DiscountComponent } from './admin/discount/discount.component';
+import { DrinkComponent } from './pages/drink/drink.component';
+import { DrinkDetailsComponent } from './pages/drink-details/drink-details.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +37,13 @@ import { ProductsComponent } from './admin/products/products.component';
     ProfileComponent,
     BlogComponent,
     DrinksComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductComponent,
+    ProdDetailsComponent,
+    DiscountComponent,
+    DrinkComponent,
+    DrinkDetailsComponent,
+
   ],
   imports: [
     BrowserModule,

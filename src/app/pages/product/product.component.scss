@@ -1,0 +1,113 @@
+.prod {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  min-height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  align-items: stretch;
+
+  &__component {
+    width: 31%;
+    // position: relative;
+    height: 50vh;
+    overflow: hidden;
+    box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &--img {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50%;
+
+      filter: saturate(100%) brightness(100%);
+      transition: transform 600ms ease-in-out, filter 600ms ease-in-out;
+
+      .title {
+        position: relative;
+        width: 100%;
+        min-height: 10px;
+        //   margin-bottom: 50px;
+        margin: 0 0 calc(15%) calc(12%);
+        // bottom: calc(10%);
+        // left: calc(10%);
+        color: white;
+        font-size: 24px;
+        font-style: italic;
+
+      }
+
+      .title::before {
+        content: '';
+        width: 5.3333em;
+        height: 5px;
+        min-height: 1.5em;
+        border-bottom: 0.5em solid rgb(221, 90, 18);
+        position: absolute;
+        top: calc(10%);
+        left: calc(-5%);
+        box-sizing: border-box;
+        transition: width 1000ms ease-in-out;
+      }
+
+
+    }
+
+
+    &--img:hover {
+      transform: scale(1.1);
+      filter: saturate(125%) brightness(125%);
+    }
+
+    &--img:hover>.title::before {
+
+      width: 7.5em;
+
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .prod {
+    &__component {
+      margin-top: 50px;
+      width: 45%;
+      &--img{
+        .title{
+          font-size: 22px;
+        }
+       }
+    }
+
+
+
+
+  }
+}
+
+@media screen and (max-width: 679px) {
+  .prod {
+    flex-flow: column;
+    align-items: center;
+
+    &__component {
+      margin-top: 50px;
+      width: 80%;
+       &--img{
+        .title{
+          font-size: 18px;
+        }
+       }
+    }
+
+
+
+
+  }
+}

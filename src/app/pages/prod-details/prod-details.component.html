@@ -1,0 +1,70 @@
+<section class="prod" id="prod">
+
+  <div class="prod__header" [style.backgroundImage]="'url(' + product?.headerImg + ')'">
+    <h2 class="prod__header--title">{{product?.mainTitle}}</h2>
+    <p class="prod__header--text"></p>
+  </div>
+  <div class="prod__desc">
+    <div class="prod__desc--img">
+      <img [attr.src]="product?.descImg" alt="">
+    </div>
+    <div class="prod__desc--content">
+      <p class="title"> {{product?.descTitle}}</p>
+      <p class="text">{{product?.descText}}</p>
+      <div class="taste">
+        <h2 class="taste__aroma">
+          <span>Aromatic:</span>
+          <div class="taste__aroma--p"><span [style.width]="product?.aromatic + '%'"></span></div>
+        </h2>
+        <h2 class="taste__sweet">
+          <span>Sweet:</span>
+          <div class="taste__sweet--p"><span [style.width]="product?.sweet + '%'"></span></div>
+        </h2>
+        <h2 class="taste__bitter">
+          <span>Bitter:</span>
+          <div class="taste__bitter--p"><span [style.width]="product?.bitter + '%'"></span></div>
+        </h2>
+        <h2 class="taste__citrus">
+          <span>Citrus:</span>
+          <div class="taste__citrus--p"><span [style.width]="product?.citrus + '%'"></span></div>
+        </h2>
+
+      </div>
+    </div>
+  </div>
+  <div class="prod__footer" *ngIf="!checkDisc">
+    <div class="prod__footer--order">
+        <div class="price">
+           <span class="price__text">Price for one:</span> {{ product?.price * product?.count  | currency }}
+        </div>
+       <div class="counter">
+         <span class="counter__amount">Amount:</span>
+        <button class="mybtn" (click)="prodCount(product, false)">-</button>
+        <input type="text" minlength='1'  [value]="product?.count">
+        <button class="mybtn" (click)="prodCount(product, true)">+</button>
+       </div>
+       <button class="makeOrder" (click)="addToBasket(product)">Add to Basket</button>
+    </div>
+    <div class="prod__footer--logo"></div>
+
+  </div>
+  <div class="prod__footer" *ngIf="checkDisc">
+    <div class="prod__footer--order">
+        <div class="price">
+           <span class="price__text">Price for one:     </span> <span class="price__still">{{ product?.price * product?.count  | currency }}  <span class="price__still--cross"></span></span>
+           <span class="price__discount"> {{ (product?.price * product?.count) - (product?.price * product?.count * discount)  | currency }}</span>
+          
+
+        </div>
+       <div class="counter">
+         <span class="counter__amount">Amount:</span>
+        <button class="mybtn" (click)="prodCount(product, false)">-</button>
+        <input type="text" minlength='1'  [value]="product?.count">
+        <button class="mybtn" (click)="prodCount(product, true)">+</button>
+       </div>
+       <button class="makeOrder" (click)="addToBasket(product)">Add to Basket</button>
+    </div>
+    <div class="prod__footer--logo"></div>
+
+  </div>
+</section>

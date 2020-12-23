@@ -1,0 +1,62 @@
+<div class="myprod">
+    
+    <h1 class="w-100 text-center mb-3 font-bolder">Products</h1>
+    <form>
+      <div class="formStyle">
+        <div class="formStyle__input">
+          <label for="chooseProd">Choose product: </label>
+          <select class="custom-select"
+          id="chooseProd" [(ngModel)]="productName" name="productName">
+          <option class="border">
+            <p class="border">{{all}}</p>
+
+          </option>
+          <option class="border" *ngFor="let prod of products">
+            <p class="border">{{ prod.mainTitle }}</p>
+
+          </option>
+        </select>
+        </div>
+    
+        <div class="formStyle__input">
+          <label for="disc">Set discount: </label>
+          <input [(ngModel)]="disc" name="disc" type="number" min="0" max="100"  id="disc">
+        </div>
+      </div>
+
+      <div class="formStyle">
+        <button type="button" class="mybuttom" *ngIf="!editStatus"  (click)="checkdisc()">ADD</button>
+        <button type="button" class="mybuttom bg-success" *ngIf="editStatus" (click)="checkSavedisc()">SAVE</button>
+        <!-- <button type="button" class="btn but btn-info">Save</button> -->
+      </div>
+    
+    </form>
+    <hr>
+    
+    
+    <table class="table mytable">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Discount</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disc of discounts; let i=index">
+                <td>{{ i+1 }}</td>
+                <td>{{ disc?.product }}</td>
+                <td>{{ disc?.discount }}%</td>
+                <td>
+                    <button class="btn btn-warning" (click)="editDisc(disc, i)">edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteDisc(disc)">delete</button>
+                </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+  

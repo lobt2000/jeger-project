@@ -15,7 +15,6 @@ export class AdminGuard implements CanActivate {
   private checkLogin():boolean{
     if(localStorage.getItem('user')){
       const CURRENT_USER = JSON.parse(localStorage.getItem('user'));
-      console.log(CURRENT_USER);
       if(CURRENT_USER.role === 'admin' && CURRENT_USER != null){
         return  true
       }

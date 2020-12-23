@@ -10,113 +10,193 @@ import { Drinks } from 'src/app/shared/classes/drinks.model';
   templateUrl: './drinks.component.html',
   styleUrls: ['./drinks.component.scss']
 })
+
 export class DrinksComponent implements OnInit {
-  counts: number;
+  stepsImg: string;
+  stepsOfCook: string;
+  isIngred = false;
+  ingredImg: string;
+  ingred: string;
   ingredients: Array<any> = [];
-  countStep:number;
+  isStep = false;
   steps:Array<any> = [];
   uploadProgress: Observable<number>;
   drinksImage: string;
-  ingred0: string;
-  ingred1: string;
-  ingred2: string;
-  ingred3: string;
   drinks: Array<IDrinks> = [];
   drinksName: string;
   drinksUrlName: string;
   drinksId: string;
   editStatus = false;
+  transformI = 'translate3d(0,-150%,0)';
+  colorI = "transparent";
+  positionI = 'calc(-100%)';
+  transformS = 'translate3d(0,-150%,0)';
+  colorS = "transparent";
+  positionS = 'calc(-100%)';
+  ingredId: any;
+  stepId: any;
+  editIngredStatus = false;
+  editStepStatus = false;
+  taste: string;
   constructor(private storage: AngularFireStorage,
     private drinkService: DrinksService) { }
 
   ngOnInit(): void {
-    console.log(this.ingredients );
+    
+    this.getDrinks();
   }
 createIngredient():void{
-  if(+this.counts){
-    for(let i = 0; i< this.counts; i++){
-      const ingred = {
-        ingredient: '',
-        image: ''
-      }
-      this.ingredients.push(ingred)
-    }
-    console.log(this.ingredients );
+  this.isIngred = !this.isIngred;
+  if (this.isIngred) {
+    this.transformI = 'translate3d(0,0%,0)';
+    this.colorI = "rgba(0, 0, 0, .7)";
+    this.positionI = 'calc(0%)';
   }
-  else{
-    console.log('loh');
-    
+  else {
+    this.transformI = 'translate3d(0,-150%,0)';
+    this.colorI = "transparent";
+    this.positionI = 'calc(0%)';
+    if (window.innerWidth < 696) {
+      setTimeout(() => {
+        this.positionI = 'calc(-100%)';
+        this.ingredImg = '';
+        this.ingred = '';
+      }, 1000);
+    }
+    else {
+      setTimeout(() => {
+        this.positionI = 'calc(-100%)';
+        this.ingredImg = '';
+        this.ingred = '';
+      }, 1000);
+    }
+
+
   }
 
 
 }
 createSteps():void{
-  if(+this.countStep){
-    for(let i = 0; i< this.countStep; i++){
-      const step = {
-        step: '',
-        image: ''
-      }
-      this.steps.push(step)
+  this.isStep = !this.isStep;
+  if (this.isStep) {
+    this.transformS = 'translate3d(0,0%,0)';
+    this.colorS = "rgba(0, 0, 0, .7)";
+    this.positionS = 'calc(0%)';
+  }
+  else {
+    this.transformS = 'translate3d(0,-150%,0)';
+    this.colorS = "transparent";
+    this.positionS = 'calc(0%)';
+    if (window.innerWidth < 696) {
+      setTimeout(() => {
+        this.positionS = 'calc(-100%)';
+this.stepsImg = '';
+this.stepsOfCook = '';
+      }, 1000);
     }
-    console.log(this.steps );
-  }
-  else{
-    console.log('loh');
-    
-  }
+    else {
+      setTimeout(() => {
+        this.positionS = 'calc(-100%)';
+        this.stepsImg = '';
+this.stepsOfCook = '';
+      }, 1000);
+    }
 
+
+  }
 
 }
-checkIngred(el:any, id: number):void{
-this.ingredients[id].ingredient = el;
-console.log(this.ingredients);
+addIngred():void{
+  const ingred = {
+    ingredient: this.ingred,
+    image: this.ingredImg
+  }
+this.ingredients.push(ingred);
 
 }
-checkSteps(el:any, id: number):void{
-this.steps[id].step = el;
-console.log(this.steps);
+addSteps():void{
+  const step = {
+    step: this.stepsOfCook,
+    image: this.stepsImg
+  }
+this.steps.push(step);
 
+}
+editIngred(ingred : any, id: any):void{
+ this.createIngredient()
+ this.ingredId = id;
+     this.ingred = ingred.ingredient;
+    this.ingredImg = ingred.image;
+    this.editIngredStatus = true
+}
+editStep(ste : any, id: any):void{
+ this.createSteps();
+ this.stepId = id;
+    this.stepsOfCook = ste.step;
+    this.stepsImg = ste.image;
+    this.editStepStatus = true
+}
 
+deleteIngred(ingred: any):void{
+  this.ingredients.splice(ingred, 1)
+}
+deleteStep(step: any):void{
+  this.steps.splice(step, 1)
+}
+saveStep():void{
+  this.steps[this.stepId].step = this.stepsOfCook; 
+  this.steps[this.stepId].image = this.stepsImg; 
+  this.editStepStatus = false;
+  this.stepsOfCook = '';
+  this.stepsImg = '';
+}
+saveIngred():void{
+  this.ingredients[this.ingredId].ingredient = this.ingred; 
+  this.ingredients[this.ingredId].image = this.ingredImg; 
+  this.editIngredStatus = false;
+  this.ingred = '';
+  this.ingredImg = '';
 }
 
 uploadFile(event): void {
   const file = event.target.files[0];
-  const filePath = `images/${file.name}`;
+  const filePath = `image/${file.name}`;
   const upload = this.storage.upload(filePath, file);
   this.uploadProgress = upload.percentageChanges();
 
   upload.then(image => {
-    this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+    this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
       this.drinksImage = url;
     });
     console.log('Photo added!');
 
   });
 }
-uploadFileIngred(event, id): void {
+uploadFileIngred(event): void {
   const file = event.target.files[0];
-  const filePath = `images/${file.name}`;
+  const filePath = `image/${file.name}`;
   const upload = this.storage.upload(filePath, file);
   this.uploadProgress = upload.percentageChanges();
 
   upload.then(image => {
-    this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-      this.ingredients[id].image = url      
+    this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+      console.log(url);
+      
+      this.ingredImg = url      
     });
     console.log('Photo added!');
 
   });
 }
-uploadFileStep(event, id): void {
+uploadFileStep(event): void {
   const file = event.target.files[0];
-  const filePath = `images/${file.name}`;
+  const filePath = `image/${file.name}`;
   const upload = this.storage.upload(filePath, file);
   this.uploadProgress = upload.percentageChanges();
 
   upload.then(image => {
-    this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-      this.steps[id].image = url      
+    this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+      this.stepsImg = url      
     });
     console.log('Photo added!');
 
@@ -124,8 +204,8 @@ uploadFileStep(event, id): void {
 }
 
 
-getProducts(): void {
-  this.drinkService.getAllProd().snapshotChanges().pipe(
+getDrinks(): void {
+  this.drinkService.getAllDrinks().snapshotChanges().pipe(
     map(changes =>
       changes.map(c =>
         ({ id: c.payload.doc.id, ...c.payload.doc.data() })
@@ -137,23 +217,24 @@ getProducts(): void {
 
 }
 
-addProduct(): void {
+addDrink(): void {
   if (this.drinksName && this.drinksUrlName && this.ingredients  && this.steps) {
-    const newProd = new Drinks('1',
+    const newDrink = new Drinks('1',
       this.drinksName,
       this.drinksUrlName,
       this.ingredients,
       this.steps,
+      this.taste,
       this.drinksImage)
-    delete newProd.id;
-    this.drinkService.create(newProd)
+    delete newDrink.id;
+    this.drinkService.create(newDrink)
    this.drinkService.updProd.subscribe(
      data => {
        console.log(data);
-       newProd.id = data
-      this.drinkService.update(data, newProd).then(
+       newDrink.id = data
+      this.drinkService.update(data, newDrink).then(
         () => {
-          this.getProducts()
+          this.getDrinks()
         }
       )
      }
@@ -167,36 +248,35 @@ addProduct(): void {
   }
 
 }
-deleteProd(prod: IDrinks): void {
+deleteDrink(drink: IDrinks): void {
 
-  this.drinkService.delete(prod.id.toString())
+  this.drinkService.delete(drink.id.toString())
     .then(() => {
       // this.toastr.success('Product delete', 'Successed');
-      this.getProducts()
+      this.getDrinks()
     })
     .catch(err => {
       // this.toastr.error('Something go wrong', 'Denied');
     });
 }
-editProd(drink: IDrinks): void {
+editDrink(drink: IDrinks): void {
   this.drinksId = drink.id;
 this.drinksName = drink.name;
 this.drinksUrlName = drink.urlName;
 this.ingredients = drink.ingredients;
 this.steps = drink.stepOfCook;
 this.drinksImage = drink.image;
-
+this.taste = drink.taste;
   this.editStatus = true;
 
 }
-saveProd(): void {
-  const saveD = new Drinks('1', this.drinksName, this.drinksUrlName, this.ingredients, this.steps, this.drinksImage)
+saveDrink(): void {
+  const saveD = new Drinks('1', this.drinksName, this.drinksUrlName, this.ingredients, this.steps, this.taste,  this.drinksImage)
   saveD.id = this.drinksId;
-
   this.drinkService.update(saveD.id.toString(), saveD)
     .then(() => {
       // this.toastr.success('Product update', 'Successed');
-      this.getProducts()
+      this.getDrinks()
     })
     .catch(err => {
       // this.toastr.error('Something go wrong', 'Denied');
@@ -210,6 +290,10 @@ resetForm() {
   this.ingredients = [];
   this.steps = [];
   this.drinksImage = '';
+  this.ingred = '';
+  this.stepsOfCook = '';
+  this.ingredImg = '';
+  this.stepsImg = '';
   // this.success = false;
   // this.procent = true;
 }

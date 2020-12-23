@@ -12,6 +12,7 @@
   width: 100%;
   min-height: 20vh;
 
+  // transition: all 600ms ease-in-out;
   &__component:first-child {
     width: 100%;
     display: flex;
@@ -41,13 +42,15 @@
       background-image: url('../../../assets/image/PNG_derivative-JM__STN_LimBo_Bottle_Photography.webp');
       width: 64%;
       overflow: hidden;
-      // transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
+      transition: width 600ms ease-in-out;
     }
 
     &__item:nth-child(2) {
       background-image: url('../../../assets/image/20180719_Header_16x9.jpg ');
       width: 36%;
       background-position: 10%;
+      transition: width 600ms ease-in-out;
     }
 
     &__item {
@@ -58,7 +61,12 @@
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-cursor: pointer;
+      transition: animation 600ms ease-in-out;
+      transition: width 600ms ease-in-out;
+
+
+      cursor: pointer;
+
       &__title {
         position: relative;
         margin: 7vh;
@@ -70,7 +78,8 @@ cursor: pointer;
         text-transform: uppercase;
 
       }
-      &__title::after{
+
+      &__title::after {
         content: '';
         width: 5.3333em;
         height: 100%;
@@ -80,37 +89,44 @@ cursor: pointer;
         top: calc(10%);
         left: calc(-21%);
         box-sizing: border-box;
+        transition: width 600ms ease-in-out;
       }
 
     }
-    &__item:hover:first-child > .blog__component__item__title::after{
-      transition: width 600ms ease-in-out;
+
+    &__item:hover:first-child>.blog__component__item__title::after {
+
       width: 10em;
     }
-    
+
     &__item:hover:last-child {
       animation: backPosImg infinite 10s ease-in-out;
     }
-    &__item:hover:last-child > .blog__component__item__title::after{
-      transition: width 600ms ease-in-out;
+
+    &__item:hover:last-child>.blog__component__item__title::after {
+
       width: 10em;
     }
-    &__itemBot:hover > .blog__component__itemBot__title::after{
-      transition: width 600ms ease-in-out;
+
+    &__itemBot:hover>.blog__component__itemBot__title::after {
+
       width: 10em;
     }
-    &__itemBot:hover{
+
+    &__itemBot:hover {
       animation: backPosImg infinite 10s ease-in-out;
     }
-    &__itemBlog:hover{
+
+    &__itemBlog:hover {
       animation: backPosImg infinite 10s ease-in-out;
     }
-    &__itemBlog:hover > .blog__component__itemBlog__title::after{
+
+    &__itemBlog:hover>.blog__component__itemBlog__title::after {
       transition: width 600ms ease-in-out;
       width: 10em;
     }
 
-   
+
 
     &__itemBot {
       width: 33.3%;
@@ -122,6 +138,8 @@ cursor: pointer;
       align-items: flex-end;
       justify-content: flex-start;
       cursor: pointer;
+      transition: width 600ms ease-in-out;
+
       &__title {
         position: relative;
         margin: 7vh;
@@ -134,7 +152,8 @@ cursor: pointer;
         text-transform: uppercase;
 
       }
-      &__title::after{
+
+      &__title::after {
         content: '';
         width: 5.3333em;
         height: 100%;
@@ -144,19 +163,24 @@ cursor: pointer;
         top: calc(10%);
         left: calc(-10%);
         box-sizing: border-box;
+        transition: width 600ms ease-in-out;
       }
     }
+
     &__itemBlog {
       width: 100%;
       background-size: cover;
       background-repeat: no-repeat;
-      min-height: 20vh;
+      min-height: 60vh;
       background-position: 50%;
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
       background-image: url('../../../assets/image/03-JM-Manifest.jpg');
+      transition: all 600ms ease-in-out;
+
       cursor: pointer;
+
       &__title {
         position: relative;
         margin: 7vh;
@@ -168,38 +192,42 @@ cursor: pointer;
         text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
         text-transform: uppercase;
 
+
       }
-      &__title::after{
+
+      &__title::after {
         content: '';
         width: 5.3333em;
         height: 100%;
         min-height: 2.5em;
         border-bottom: 0.5em solid rgb(221, 90, 18);
         position: absolute;
-        top: calc(10%);  
+        top: calc(10%);
         left: calc(-22%);
         box-sizing: border-box;
+        transition: width 600ms ease-in-out;
       }
     }
 
     &__itemBot:nth-child(1) {
       background-image: url('../../../assets/image/03-JM-Manifest.jpg');
-    
+
 
     }
-    &__itemBot:hover{
+
+    &__itemBot:hover {
       animation: backPos infinite 15s ease-in-out;
     }
 
     &__itemBot:nth-child(2) {
       background-image: url('../../../assets/image/HP_img_fts.webp');
-    
+
 
     }
 
     &__itemBot:nth-child(3) {
       background-image: url('../../../assets/image/teaser_instagram.png');
-      
+
 
     }
 
@@ -212,92 +240,105 @@ cursor: pointer;
 
 
 
-@media screen and (max-width:990px){
-  .blog{
-    &__component{
-      &__item:nth-child(1){
+@media screen and (max-width:990px) {
+  .blog {
+    &__component {
+      &__item:nth-child(1) {
         width: 100%;
         max-width: 100%;
       }
-      &__item:nth-child(2){
+
+      &__item:nth-child(2) {
         width: 100%;
       }
-      &__itemBot{
+
+      &__itemBot {
         width: 100%;
         min-height: 50vh;
       }
-      &__item:hover:first-child{
+
+      &__item:hover:first-child {
         // transition: ;
         // animation: backSize infinite 10s ease-in-out;
         // transform: scale(0.7) 1s ease-in-out;
       }
-      
-      &__item:hover:last-child{
+
+      &__item:hover:last-child {
         animation: backPosImg infinite 10s ease-in-out;
-  
+
         // animation: backSize 10s ease-in-out;
       }
-      &__itemBot:hover{
+
+      &__itemBot:hover {
         animation: backPos infinite 10s ease-in-out;
-  
+
         // animation: backSize 10s ease-in-out;
       }
-      &__itemBlog:hover{
+
+      &__itemBlog:hover {
         animation: backPos infinite 10s ease-in-out;
-  
+
         // animation: backSize 10s ease-in-out;
       }
-      
+
     }
   }
 }
 
 @keyframes backSize {
-  0%{
-  background-size: 110%;
+  0% {
+    background-size: 110%;
   }
-  50%{
-  background-size: 130%;
+
+  50% {
+    background-size: 130%;
   }
-  100%{
-  background-size: 110%;
-    
+
+  100% {
+    background-size: 110%;
+
   }
-  
+
 }
+
 @keyframes backPos {
-  0%{
-  background-position: 50%;
+  0% {
+    background-position: 50%;
   }
-  25%{
-  background-position: 75%;
+
+  25% {
+    background-position: 75%;
   }
-  
-  75%{
-  background-position: 25%;
+
+  75% {
+    background-position: 25%;
 
   }
-  100%{
-  background-position: 50%;
-    
+
+  100% {
+    background-position: 50%;
+
   }
-  
+
 }
+
 @keyframes backPosImg {
-  0%{
-  background-position: 10%;
+  0% {
+    background-position: 10%;
   }
-  25%{
-  background-position: 50%;
+
+  25% {
+    background-position: 50%;
   }
-  
-  75%{
-  background-position: 5%;
+
+  75% {
+    background-position: 5%;
 
   }
-  100%{
-  background-position: 10%;
-    
+
+  100% {
+    background-position: 10%;
+
   }
-  
+
 }

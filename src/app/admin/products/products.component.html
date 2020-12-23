@@ -1,1 +1,159 @@
-<p>products works!</p>
+
+<div class="myprod">
+    
+    <h1 class="w-100 text-center mb-3 font-bolder">Products</h1>
+    <form>
+      <div class="formStyle">
+        <div class="formStyle__input">
+          <label for="mainTitle">Main Title: </label>
+          <input [(ngModel)]="mainTitle" name="mainTitle" type="text"  id="mainTitle">
+        </div>
+    
+        <div class="formStyle__input">
+          <label for="mainText">Main text: </label>
+         <textarea name="mainText" [(ngModel)]="mainText" id="mainText" cols="30" rows="1"></textarea>
+        </div>
+      </div>
+      <div class="formStyle">
+        <div class="formStyle__input">
+          <label for="url">Url Name: </label>
+          <input [(ngModel)]="urlName" name="urlName" type="text"  id="url">
+        </div>
+      </div>
+      <div class="formStyle">
+        <div class="formStyle__input">
+            <label for="descTitle">Description Title: </label>
+            <input [(ngModel)]="descTitle" name="descTitle" type="text"  id="descTitle">
+          </div>
+      
+          <div class="formStyle__input">
+            <label for="descText">Description text: </label>
+           <textarea name="descText" [(ngModel)]="descText" id="descText" cols="30" rows="1"></textarea>
+          </div>
+         
+      </div>
+      <div class="formStyle">
+        <div class="formStyle__input">
+            <label for="aromatic">Aromatic: </label>
+            <input [(ngModel)]="aromatic"  min="0" max="100" name="aromatic" type="number"  id="aromatic">
+          </div>
+      
+          <div class="formStyle__input">
+            <label for="sweet">Sweets: </label>
+            <input [(ngModel)]="sweet"  min="0" max="100" name="sweet" type="number"  id="sweet">
+          </div>
+         
+      </div>
+      <div class="formStyle">
+        <div class="formStyle__input">
+            <label for="bitter">Bitter: </label>
+            <input [(ngModel)]="bitter"  min="0" max="100"  name="bitter" type="number"  id="bitter">
+          </div>
+      
+          <div class="formStyle__input">
+            <label for="citrus">Citrus: </label>
+            <input [(ngModel)]="citrus" min="0" max="100" name="citrus" type="number"  id="citrus">
+          </div>
+         
+      </div>
+      <div class="formStyle">
+        <div class="formStyle__input">
+            <label for="price">Price: </label>
+            <input [(ngModel)]="price" min="0" name="price" type="number"  id="price">
+          </div>
+        <div class="formStyle__input">
+            <label for="count">Count: </label>
+            <input [(ngModel)]="count" min="0" name="count" type="number"  id="count">
+          </div>
+      </div>
+      
+  
+      
+      <div class="formStyle-last">
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload main Image</button>
+          <input type="file" (change)="uploadFileMain($event)" name="myfile" />
+        </div>
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload description Image</button>
+          <input type="file" (change)="uploadFileDesc($event)" name="myfile" />
+        </div>
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload header Image</button>
+          <input type="file" (change)="uploadFileBot($event)" name="myfile" />
+        </div>
+      </div>
+      <div class="progress mt-3 mb-3">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    
+    
+      <div class="formStyle">
+        <button type="button" class="mybuttom" *ngIf="!editStatus"  (click)="addProd()">ADD</button>
+        <button type="button" class="mybuttom bg-success" *ngIf="editStatus" (click)="saveProd()">SAVE</button>
+        <!-- <button type="button" class="btn but btn-info">Save</button> -->
+      </div>
+    
+    </form>
+    <hr>
+    
+    
+    <table class="table mytable">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Main Title</th>
+          <th scope="col">Main Text</th>
+          <th scope="col">Taste</th>
+          <th scope="col">Desc Title</th>
+          <th scope="col">Desc Text</th>
+          <th scope="col">Main Img</th>
+          <th scope="col">Header Img</th>
+          <th scope="col">Desc Img</th>
+          <th scope="col">Price</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of products; let i=index">
+                <td>{{ i+1 }}</td>
+                <td>{{ prod?.mainTitle }}</td>
+                <td>{{ prod?.mainText }}</td>
+                <td>
+                    <p>Aromatic: {{ prod?.aromatic }}%</p>  
+                    <p>Sweet: {{ prod?.sweet }}%</p>  
+                    <p>Bitter: {{ prod?.bitter }}%</p>  
+                    <p>Citrus: {{ prod?.citrus }}%</p>  
+                </td>
+                <td>
+                    {{ prod?.descTitle }} 
+                </td>
+                <td>
+                    {{ prod?.descText }} 
+                </td>
+                <td>
+                  <img [attr.src]="prod?.mainImg" style="width: 100px;" alt="">
+                </td>
+                <td>
+                    <img [attr.src]="prod?.headerImg" style="width: 100px;" alt="">
+                </td>
+                <td>
+                    <img [attr.src]="prod?.descImg" style="width: 100px;" alt="">
+                </td>
+                <td>
+                  {{ prod?.price }} 
+              </td>
+                <td>
+                    <button class="btn btn-warning" (click)="editProd(prod)">edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteProd(prod)">delete</button>
+                </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  

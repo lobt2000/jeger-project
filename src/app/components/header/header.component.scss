@@ -6,6 +6,30 @@ header {
   position: relative;
 }
 
+.active {
+  outline: none;
+}
+
+.focus {
+  outline: none;
+  color: #fefefe;
+  animation: focus-blink 3.5s ease-in-out infinite;
+}
+
+@keyframes focus-blink {
+  0% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 0px #0073e6, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6;
+  }
+
+  50% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6;
+  }
+
+  100% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 0px #0073e6, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6;
+  }
+}
+
 .navBar {
 
   position: relative;
@@ -135,7 +159,7 @@ header {
               position: absolute;
               content: 'History';
               transform: translate3d(0, -1rem, 0);
-              transition: all 1000ms ease-in-out;
+              transition: transform 1000ms ease-in-out, color 1000ms ease-in-out, opacity 1000ms ease-in-out;
               color: rgba(255, 255, 255, .9)
             }
 
@@ -149,7 +173,7 @@ header {
               position: absolute;
               content: 'Products';
               transform: translate3d(0, -1rem, 0);
-              transition: all 1000ms ease-in-out;
+              transition: transform 1000ms ease-in-out, color 1000ms ease-in-out, opacity 1000ms ease-in-out;
               color: rgba(255, 255, 255, .9)
             }
 
@@ -163,7 +187,7 @@ header {
               position: absolute;
               content: 'Drinks';
               transform: translate3d(0, -1rem, 0);
-              transition: all 1000ms ease-in-out;
+              transition: transform 1000ms ease-in-out, color 1000ms ease-in-out, opacity 1000ms ease-in-out;
               color: rgba(255, 255, 255, .9)
             }
 
@@ -177,7 +201,7 @@ header {
               position: absolute;
               content: 'Contact';
               transform: translate3d(0, -1rem, 0);
-              transition: all 1000ms ease-in-out;
+              transition: transform 1000ms ease-in-out, color 1000ms ease-in-out, opacity 1000ms ease-in-out;
               color: rgba(255, 255, 255, .9)
             }
           }
@@ -215,13 +239,13 @@ header {
         height: 3rem;
         width: 3rem;
         transform-origin: 0 0;
-
+        transition: width 300ms ease-in-out, border-radius 300ms ease-in-out, background-size 300ms ease-in-out, background-color 300ms ease-in-out;
 
 
       }
 
       &__insta::before {
-        color: orange;
+        color: transparent;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -231,8 +255,7 @@ header {
         content: 'Conect';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -275,7 +298,6 @@ header {
       }
 
       &__basket::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -285,11 +307,12 @@ header {
         content: 'Basket';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+
       }
 
       &__basket:hover::before {
@@ -331,7 +354,6 @@ header {
       }
 
       &__signIn::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -341,12 +363,13 @@ header {
         content: 'Sign In';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
         width: 4.5rem;
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+
       }
 
       &__signIn:hover::before {
@@ -388,7 +411,6 @@ header {
       }
 
       &__signOut::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -398,12 +420,13 @@ header {
         content: 'Sign Out';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
         width: 5.4rem;
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+
       }
 
       &__signOut:hover::before {
@@ -445,7 +468,6 @@ header {
       }
 
       &__signUp::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -455,8 +477,8 @@ header {
         content: 'Sign Up';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -502,7 +524,6 @@ header {
       }
 
       &__user::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -512,8 +533,8 @@ header {
         content: 'User';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -560,7 +581,6 @@ header {
       }
 
       &__admin::before {
-        color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -570,8 +590,8 @@ header {
         content: 'Admin';
         transform: translate3d(0, -1px, 0);
         transform: translate3d(-1.2rem, -1rem, 0);
-        transition: transform 300ms ease-in-out;
-        color: rgba(255, 255, 255, .9);
+        transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+        color: transparent;
         font-size: 20px;
         font-weight: bolder;
         text-align: center;
@@ -757,6 +777,7 @@ header {
   z-index: 4;
   background: rgba(0, 0, 0, .7);
   box-sizing: border-box;
+  border-radius: 10px;
 
   &__signOut {
     transition: transform 600ms linear;
@@ -1119,6 +1140,273 @@ header {
   }
 }
 
+
+
+.modalB {
+  transition: background 600ms ease-in-out;
+  transition: position 1ms ease-in-out;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background: rgba(0, 0, 0, .7);
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  &__basket {
+    transition: transform 600ms linear;
+    // transform: translate3d(0, 0, 0);
+    min-height: 50vh;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: calc(-15%);
+    top: calc(25%);
+    text-align: left;
+    width: 70%;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    border-radius: 10px;
+
+    &--header {
+      width: 100%;
+      height: 10vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .cross {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+
+        img {
+          width: 50px;
+          height: 50px;
+          fill: white;
+          margin-right: 10px;
+
+        }
+
+      }
+
+      .title {
+        width: 40%;
+        font-size: 40px;
+        color: white;
+        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+      }
+
+
+
+    }
+
+    &--main {
+      width: 100%;
+      height: 30vh;
+      padding: 1rem;
+      overflow-y: scroll;
+
+      // @include flexbox()
+      // text-align: center;
+      .product {
+        margin-top: 20px;
+        @include flexbox(row, wrap, space-between, center);
+        width: 100%;
+        min-height: 10vh;
+
+        &__cross {
+          width: 50px;
+          height: 100%;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        &__img {
+          width: 100px;
+          height: 100%;
+
+          img {
+            width: 110px;
+            height: 80px;
+            border-radius: 10px;
+          }
+        }
+
+        &__name {
+          width: 30%;
+          min-height: 10vh;
+          font-size: 14px;
+          // word-break: break-all;
+          color: white;
+          font-weight: 800;
+          text-align: center;
+          align-self: center;
+          @include flexbox(row, wrap, center, center)
+        }
+
+        &__count {
+          width: 25%;
+          @include flexbox(column, wrap, flex-start, center);
+
+          &--amount {
+            // width: 100%;
+            text-align: center;
+            color: orangered;
+            font-size: 18px;
+            // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
+
+          }
+
+          &--button {
+            @include flexbox(row, wrap, center, center);
+
+            .mybtn {
+              border-radius: 10px;
+              margin: 10px;
+              margin-top: 10px;
+              color: white;
+              width: 30px;
+              height: 30px;
+            }
+
+            .mybtn:nth-child(1) {
+              border: 1px solid darkred;
+              background-color: black;
+            }
+
+            .mybtn:focus {
+              outline: none;
+              box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+
+            }
+
+            input {
+              height: 30px;
+              // border-radius: 10px;
+              border: none;
+              border-bottom: 4px solid sandybrown;
+              background: transparent;
+              text-align: center;
+              color: bisque;
+              font-size: 22px;
+              width: 50px;
+              // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            }
+
+            .mybtn:last-child {
+              border: 1px solid green;
+              background-color: black;
+            }
+          }
+
+
+
+
+        }
+
+        &__price {
+          font-size: 16px;
+          text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          position: relative;
+          color: white;
+        }
+
+        &__discount {
+          // font-size: 14px;
+          // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          position: relative;
+          color: white;
+
+          &--real {
+            font-size: 14px;
+            text-decoration: line-through;
+            text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+
+          }
+
+          &--disc {
+            margin-top: 10px;
+            font-size: 16px;
+
+            text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000;
+          }
+        }
+      }
+    }
+
+    &--footer {
+      width: 100%;
+      @include flexbox(row, nowrap, space-between, center);
+      min-height: 10vh;
+
+      a {
+        margin-left: 50px;
+        color: olive;
+      }
+
+      .order {
+        width: 400px;
+        height: 100%;
+        margin-right: 35px;
+        @include flexbox(row, nowrap, space-between, center);
+
+        &__price {
+          width: 180px;
+          height: 100%;
+          @include flexbox(row, nowrap, space-between, center);
+
+          &--title {
+            text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
+            font-size: 20px;
+            color: white;
+
+          }
+
+          &--text {
+            font-size: 20px;
+            text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            position: relative;
+            color: white;
+          }
+        }
+
+        &__button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 auto;
+          height: 36px;
+          width: 182px;
+          text-align: center;
+          text-decoration: none;
+          color: rgb(255 255 255);
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: .28px;
+          border-radius: 4px;
+          background-color: rgb(210 30 81);
+          border: none;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+  }
+}
+
+
 @media screen and (max-width:990px) {
   .navBar {
     position: relative;
@@ -1200,7 +1488,7 @@ header {
           width: 3rem;
           transform-origin: 0 0;
           background-image: url('../../../assets/image/noun_Jagermeister_970971.svg');
-
+          transition: width 300ms ease-in-out, border-radius 300ms ease-in-out, background-size 300ms ease-in-out, background-color 300ms ease-in-out;
 
 
         }
@@ -1382,7 +1670,7 @@ header {
           top: -10%;
           left: 0;
           position: absolute;
-          content: 'Contsct';
+          content: 'Contact';
           transform: translate3d(0, -16px, 0);
           transform: translate3d(0, -1rem, 0);
           transition: all 1000ms ease-in-out;
@@ -1415,13 +1703,12 @@ header {
           height: 3rem;
           width: 3rem;
           transform-origin: 0 0;
-
+          transition: width 300ms ease-in-out, border-radius 300ms ease-in-out, background-size 300ms ease-in-out, background-color 300ms ease-in-out;
 
 
         }
 
         &__insta::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1432,10 +1719,11 @@ header {
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
           transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__insta:hover::before {
@@ -1477,7 +1765,6 @@ header {
         }
 
         &__signIn::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1488,11 +1775,12 @@ header {
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
           transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
           width: 4.5rem;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__signIn:hover::before {
@@ -1534,7 +1822,6 @@ header {
         }
 
         &__signOut::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1545,11 +1832,12 @@ header {
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
           transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
           width: 5.4rem;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__signOut:hover::before {
@@ -1591,7 +1879,6 @@ header {
         }
 
         &__signUp::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1602,11 +1889,12 @@ header {
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
           transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
           width: 5rem;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__signUp:hover::before {
@@ -1649,7 +1937,6 @@ header {
         }
 
         &__admin::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1659,12 +1946,12 @@ header {
           content: 'Admin';
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
-          transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
           width: 5rem;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__admin:hover::before {
@@ -1706,7 +1993,6 @@ header {
         }
 
         &__user::before {
-          color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;
@@ -1717,11 +2003,12 @@ header {
           transform: translate3d(0, -1px, 0);
           transform: translate3d(-1.2rem, -1rem, 0);
           transition: transform 300ms ease-in-out;
-          color: rgba(255, 255, 255, .9);
           font-size: 20px;
           font-weight: bolder;
           text-align: center;
           width: 5rem;
+          transition: transform 600ms ease-in-out, z-index 600ms ease-in-out, background 300ms ease-in-out, left 300ms ease-in-out, color 600ms ease-in-out;
+          color: transparent;
         }
 
         &__user:hover::before {
@@ -1750,6 +2037,195 @@ header {
           box-shadow: 0 0 0 0.2rem blue;
           border-radius: 50px;
 
+        }
+
+      }
+
+    }
+  }
+
+  .modalB {
+
+    &__basket {
+
+      right: calc(-8%);
+      width: 85%;
+
+      &--header {
+        .title {
+          width: 40%;
+          font-size: 35px;
+        }
+      }
+
+      &--main {
+        width: 100%;
+        height: 30vh;
+        padding: 1rem;
+        overflow-y: scroll;
+
+        // @include flexbox()
+        // text-align: center;
+        .product {
+
+          &__img {
+            width: 80px;
+            height: 100%;
+
+            img {
+              width: 80px;
+              height: 60px;
+            }
+          }
+
+          &__name {
+            width: 30%;
+            min-height: 10vh;
+            font-size: 14px;
+            // word-break: break-all;
+            color: white;
+            font-weight: 800;
+            text-align: center;
+            align-self: center;
+            @include flexbox(row, wrap, center, center)
+          }
+
+          &__count {
+            width: 30%;
+            @include flexbox(column, wrap, flex-start, center);
+
+            &--amount {
+              // width: 100%;
+              text-align: center;
+              color: orangered;
+              font-size: 18px;
+              // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
+
+            }
+
+            &--button {
+              @include flexbox(row, wrap, center, center);
+
+              .mybtn {
+                border-radius: 10px;
+                margin: 10px;
+                margin-top: 10px;
+                color: white;
+                width: 30px;
+                height: 30px;
+              }
+
+              .mybtn:nth-child(1) {
+                border: 1px solid darkred;
+                background-color: black;
+              }
+
+              .mybtn:focus {
+                outline: none;
+                box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+
+              }
+
+              input {
+                height: 30px;
+                // border-radius: 10px;
+                border: none;
+                border-bottom: 4px solid sandybrown;
+                background: transparent;
+                text-align: center;
+                color: bisque;
+                font-size: 22px;
+                width: 50px;
+                // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+              }
+
+              .mybtn:last-child {
+                border: 1px solid green;
+                background-color: black;
+              }
+            }
+
+
+
+
+          }
+
+          &__price {
+            font-size: 16px;
+
+          }
+
+          &__discount {
+
+            &--real {
+              font-size: 14px;
+
+
+            }
+
+            &--disc {
+
+              font-size: 16px;
+
+
+            }
+          }
+        }
+      }
+
+      &--footer {
+        width: 100%;
+        @include flexbox(row, nowrap, space-between, center);
+        min-height: 10vh;
+
+        a {
+          margin-left: 50px;
+          color: olive;
+          font-size: 18px;
+          font-weight: 800;
+        }
+
+        .order {
+          width: 400px;
+          height: 100%;
+          margin-right: 35px;
+          @include flexbox(row, nowrap, space-between, center);
+
+          &__price {
+            width: 180px;
+            height: 100%;
+            @include flexbox(column, nowrap, space-between, center);
+
+            &--title {
+              font-size: 20px;
+
+            }
+
+            &--text {
+              margin-top: 5px;
+              font-size: 16px;
+
+            }
+          }
+
+          &__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            height: 36px;
+            width: 182px;
+            text-align: center;
+            text-decoration: none;
+            color: rgb(255 255 255);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .28px;
+            border-radius: 4px;
+            background-color: rgb(210 30 81);
+            border: none;
+            cursor: pointer;
+          }
         }
 
       }
@@ -1871,30 +2347,238 @@ header {
       right: 0;
     }
   }
+
   .modalO {
     &__signOut {
       width: 80%;
       transition: transform 1000ms linear;
       right: calc(-12%);
-     &--cross{
-       height: 5vh;
-     }
-     &--title{
-       font-size: 25px;
-     }
-     &--text{
-       font-size: 20px;
-     }
-     &--form{
-       min-height: 10vh;
-      .dismiss{
-        font-size: 15px;
+
+      &--cross {
+        height: 5vh;
       }
-      .logout{
-        font-size: 15px;
+
+      &--title {
+        font-size: 25px;
+      }
+
+      &--text {
+        font-size: 20px;
+      }
+
+      &--form {
+        min-height: 10vh;
+
+        .dismiss {
+          font-size: 15px;
+        }
+
+        .logout {
+          font-size: 15px;
+
+        }
+      }
+    }
+  }
+
+  .modalB {
+
+    &__basket {
+      top: 3px;
+      right: calc(0%);
+      width: 100%;
+      min-height: 100vh;
+      justify-content: inherit;
+
+      &--header {
+        .title {
+          width: 40%;
+          font-size: 35px;
+        }
+      }
+
+      &--main {
+        width: 100%;
+        height: 70vh;
+        padding: 1rem;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        display: flex;
+
+
+        // @include flexbox()
+        // text-align: center;
+        .product {
+          // height: 70vh;
+          flex-flow: column;
+          justify-content: space-around;
+          margin-top: 0%;
+          margin-right: 15px;
+
+          &__cross {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          &__img {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+              width: 60%;
+              height: 100%;
+            }
+          }
+
+          &__name {
+            width: 100%;
+            min-height: 10vh;
+            font-size: 16px;
+            // word-break: break-all;
+            color: white;
+            font-weight: 800;
+            text-align: center;
+            align-self: center;
+            @include flexbox(row, wrap, center, center);
+            white-space: break-spaces;
+          }
+
+          &__count {
+            width: 100%;
+            @include flexbox(column, wrap, flex-start, center);
+
+            &--amount {
+              width: 100%;
+              text-align: center;
+              color: orangered;
+              font-size: 18px;
+              // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
+
+            }
+
+            &--button {
+              @include flexbox(row, wrap, center, center);
+
+              .mybtn {
+                border-radius: 10px;
+                margin: 10px 0;
+                margin-top: 10px;
+                color: white;
+                width: 30px;
+                height: 30px;
+              }
+
+              .mybtn:nth-child(1) {
+                border: 1px solid darkred;
+                background-color: black;
+              }
+
+              .mybtn:focus {
+                outline: none;
+                box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+
+              }
+
+              input {
+                height: 30px;
+                // border-radius: 10px;
+                border: none;
+                border-bottom: 4px solid sandybrown;
+                background: transparent;
+                text-align: center;
+                color: bisque;
+                font-size: 22px;
+                width: 40px;
+                // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+              }
+
+              .mybtn:last-child {
+                border: 1px solid green;
+                background-color: black;
+              }
+            }
+
+
+
+
+          }
+
+          &__price {
+            font-size: 16px;
+            text-align: center;
+          }
+
+          &__discount {
+            text-align: center;
+
+            &--real {
+              font-size: 14px;
+
+
+            }
+
+            &--disc {
+
+              font-size: 16px;
+
+
+            }
+          }
+        }
+      }
+
+      &--footer {
+        width: 100%;
+        @include flexbox(row, nowrap, space-around, center);
+        min-height: 10vh;
+
+        a {
+          width: 40%;
+          margin-left: 0px;
+          color: olive;
+          font-size: 18px;
+          font-weight: 800;
+        }
+
+        .order {
+          margin-top: 10px;
+          width: 40%;
+          height: 100%;
+          margin-right: 0px;
+          @include flexbox(column, nowrap, space-between, center);
+
+          &__price {
+            width: 100%;
+            height: 100%;
+            @include flexbox(column, nowrap, space-between, center);
+
+            &--title {
+              font-size: 20px;
+
+            }
+
+            &--text {
+              margin-top: 5px;
+              font-size: 16px;
+
+            }
+          }
+
+          &__button {
+            margin-top: 10px;
+            width: 80%;
+            font-size: 14px;
+            cursor: pointer;
+          }
+        }
 
       }
-     }
+
     }
   }
 }
@@ -1907,4 +2591,25 @@ header {
     }
   }
 
+}
+
+@media screen and (max-width:376px) {
+  .navBar__container__item:first-child {
+    width: 65%;
+  }
+
+  .navBar__container__item {
+    &__text {
+      display: none;
+    }
+
+    &__logo {
+      margin-left: 10px;
+      margin-right: calc(16%);
+
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
 }

@@ -26,8 +26,8 @@
         </div>
         <div class="blog__component"  data-aos="fade-up" data-aos-easing="ease-out-cubic"
         data-aos-duration="1000">
-            <div class="blog__component__itemBlog">
-                <div class="blog__component__itemBlog__title">Jägermeister Manifest</div>
+            <div class="blog__component__itemBlog" *ngFor="let blog of blogs"   [ngStyle]="{ 'background-image': 'url(' + blog.mainImg + ')'}">
+                <div class="blog__component__itemBlog__title">{{blog.mainTitle}}</div>
               
             </div>
            

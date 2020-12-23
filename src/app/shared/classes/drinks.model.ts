@@ -7,6 +7,7 @@ export class Drinks implements IDrinks {
         public urlName: string,
         public ingredients: Array<any> = [], 
         public stepOfCook: Array<any> = [], 
+        public taste: string,
         public image:string,
     ){}
 }

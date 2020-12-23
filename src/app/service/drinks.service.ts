@@ -8,22 +8,21 @@ import { IDrinks } from '../shared/interfaces/drinks.interface';
 })
 export class DrinksService {
   private url: string;
-  private dbPath = '/drinkss';
-  localProd: Array<IDrinks> = []
+  private dbPath = '/drinks';
   prod: Subject<any> = new Subject<any>();
   updProd: Subject<any> = new Subject<any>();
-  productsRef: AngularFirestoreCollection<IDrinks> = null;
+  drinksRef: AngularFirestoreCollection<IDrinks> = null;
   constructor( private db: AngularFirestore) {
-    this.productsRef = this.db.collection(this.dbPath);
+    this.drinksRef = this.db.collection(this.dbPath);
   }
 
-  getAllProd():AngularFirestoreCollection<IDrinks>{
-    return this.productsRef;
+  getAllDrinks():AngularFirestoreCollection<IDrinks>{
+    return this.drinksRef;
     
     
   }
-  create(category: IDrinks):any{
-   this.productsRef.add( {...category} ).then(
+  create(drink: IDrinks):any{
+   this.drinksRef.add( {...drink} ).then(
      data =>{
       this.updProd.next(data.id);
        
@@ -31,9 +30,13 @@ export class DrinksService {
    );
   }
   update(id:string, data: any):Promise<void>{
-    return this.productsRef.doc(id).update( {...data} );
+    return this.drinksRef.doc(id).update( {...data} );
   }
   delete(id:string):Promise<void>{
-    return this.productsRef.doc(id).delete();
+    return this.drinksRef.doc(id).delete();
+  }
+  getOne(id):any{
+    return this.drinksRef.ref.where('urlName', '==', id);
+  
   }
 }

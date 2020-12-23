@@ -3,3 +3,29 @@
 body {
     background: url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
 }       
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: transparent;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 5px grey;
+    // background:url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
+    // border-radius: 10px;
+    background: orangered;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    // background: url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
+    background: rgb(255, 30, 0); 
+    // border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 30, 0); 
+  }

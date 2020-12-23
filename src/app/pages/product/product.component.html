@@ -1,0 +1,11 @@
+<div class="prod">
+  <div class="prod__component" data-aos="fade-up"
+  data-aos-anchor-placement="top-bottom" data-aos-easing="ease-out-cubic"
+  data-aos-duration="1500" *ngFor="let prod of products">
+
+<!-- <img [attr.src]="prod.mainImg" class="prod__component--img" alt=""> -->
+<div class="prod__component--img" [ngStyle]="{ 'background-image': 'url(' + prod.mainImg + ')'}"  [routerLink]="[ '/product/'+prod.id ]">
+  <p class="title">{{prod.mainTitle}}</p>
+</div>
+  </div>
+</div>

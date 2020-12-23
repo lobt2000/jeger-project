@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
+import { DiscountService } from 'src/app/service/discount.service';
 import { HeaderService } from 'src/app/service/header.service';
+import { OrderService } from 'src/app/service/order.service';
+import { IDiscount } from 'src/app/shared/interfaces/discounts.interface';
+import { IProd } from 'src/app/shared/interfaces/prod.interface';
 
 
 @Component({
@@ -32,14 +37,29 @@ export class HeaderComponent implements OnInit {
   cardNumber: number = 19360;
   // isUserLog = true ;
   isUser = false;
+  isBasket = false;
   transformO = 'translate3d(0,-150%,0)';
   colorO = 'transparent';
   positionO = 'unset';
-  constructor(private headService: HeaderService, private authService: AuthService) { }
+  transformB = 'translate3d(0,-150%,0)';
+  colorB = 'transparent';
+  positionB = 'unset';
+  totalPrice = 0;
+  basket: any = [];
+  discounts: Array<IDiscount> = [];
+  discount: number = 0;
+  checkDisc: boolean;
+  isdisabled = false;
+  constructor(private headService: HeaderService,
+    private authService: AuthService,
+    private orderService: OrderService,
+    private discService: DiscountService,
+  ) { }
 
   ngOnInit(): void {
     // this.checkUserLogin();
     this.checkLocalUser();
+    this.getLocalProducts();
   }
 
   apearMenu(): void {
@@ -62,7 +82,7 @@ export class HeaderComponent implements OnInit {
   }
   modalSignIn(): void {
     this.isSignIn = !this.isSignIn;
-    console.log(this.isSignIn);
+    // console.log(this.isSignIn);
 
     if (this.isSignIn) {
       this.transformI = 'translate3d(0%,0,0)';
@@ -81,7 +101,7 @@ export class HeaderComponent implements OnInit {
   }
   modalSignUp(): void {
     this.isSignUp = !this.isSignUp;
-    console.log(this.isSignIn);
+    // console.log(this.isSignIn);
 
     if (this.isSignUp) {
       this.transformU = 'translate3d(0%,0%,0)';
@@ -132,6 +152,32 @@ export class HeaderComponent implements OnInit {
 
     }
   }
+  modalBasket(): void {
+    this.isBasket = !this.isBasket;
+    if (this.isBasket) {
+      this.transformB = 'translate3d(0, 0%,0)';
+      this.colorB = "rgba(0, 0, 0, .7)";
+      this.positionB = 'fixed';
+      this.getDisc();
+    }
+    else {
+      this.transformB = 'translate3d(0,-150%,0)';
+      this.colorB = "transparent";
+      this.positionB = 'fixed';
+      if (window.innerWidth < 696) {
+        setTimeout(() => {
+          this.positionB = 'unset';
+        }, 1000);
+      }
+      else {
+        setTimeout(() => {
+          this.positionB = 'unset';
+        }, 600);
+      }
+
+
+    }
+  }
   // private checkUserLogin(): void {
 
   //   this.authService.checkUser()
@@ -174,24 +220,19 @@ export class HeaderComponent implements OnInit {
   private checkLocalUser(): void {
 
     if (localStorage.getItem('user')) {
-      console.log(localStorage.getItem('user'));
-      console.log(JSON.parse(localStorage.getItem('user')).role);
-      
+
       if (JSON.parse(localStorage.getItem('user')).role == 'user') {
-        console.log('fdsfsdfsd');
-        
         this.admin = false;
         this.userSign = true;
         this.isUser = true;
-        console.log("isUser", this.isUser);
+        // console.log("isUser", this.isUser);
         // this.toastr.success('Hello user!', 'Success');
-
       }
       else {
         this.admin = true;
         this.userSign = true;
         this.isUser = true;
-        
+
 
         // this.up = true;
         // this.toastr.success('Hello admin!', 'Success');
@@ -203,7 +244,6 @@ export class HeaderComponent implements OnInit {
       this.admin = false;
       this.userSign = false;
       this.isUser = false;
-      console.log("isUser", this.isUser);
 
       // this.admin = false
       // this.toastr.error('You write invalid data!', 'Denied');
@@ -219,14 +259,10 @@ export class HeaderComponent implements OnInit {
       this.authService.signUp(this.userEmail, this.userPassword, this.userFname, this.userSname, this.cardNumber)
       this.checkLocalUser();
       this.authService.checkSign.subscribe((data) => {
-        console.log(data);
-
         if (data == 'user') {
           this.admin = false;
           this.userSign = true;
           this.isUser = true;
-
-          console.log(data);
           // this.toastr.success('You log success!', 'Success');
 
         }
@@ -236,15 +272,12 @@ export class HeaderComponent implements OnInit {
           this.isUser = data;
 
           // this.admin = data
-          console.log(data);
           // this.toastr.error('You write invalid data!', 'Denied');
 
         }
       })
       this.authService.updateID(this.cardNumber).then(
         () => {
-          console.log('dsadas');
-
         }
       )
       this.resetForm();
@@ -261,16 +294,14 @@ export class HeaderComponent implements OnInit {
     if (this.inputUser && this.inputPass) {
       this.authService.signIn(this.inputUser, this.inputPass)
       this.authService.checkSign.subscribe(
-        data =>{
+        data => {
           if (localStorage.getItem('user')) {
             // console.log(this.localUser);
-            console.log(localStorage.getItem('user'));
-    
             if (JSON.parse(localStorage.getItem('user')).role == 'admin') {
               this.admin = true
               this.userSign = true;
               this.isUser = true;
-    
+
               this.resetForm()
               // this.toastr.success('You log as admin!', 'Hello admin');
             }
@@ -278,7 +309,7 @@ export class HeaderComponent implements OnInit {
               this.admin = false;
               this.userSign = true;
               this.isUser = true;
-    
+
               this.resetForm();
               // this.toastr.success('You log as user!', 'Hello user');
             }
@@ -287,15 +318,14 @@ export class HeaderComponent implements OnInit {
             this.admin = false;
             this.userSign = false;
             this.isUser = false;
-            console.log(this.isUser);
-    
+
             this.resetForm();
             // this.toastr.error('You write invalid data!', 'Denied');
-    
+
           }
         }
       )
-     
+
 
     }
     else {
@@ -323,6 +353,137 @@ export class HeaderComponent implements OnInit {
     this.userPassword = '';
   }
 
+  private getLocalProducts(): void {
+    if (localStorage.getItem('basket')) {
+      this.basket = JSON.parse(localStorage.getItem('basket'));
+      this.totalPrice = this.getTotal(this.basket);
+      // this.id = JSON.parse(localStorage.getItem('orderId'));
+console.log(this.basket);
 
+    }
+
+  }
+  private getTotal(products: Array<IProd>): number {
+    return products.reduce((total, prod) => total + (prod.price * prod.count), 0)
+  }
+
+  productCount(prod: any, status: boolean): void {
+    // this.orderService.getId()
+    if (status) {
+      prod.count++;
+    }
+    else {
+      if (prod.count > 1) {
+        prod.count--;
+
+        this.isdisabled = false;
+
+      }
+
+      
+      
+    }
+    this.orderService.basket.next(this.basket);
+    localStorage.setItem('basket', JSON.stringify(this.basket))
+    // this.totalPrice = this.getTotal(this.basket);
+    this.getDisc();
+    
+  }
+  removeProd(prod: any) {
+    if (confirm('Are you sure?')) {
+      const index = this.basket.findIndex(product => product.id === prod.id);
+      this.basket.splice(index, 1)
+      this.totalPrice = this.getTotal(this.basket);
+      this.orderService.basket.next(this.basket);
+      localStorage.setItem('basket', JSON.stringify(this.basket))
+    }
+
+
+  }
+
+
+  getDisc() {
+    this.basket = JSON.parse(localStorage.getItem('basket'));
+    this.discount = 0;
+    this.totalPrice = this.discount;
+    this.discService.getAllDisc().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.discounts = data;
+
+      if (localStorage.getItem('user')) {
+        for (let i = 0; i < this.discounts.length; i++) {
+          for (let j = 0; j < this.basket.length; j++) {
+            if (this.discounts[i].product == this.basket[j].mainTitle) {
+              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100 );
+              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100 );
+              this.checkDisc = true;
+              break
+            }
+            else if (this.discounts[i].product == 'All') {
+              // this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
+              // this.checkDisc = true;
+              console.log(this.discount);
+              if (this.basket[j].discount) {
+
+              }
+              else{
+                this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
+                this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
+              this.checkDisc = true;
+              
+              
+
+              }
+            }
+
+          }
+
+
+        }
+        this.orderService.basket.next(this.basket);
+        localStorage.setItem('basket', JSON.stringify(this.basket))
+        this.totalPrice = this.discount;
+      }
+      else {
+        this.discount = 0;
+        this.totalPrice = this.discount;
+        for (let i = 0; i < this.discounts.length; i++) {
+          for (let j = 0; j < this.basket.length; j++) {
+            
+            if (this.discounts[i].product == this.basket[j].mainTitle) {
+              this.basket[j].disc =  this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
+
+              // this.basket[j].discount = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);
+              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);;
+              this.checkDisc = true;
+
+              break;
+            }
+          }
+
+        }
+        this.basket.forEach(element => {
+          if (element.disc > 1) {
+            this.checkDisc = true;
+          }
+          else {
+            console.log(element);
+            element.disc = 0
+            this.discount += element.price * element.count
+            this.checkDisc = false;
+          }
+        });
+        this.orderService.basket.next(this.basket);
+        localStorage.setItem('basket', JSON.stringify(this.basket))
+        this.totalPrice = this.discount;
+      }
+
+    });
+  }
 }
 

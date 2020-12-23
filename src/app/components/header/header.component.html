@@ -11,10 +11,10 @@
         <div class="navBar__container__item__text ">
           <div class="navBar__container__item__text__adapt">
             <div class="navBar__container__item__text__adapt__desc">
-              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
-                routerLinkActive="active">History</a>
-              <a href="" class="navBar__container__item__text__adapt__desc__link">Products</a>
-              <a href="" class="navBar__container__item__text__adapt__desc__link">Drinks</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link focus-text" [routerLink]="[ 'history' ]"
+                routerLinkActive="focus">History</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"  routerLinkActive="focus">Products</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"  routerLinkActive="focus">Drinks</a>
               <a href="" class="navBar__container__item__text__adapt__desc__link">Contact</a>
             </div>
           </div>
@@ -36,33 +36,33 @@
 
         <ng-template #profile>
           <button class="navBar__container__item__user" *ngIf="!admin" [routerLink]="[ 'profile' ]"
-          routerLinkActive="active">
+          routerLinkActive="focus">
             <div class="navBar__container__item__user__icon"></div>
           </button>
-          <button class="navBar__container__item__admin" *ngIf="admin" [routerLink]="[ 'admin' ]">
+          <button class="navBar__container__item__admin" *ngIf="admin" [routerLink]="[ 'admin' ]"  routerLinkActive="focus">
             <div class="navBar__container__item__admin__icon"></div>
           </button>
         </ng-template>
         
 
-        <button class="navBar__container__item__insta">
+        <button class="navBar__container__item__insta" >
           <div class="navBar__container__item__insta__icon"></div>
         </button>
-        <button class="navBar__container__item__basket">
+        <button class="navBar__container__item__basket" (click)="modalBasket()">
           <div class="navBar__container__item__basket__icon"></div>
         </button>
       </div>
     </div>
 
   </nav>
-  <section class="navBar__mobi__item__text " [style.transform]="isMenu ? transition : transition">
+  <section class="navBar__mobi__item__text " [style.transform]="isMenu ? transition : transition" (click)="apearMenu()">
     <div class="navBar__mobi__item__text__adapt">
       <div class="navBar__mobi__item__text__adapt__desc">
-        <a href="" class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
-          routerLinkActive="active">History</a>
-        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Products</a>
-        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Drinks</a>
-        <a href="" class="navBar__mobi__item__text__adapt__desc__link">Contact</a>
+        <a class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
+        routerLinkActive="focus">History</a>
+        <a  class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"  routerLinkActive="focus">Products</a>
+        <a  class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"  routerLinkActive="focus">Drinks</a>
+        <a  class="navBar__mobi__item__text__adapt__desc__link">Contact</a>
       </div>
       <div class="navBar__mobi__item__text__adapt__mobi">
         <button class="navBar__mobi__item__text__adapt__mobi__insta">
@@ -82,11 +82,11 @@
         </button>
         <ng-template #profile1>
           <button class="navBar__mobi__item__text__adapt__mobi__user" *ngIf="!admin"  [routerLink]="[ 'profile' ]"
-          routerLinkActive="active" >
+          routerLinkActive="focus" >
             <div class="navBar__mobi__item__text__adapt__mobi__user__icon"  [routerLink]="[ 'profile' ]"
-            routerLinkActive="active"></div>
+            routerLinkActive="focus"></div>
           </button>
-          <button class="navBar__mobi__item__text__adapt__mobi__admin" *ngIf="admin"  [routerLink]="[ 'admin' ]">
+          <button class="navBar__mobi__item__text__adapt__mobi__admin" *ngIf="admin"  [routerLink]="[ 'admin' ]"  routerLinkActive="focus">
             <div class="navBar__mobi__item__text__adapt__mobi__admin__icon"></div>
           </button>
         </ng-template>
@@ -160,6 +160,50 @@
         <button class="dismiss" (click)="modalSignOut()">Dismiss</button>
         <button class="logout" (click)="signOUT()" (click)="modalSignOut()">Sign Out</button>
       </div>
+    </div>
+  </section>
+
+  <section class="modalB" [style.background]="isBasket ? colorB : colorB"
+    [style.position]="isBasket ? positionB : positionB">
+    <div class="modalB__basket" [style.transform]="isBasket ? transformB : transformB">
+      <div class="modalB__basket--header">
+        <h2 class="title">Basket</h2>
+        <div class="cross" (click)="modalBasket()"> <img src="../../../assets/image/times-cross.svg"
+          alt=""></div>
+      </div>
+      <div class="modalB__basket--main">
+        <div class="product" *ngFor="let bask of basket">
+          <div class="product__cross" (click)="removeProd(bask)"><img src="../../../assets/image/times-cross.svg" alt=""></div>
+          <div class="product__img"> <img [attr.src]="bask?.mainImg" alt=""></div>
+          <div class="product__name">{{ bask.mainTitle }} 0.7L </div>
+          <div class="product__count"> 
+            <span class="product__count--amount">Amount:</span>
+            <div class="product__count--button">
+              <button class="mybtn" (click)="productCount(bask, false)">-</button>
+              <input type="text" minlength='1'  [value]="bask?.count">
+              <button class="mybtn" (click)="productCount(bask, true)">+</button>
+            </div>
+            
+          </div>
+          <div class="product__price " *ngIf="bask.disc < 1">{{ bask?.price * bask?.count  | currency }}</div>
+          <div class="product__discount" *ngIf="bask.disc > 1">
+            <p class="product__discount--real">{{  bask?.price * bask?.count   | currency }}</p>
+            <p class="product__discount--disc">{{ bask?.disc  | currency }}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="modalB__basket--footer">
+        <a [routerLink]="[ 'product' ]"  (click)="modalBasket()">Return to shopping</a>
+        <div class="order">
+          <div class="order__price">
+            <span class="order__price--title">Amount:</span> 
+            <span class="order__price--text">{{totalPrice | currency }}</span> 
+          </div>
+          <button class="order__button">Make order</button>
+        </div>
+      </div>
+     
     </div>
   </section>
 </header>

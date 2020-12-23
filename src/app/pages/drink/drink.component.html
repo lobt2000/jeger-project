@@ -1,0 +1,12 @@
+<div class="drink">
+    <div class="drink__component" data-aos="fade-up"
+    data-aos-anchor-placement="top-bottom" data-aos-easing="ease-out-cubic"
+    data-aos-duration="1500" *ngFor="let drink of drinks">
+  
+  <!-- <img [attr.src]="prod.mainImg" class="prod__component--img" alt=""> -->
+  <div class="drink__component--img" [ngStyle]="{ 'background-image': 'url(' + drink.image + ')'}"  [routerLink]="[ '/drink/'+drink.urlName ]">
+    <p class="title">{{drink.name}}</p>
+  </div>
+    </div>
+  </div>
+  

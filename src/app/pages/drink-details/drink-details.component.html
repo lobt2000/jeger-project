@@ -1,0 +1,46 @@
+<section class="drink" id="prod">
+
+  <div class="drink__header" [style.backgroundImage]="'url(' + drink?.image + ')'">
+    <h2 class="drink__header--title">{{drink?.name}}</h2>
+    <div class="drink__header--text">
+      <h2 class="title">TASTE:</h2>
+      <p class="text">{{drink?.taste}}</p>
+
+    </div>
+  </div>
+  <div class="drink__ingred">
+    <h2 class="drink__ingred--title">
+      WHAT YOU'LL <br> NEED
+      <!-- <img [attr.src]="product?.descImg" alt=""> -->
+    </h2>
+
+    <div class="drink__ingred--list">
+      <div class="ingredient" *ngFor="let ingred  of drink?.ingredients">
+        <img [attr.src]="ingred?.image" alt="">
+        <p>
+          {{ingred?.ingredient}}
+        </p>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="drink__step">
+    <h2 class="drink__step--title">
+      HOW TO <br> PREPARE
+      <!-- <img [attr.src]="product?.descImg" alt=""> -->
+    </h2>
+
+    <div class="drink__step--list">
+      <div class="step" *ngFor="let s of drink?.stepOfCook ;  let i=index">
+        <!-- <img [attr.src]="s?." alt=""> -->
+        <p class="step_desc">
+          {{s?.step}}
+        </p>
+        <p class="step__count">{{ i+1 }} </p>
+
+      </div>
+    </div>
+  </div>
+
+</section>
