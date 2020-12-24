@@ -55,7 +55,7 @@
     -webkit-text-fill-color: green;
     border-radius: 10px;
 
-    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -266,20 +266,20 @@
     -webkit-text-fill-color: green;
     border-radius: 10px;
 
-    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 
   &__blog {
     transition: transform 1000ms linear;
     // transform: translate3d(0, 0, 0);
-    min-height: 70vh;
+    min-height: 95vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-25%);
-    top: calc(8%);
+    top: calc(1%);
     text-align: left;
     width: 50%;
     position: relative;
@@ -359,6 +359,7 @@
           width: 100%;
           align-items: center;
           justify-content: space-around;
+          flex-flow: row wrap;
           min-height: 10vh;
 
           &--button {
@@ -412,6 +413,57 @@
               outline: none;
               box-shadow: 0 0 1px orangered, 0 0 5px orangered, 0 0 5px orangered, 0 0 10px orangered;
             }
+          }
+        }
+
+        &__select {
+          width: 100%;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          select {
+            width: 150px;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #f83600, #fe8c00);
+            border: 1px solid #f83600;
+            color: white;
+            padding-left: 5px;
+          }
+
+          select:focus {
+            // background-color: transparent;
+            outline: none;
+            box-shadow: 0 0 1px orangered, 0 0 5px orangered, 0 0 5px orangered, 0 0 10px orangered;
+          }
+
+          option {
+            color: white;
+            background: orangered;
+            border: none;
+          }
+
+          option:nth-child(2) {
+            display: block;
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+          }
+
+          option:last-child {
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
           }
         }
 

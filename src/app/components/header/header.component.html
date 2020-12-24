@@ -200,7 +200,7 @@
             <span class="order__price--title">Amount:</span> 
             <span class="order__price--text">{{totalPrice | currency }}</span> 
           </div>
-          <button class="order__button">Make order</button>
+          <button class="order__button" [routerLink]="[ 'orders' ]" (click)="modalBasket()">Make order</button>
         </div>
       </div>
      

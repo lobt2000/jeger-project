@@ -9,6 +9,8 @@ import { BlogService } from 'src/app/service/blog.service';
 import { IBlogs } from 'src/app/shared/interfaces/blogs.interface';
 import { Blogs } from 'src/app/shared/classes/blogs.model';
 import { element } from 'protractor';
+import { IfStmt } from '@angular/compiler';
+import { spawn } from 'child_process';
 
 @Component({
   selector: 'app-blog',
@@ -17,9 +19,9 @@ import { element } from 'protractor';
 })
 export class BlogComponent implements OnInit {
   isBlog = false;
-  blogImg: string;
-  blogTitle: string;
-  blogText: any;
+  blogImg: string = '';
+  blogTitle: string = '';
+  blogText: any ;
   blogs: Array<any> = [];
   uploadProgress: Observable<number>;
   mainImg: string;
@@ -46,7 +48,11 @@ export class BlogComponent implements OnInit {
   leftCount = 0;
   centerCount = 0;
   rightCount = 0;
- 
+  // Count = 0;
+  tagName: string = 'Normal';
+  tag: string = 'span';
+  prevTag: string = 'span';
+
   constructor(private storage: AngularFireStorage,
     private drinkService: DrinksService,
     private blogService: BlogService) { }
@@ -90,7 +96,7 @@ export class BlogComponent implements OnInit {
   }
 
   addBlog(): void {
-    
+
     const blog = {
       title: this.blogTitle,
       text: this.textarea,
@@ -98,12 +104,12 @@ export class BlogComponent implements OnInit {
     }
     this.blogs.push(blog);
 
-    
+
     // document.querySelector('.textBox').innerHTML = blog.text 
     // document.querySelector('.textBox').innerHTML = blog.text 
     this.resetBlog();
-    
-            
+
+
   }
 
   editBlog(blog: any, id: any): void {
@@ -112,7 +118,7 @@ export class BlogComponent implements OnInit {
     this.blogTitle = blog.title;
     this.textarea = blog.text;
     console.log(this.textarea);
-    
+
     this.blogImg = blog.image
     this.editBlogStatus = true
   }
@@ -212,7 +218,7 @@ export class BlogComponent implements OnInit {
           newBlog.id = data
           this.blogService.update(data, newBlog).then(
             () => {
-              this.getBlogs()
+              this.getBlogs();
             }
           )
         }
@@ -266,7 +272,7 @@ export class BlogComponent implements OnInit {
     this.mainText = '';
     this.mainTitle = '';
     this.blogs = [];
-  
+
     this.mainImg = '';
     this.urlName = '';
     this.blogText = '';
@@ -276,46 +282,46 @@ export class BlogComponent implements OnInit {
     // this.success = false;
     // this.procent = true;
   }
-resetBlog():void{
-  this.blogText = '';
-  this.blogTitle = '';
-  this.textarea = '';
-  this.botImg = '';
-}
+  resetBlog(): void {
+    this.blogText = '';
+    this.blogTitle = '';
+    this.textarea = '';
+    this.botImg = '';
+  }
   bold(): void {
     if (this.textarea) {
       if (this.boldCount == 0) {
-        this.setStyle('<b>',`</b>` )
+        this.setStyle('<b>', `</b>`)
         this.boldCount++
       }
       else {
-        this.removeStyle('<b>',`</b>`);
+        this.removeStyle('<b>', `</b>`);
         this.boldCount = 0
       }
     }
   }
   underline(): void {
     if (this.textarea) {
-      
+
       if (this.uCount == 0) {
-        this.setStyle('<u>',`</u>` )
+        this.setStyle('<u>', `</u>`)
         this.uCount++
       }
       else {
-        this.removeStyle('<u>',`</u>`);
+        this.removeStyle('<u>', `</u>`);
         this.uCount = 0
       }
     }
   }
   italic(): void {
     if (this.textarea) {
-      
+
       if (this.iCount == 0) {
-        this.setStyle('<i>',`</i>` )
+        this.setStyle('<i>', `</i>`)
         this.uCount++
       }
       else {
-        this.removeStyle('<i>',`</i>`);
+        this.removeStyle('<i>', `</i>`);
         this.uCount = 0
       }
     }
@@ -323,26 +329,53 @@ resetBlog():void{
   }
   left(): void {
     if (this.textarea) {
-      
+
       if (this.leftCount == 0) {
-        this.setStyle('<span style="text-align: left">',`</span>` )
+        if (this.selectedText) {
+          this.regExp = new RegExp(`\\b${this.selectedText}\\b`, 'gi');
+          this.textarea = this.textarea.replace(this.regExp, `<span style="text-align: left">${this.selectedText}</span>`);
+
+        }
+        else {
+          this.textarea = `<${this.tag} style="text-align: left">${this.textarea}</${this.tag}>`;
+          console.log(this.textarea);
+
+        }
         this.leftCount++
       }
       else {
-        this.removeStyle('<span style="text-align: left">',`</span>`);
+        this.removeStyle('<span style="text-align: left">', `</span>`);
+        if (this.selectedText) {
+          this.regExp = new RegExp(`<span style="text-align: left">`);
+          this.blogText = this.selectedText.replace(this.regExp, '');
+          this.regExp = new RegExp(`</span>`);
+          this.blogText = this.blogText.replace(this.regExp, '');
+          this.regExp = new RegExp(this.selectedText, 'gi');
+          this.textarea = this.textarea.replace(this.regExp, `${this.blogText}`);
+          console.log(this.blogText);
+        }
+        else {
+          this.regExp = new RegExp(`<${this.tag} style="text-align: left">`);
+          this.blogText = this.textarea.replace(this.regExp, '');
+          this.regExp = new RegExp(`</${this.tag}>`);
+          this.blogText = this.blogText.replace(this.regExp, '');
+          this.textarea = this.blogText;
+          console.log(this.blogText);
+
+        }
         this.leftCount = 0
       }
     }
   }
   center(): void {
     if (this.textarea) {
-      
+
       if (this.centerCount == 0) {
-        this.setStyle('<span style="text-align: center">',`</span>` )
+        this.setStyle('<span style="text-align: center">', `</span>`)
         this.centerCount++
       }
       else {
-        this.removeStyle('<span style="text-align: center">',`</span>`);
+        this.removeStyle('<span style="text-align: center">', `</span>`);
         this.centerCount = 0
       }
     }
@@ -350,17 +383,61 @@ resetBlog():void{
   }
   right(): void {
     if (this.textarea) {
-      
+
       if (this.rightCount == 0) {
-        this.setStyle('<span style="text-align: right">',`</span>` )
+        this.setStyle('<span style="text-align: right">', `</span>`)
         this.rightCount++
       }
       else {
-        this.removeStyle('<span style="text-align: right">',`</span>`);
+        this.removeStyle('<span style="text-align: right">', `</span>`);
         this.rightCount = 0
       }
     }
 
+  }
+  select(): void {
+    if (this.textarea) {
+      if (this.selectedText) {
+        console.log('It isnt work with selected text');
+
+      }
+      else {
+        if (this.tagName == 'Heading 1') {
+          this.tag = 'h1';
+          this.regExp = new RegExp(`<${this.prevTag}>`);
+          this.blogText = this.textarea.replace(this.regExp, '');
+          this.regExp = new RegExp(`</${this.prevTag}>`);
+          this.blogText = this.blogText.replace(this.regExp, '');
+          this.textarea = this.blogText;
+          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
+          this.prevTag = this.tag
+
+        }
+        else if (this.tagName == 'Heading 2') {
+          this.tag = 'h2';
+          this.regExp = new RegExp(`<${this.prevTag}>`);
+          this.blogText = this.textarea.replace(this.regExp, '');
+          this.regExp = new RegExp(`</${this.prevTag}>`);
+          this.blogText = this.blogText.replace(this.regExp, '');
+          this.textarea = this.blogText;
+          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
+          this.prevTag = this.tag
+
+        }
+        else {
+          this.tag = 'span';
+          this.regExp = new RegExp(`<${this.prevTag}>`);
+          this.blogText = this.textarea.replace(this.regExp, '');
+          this.regExp = new RegExp(`</${this.prevTag}>`);
+          this.blogText = this.blogText.replace(this.regExp, '');
+          this.textarea = this.blogText;
+          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
+          this.prevTag = this.tag
+
+        }
+      }
+
+    }
   }
 
   getSelectedText(): void {
@@ -370,7 +447,7 @@ resetBlog():void{
 
   }
 
-  setStyle(openTag:string, closeTag: string):void{
+  setStyle(openTag: string, closeTag: string): void {
     if (this.selectedText) {
       this.regExp = new RegExp(`\\b${this.selectedText}\\b`, 'gi');
       this.textarea = this.textarea.replace(this.regExp, `${openTag}${this.selectedText}${closeTag}`);
@@ -382,7 +459,7 @@ resetBlog():void{
 
     }
   }
-  removeStyle(openTag:string, closeTag: string):void{
+  removeStyle(openTag: string, closeTag: string): void {
     if (this.selectedText) {
       this.regExp = new RegExp(`${openTag}`);
       this.blogText = this.selectedText.replace(this.regExp, '');

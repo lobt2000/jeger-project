@@ -1,6 +1,7 @@
 <section class="drink" id="prod">
 
-  <div class="drink__header" [style.backgroundImage]="'url(' + drink?.image + ')'">
+  <div class="drink__header" [style.backgroundImage]="'url(' + drink?.image + ')'" data-aos="fade-up" data-aos-easing="ease-out-cubic"
+  data-aos-duration="1000">
     <h2 class="drink__header--title">{{drink?.name}}</h2>
     <div class="drink__header--text">
       <h2 class="title">TASTE:</h2>
@@ -15,7 +16,8 @@
     </h2>
 
     <div class="drink__ingred--list">
-      <div class="ingredient" *ngFor="let ingred  of drink?.ingredients">
+      <div class="ingredient" *ngFor="let ingred  of drink?.ingredients" data-aos="flip-up" data-aos-easing="ease-out-cubic"
+      data-aos-duration="1000">
         <img [attr.src]="ingred?.image" alt="">
         <p>
           {{ingred?.ingredient}}
@@ -31,7 +33,8 @@
       <!-- <img [attr.src]="product?.descImg" alt=""> -->
     </h2>
 
-    <div class="drink__step--list">
+    <div class="drink__step--list" data-aos="flip-down" data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
       <div class="step" *ngFor="let s of drink?.stepOfCook ;  let i=index">
         <!-- <img [attr.src]="s?." alt=""> -->
         <p class="step_desc">

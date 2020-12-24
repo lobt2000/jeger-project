@@ -7,6 +7,7 @@ import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.service';
 import { IDiscount } from 'src/app/shared/interfaces/discounts.interface';
 import { IProd } from 'src/app/shared/interfaces/prod.interface';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-prod-details',
@@ -20,32 +21,59 @@ export class ProdDetailsComponent implements OnInit {
   checkDisc = false
   // mainImg: string;
   constructor(private prodService: ProductService,
-     private activatedRoute: ActivatedRoute, 
-     private discService: DiscountService,
-     private orderService: OrderService) { }
+    private activatedRoute: ActivatedRoute,
+    private discService: DiscountService,
+    private orderService: OrderService) { }
 
   ngOnInit(): void {
+    AOS.init();
     this.getProd();
-    
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
+
   }
   getProd(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    // console.log(this.activatedRoute.snapshot.paramMap);
-    // const id = '6rm3eR3awpM0F0AaSIUL';
-    this.prodService.getOne(id).subscribe(
-      data => {
-        this.product = data.data();
-        this.getDisc();
-        document.querySelector('.prod__header--text').innerHTML = this.product.mainText
-        // this.mainImg = this.product.botImg 
-        if (this.product.urlName == 'Manifest') {
-          document.getElementById('prod').style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.8) 20%,rgba(0, 0, 0, .9) 50%,rgba(0, 0, 0, 1) 100%)';
+    // const id = this.activatedRoute.snapshot.paramMap.get('id');
+    // // console.log(this.activatedRoute.snapshot.paramMap);
+    // // const id = '6rm3eR3awpM0F0AaSIUL';
+    // this.prodService.getOne(id).subscribe(
+    //   data => {
+    //     this.product = data.data();
 
-        }
+    //   }
+    // )
+
+    const name = this.activatedRoute.snapshot.paramMap.get('name');
+    this.prodService.getOne(name).onSnapshot(
+      document => {
+        document.forEach(prod => {
+          const product = {
+            id: prod.id,
+            ...prod.data() as IProd
+          };
+          this.product = product;
+          this.getDisc();
+          this.style();
+
+
+        });
       }
-    )
+    );
+
+
+  }
+  style() {
+    document.querySelector('.prod__header--text').innerHTML = this.product.mainText
+
+    if (this.product.urlName == 'Manifest') {
+      document.getElementById('prod').style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.8) 20%,rgba(0, 0, 0, .9) 50%,rgba(0, 0, 0, 1) 100%)';
+
+    }
   }
   getDisc() {
+
     this.discService.getAllDisc().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -56,7 +84,6 @@ export class ProdDetailsComponent implements OnInit {
       this.discounts = data;
       if (localStorage.getItem('user')) {
         for (let i = 0; i < this.discounts.length; i++) {
-          console.log(this.discounts[i].product, this.product.mainTitle);
 
           if (this.discounts[i].product == this.product.mainTitle) {
             this.discount = this.discounts[i].discount / 100 + this.discounts[0].discount / 100;
@@ -64,28 +91,27 @@ export class ProdDetailsComponent implements OnInit {
             this.checkDisc = true;
             break
           }
-          else if(this.discounts[i].product == "All"){
+          else if (this.discounts[i].product == "All") {
             this.discount = this.discounts[0].discount / 100;
             this.checkDisc = true
             console.log(this.discounts[0].discount);
-            
+
           }
-          console.log(this.discounts[i].product, this.product.mainTitle);
         }
       }
-      else{
+      else {
         for (let i = 0; i < this.discounts.length; i++) {
           if (this.discounts[i].product == this.product.mainTitle) {
             this.discount = this.discounts[i].discount / 100;
             this.checkDisc = true;
             break
           }
-          else{
+          else {
             this.discount = 0;
             this.checkDisc = false;
           }
+        }
       }
-    }
 
     });
   }
@@ -106,7 +132,6 @@ export class ProdDetailsComponent implements OnInit {
 
   addToBasket(prod: IProd): void {
     this.orderService.addBasket(prod)
-    console.log(prod);
     prod.count = 1;
   }
 

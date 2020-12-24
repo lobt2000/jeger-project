@@ -87,7 +87,7 @@
         border-bottom: 0.5em solid rgb(221, 90, 18);
         position: absolute;
         top: calc(10%);
-        left: calc(-21%);
+        left: calc(-17%);
         box-sizing: border-box;
         transition: width 600ms ease-in-out;
       }
@@ -129,7 +129,7 @@
 
 
     &__itemBot {
-      width: 33.3%;
+      width: 33.33%;
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 20vh;
@@ -161,7 +161,7 @@
         border-bottom: 0.5em solid rgb(221, 90, 18);
         position: absolute;
         top: calc(10%);
-        left: calc(-10%);
+        left: calc(-12%);
         box-sizing: border-box;
         transition: width 600ms ease-in-out;
       }
@@ -218,6 +218,9 @@
     &__itemBot:hover {
       animation: backPos infinite 15s ease-in-out;
     }
+    &__itemBot:hover:nth-child(3) {
+      animation: backPosImg infinite 15s ease-in-out;
+    }
 
     &__itemBot:nth-child(2) {
       background-image: url('../../../assets/image/HP_img_fts.webp');
@@ -226,8 +229,9 @@
     }
 
     &__itemBot:nth-child(3) {
-      background-image: url('../../../assets/image/teaser_instagram.png');
-
+      background-image: url('../../../assets/image/20180719_Header_16x9.jpg ');
+      background-position: 10%;
+      transition: width 600ms ease-in-out;
 
     }
 

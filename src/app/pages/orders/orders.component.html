@@ -1,0 +1,224 @@
+<div class="order">
+  <div class="order__header">
+    <h1>Make Order</h1>
+  </div>
+  <div class="order__details">
+    <div class="order__details--form">
+      <div class="user">
+        <div class="user__li">
+          <span>1</span>
+          <h2>Customer info</h2>
+        </div>
+        <div class="user__info">
+          <div class="user__info--input">
+            <label for="fuser">First Name</label>
+            <input type="text" [(ngModel)]="fuser" name="fuser" id="fuser">
+          </div>
+          <div class="user__info--input">
+            <label for="suser">Second Name</label>
+            <input type="text" [(ngModel)]="suser" name="suser" name="suser" id="suser">
+          </div>
+          <div class="user__info--input">
+            <label for="phoneUser">Phone number</label>
+            <input type="tel" [(ngModel)]="phoneUser" name="phoneUser" id="phoneUser">
+          </div>
+          <div class="user__info--input">
+            <label for="emailUser">Email</label>
+            <input type="email" [(ngModel)]="emailUser"  name="emailUser" id="emailUser">
+          </div>
+
+        </div>
+      </div>
+      <div class="city">
+        <div class="city__li">
+          <span>2</span>
+          <h2>Locality</h2>
+        </div>
+        <div class="city__info">
+          <div class="city__info--input">
+            <span (click)="chooseCity('Lviv')">Lviv</span>
+            <span (click)="chooseCity('Kuiv')">Kuiv</span>
+            <span (click)="chooseCity('Odessa')">Odessa</span>
+            <span (click)="chooseCity('Kharkiv')">Kharkiv</span>
+          </div>
+
+          <div class="city__info--select">
+            <div class="select" [style.overflow]="myclick ? overflow : overflow">
+              <div class="visible" (click)="selectClick()"> {{ userCity }}  <img src="../../../assets/image/angle-down-solid.svg"
+                  alt="">  </div>
+              <div class="hidden">
+                <div class="input-group m-auto w-75 mt-3">
+                  <input type="text" placeholder="filtered here..." class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                    [(ngModel)]="searchName" name="searchName">
+                </div>
+                <hr>
+                <div class="hidden__city">
+                  <div class="hidden__city--text"  *ngFor="let city of cities  | search: searchName" (click)="selectClick(city.city)">
+                    {{city.city}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="select1" [style.overflow]="myclick1 ? overflow1 : overflow1">
+              <div class="visible1" (click)="selectClick1()">{{ userRegion }} <img src="../../../assets/image/angle-down-solid.svg"
+                  alt=""></div>
+              <div class="hidden1">
+                <div class="input-group m-auto w-75 mt-3">
+                  <input type="text" placeholder="filtered here..." class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                    [(ngModel)]="searchName" name="searchName">
+                </div>
+                <hr>
+                <div class="hidden1__city">
+                  <div class="hidden1__city--text" *ngFor="let reg of cities | search: searchName" (click)="selectClick1(reg.region)">
+                    {{reg.region}}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="delivery">
+
+        <div class="delivery__li">
+          <span>3</span>
+          <h2>Delivery way</h2>
+        </div>
+        <div class="delivery__info">
+          <div class="delivery__info--input">
+            <p class="title" (click)="clickDisplay()">
+              <img src="../../../assets/image/c19377b0f538d58544ed59cfb99be14f.png" alt=""> Нова пошта
+            </p>
+            <div class="form" [style.display]="isDisplay ? display : display">
+              <p class="form__title">
+                Free delivery for orders over 1000 UAH
+              </p>
+              <p class="form__text">
+                The total cost of delivery is specified by the call-center operator and is paid separately, upon receipt
+                of the order
+              </p>
+              <div class="form__check">
+                <div class="form__check--depart">
+                  <div class="checkbox">
+                    <input type="radio" name="radio" (click)="mycheck(false)" id="depart"><span>Delivery to the branch</span>
+                  </div>
+                  <div class="input" [style.display]="checked ? isDisplayH : isDisplayH">
+                    <label for="addressBranch">Enter branch address</label>
+                    <input type="text" [(ngModel)]="addressBranch" name="addressBranch" id="addressBranch">
+                  </div>
+
+                </div>
+                <div class="form__check--home">
+                  <div class="checkbox">
+                    <input type="radio" (click)="mycheck(true)" name="radio" id="depart"><span>Home delivery</span>
+                  </div>
+                  <div class="input" [style.display]="checked ? isDisplayD : isDisplayD">
+                    <div class="input__name">
+                      <label for="street">Street</label>
+                      <input type="text" [(ngModel)]="street" name="street" id="street">
+                    </div>
+                    <div class="input">
+                      <div class="input__name">
+                        <label for="house">House</label>
+                        <input type="text"  [(ngModel)]="house" name="house" id="house">
+                      </div>
+                      <div class="input">
+                        <div class="input__name">
+                          <label for="fl/Of">flat/Office</label>
+                          <input type="text" [(ngModel)]="flOf" name="flOf" id="fl/Of">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="payway">
+        <div class="payway__li">
+          <span>4</span>
+          <h2>Pay way</h2>
+        </div>
+        <div class="payway__select" [style.overflow]="myclick ? overflowPay : overflowPay">
+          <div class="visible" (click)="selectPay()"> {{payway}} <img src="../../../assets/image/angle-down-solid.svg"
+              alt=""></div>
+          <div class="hidden">
+            <div class="hidden__pay">
+              <div class="hidden__pay--text" (click)="pay(card)">
+                {{ card }}
+              </div>
+              <div class="hidden__pay--text" (click)="pay(cash)">
+                {{cash}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="comment__li">
+          <span>5</span>
+          <h2>Comments</h2>
+        </div>
+        <div class="comment__textarea">
+          <div class="comment__textarea--comment" (click)="commentClick()">
+            {{visibleComment}}
+          </div>
+          <textarea [(ngModel)]="comment" name="comment" [style.display]="isComment ? displayC : displayC" name="comment" id="textarea"
+            cols="30" rows="10"></textarea>
+        </div>
+
+      </div>
+      <div class="make-order">
+        <button class="make-order__but" (click)="addOrder()">Confirm the order</button>
+      </div>
+
+    </div>
+    <div class="order__details--prod">
+      <div class="basket">
+        <div class="basket__prod" *ngFor="let bask of basket">
+          <div class="basket__prod--cross"> <img src="../../../assets/image/times-dark.svg" alt=""></div>
+          <div class="basket__prod--img"> <img [attr.src]="bask?.mainImg" alt=""> </div>
+          <div class="basket__prod--text">
+            <div class="title"> {{ bask.mainTitle }} 0.7L </div>
+            <div class="counter">
+              <button class="mybtn" (click)="productCount(bask, false)">-</button>
+              <input type="text" minlength='1' [value]="bask?.count">
+              <button class="mybtn" (click)="productCount(bask, true)">+</button>
+            </div>
+          </div>
+          <div class="basket__prod--price">
+            <div class="price " *ngIf="bask.disc < 1">{{ bask?.price * bask?.count  | currency }}</div>
+            <div class="discount" *ngIf="bask.disc > 1">
+              <p class="discount__real">{{  bask?.price * bask?.count   | currency }}</p>
+              <p class="discount__disc">{{ bask?.disc  | currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr >
+      <div class="details">
+        <div class="details__realP">
+            <p class="details__realP--title">Sum of order</p>
+            <p class="details__realP--text">{{notDiscTotal | currency}} </p>
+        </div>
+        <div class="details__discP">
+            <p class="details__discP--title">Discount</p>
+            <p class="details__discP--text">{{(notDiscTotal - totalPrice) | currency}}</p>
+        </div>
+        <div class="details__allP">
+            <p class="details__allP--title">Amount</p>
+            <p class="details__allP--text">{{totalPrice  | currency}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

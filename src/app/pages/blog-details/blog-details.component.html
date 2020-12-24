@@ -1,0 +1,21 @@
+<section class="blog" id="blog">
+
+    <div class="blog__header" [style.backgroundImage]="'url(' + blog?.mainImg + ')'">
+      <h2 class="blog__header--title">{{blog?.mainTitle}}</h2>
+      <p class="blog__header--text">{{ blog?.mainText }} </p>
+    </div>
+    <div class="blog__desc" *ngFor="let b of blog?.blogs; let i=index" [style.flexFlow]="i%2==0 ? 'row' : 'row-reverse'" >
+      <div class="blog__desc--img" [style.display]="b.image ? 'flex' : 'none'" data-aos="fade-right" data-aos-easing="ease-out-cubic"
+      data-aos-duration="1000">
+        <img [attr.src]="b?.image" alt="">
+      </div>
+      <div class="blog__desc--content" data-aos="fade-left" data-aos-easing="ease-out-cubic"
+      data-aos-duration="1000">
+        <p class="title"> {{b?.title}}</p>
+        <p class="text" [innerHTML]="b?.text"></p>
+      </div>
+    </div>
+    <div class="blog__footer"  [style.backgroundImage]="'url(' + blog?.botImg + ')'" data-aos="fade-up" data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
+    </div>
+</section>

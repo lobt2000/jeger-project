@@ -16,6 +16,10 @@ products: Array<IProd>
   ngOnInit(): void {
     this.getProducts();
     AOS.init();
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {

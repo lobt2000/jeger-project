@@ -24,6 +24,17 @@ import { ProdDetailsComponent } from './pages/prod-details/prod-details.componen
 import { DiscountComponent } from './admin/discount/discount.component';
 import { DrinkComponent } from './pages/drink/drink.component';
 import { DrinkDetailsComponent } from './pages/drink-details/drink-details.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { SearchPipe } from './shared/pipes/search.pipe';
+
+
+import { ToastrModule } from 'ngx-toastr';
+import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+
+
+
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule  } from "ngx-ui-loader";
+import { ngxUiLoaderConfig } from './preloader-config';
 
 
 @NgModule({
@@ -43,6 +54,9 @@ import { DrinkDetailsComponent } from './pages/drink-details/drink-details.compo
     DiscountComponent,
     DrinkComponent,
     DrinkDetailsComponent,
+    OrdersComponent,
+    SearchPipe,
+    BlogDetailsComponent,
 
   ],
   imports: [
@@ -52,7 +66,10 @@ import { DrinkDetailsComponent } from './pages/drink-details/drink-details.compo
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

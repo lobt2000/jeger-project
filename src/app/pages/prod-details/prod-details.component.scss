@@ -120,11 +120,27 @@
         font-size: 18px;
         font-weight: bold;
         font-style: italic;
+        display: flex;
 
-        &__aroma {
+
+        &__text {
           display: flex;
-          align-items: center;
-          width: 100%;
+          align-items: left;
+          flex-flow: column;
+          justify-content: space-between;
+          width: 50%;
+          min-height: 50px;
+
+
+        }
+
+
+        &__static {
+          display: flex;
+          align-items: left;
+          flex-flow: column;
+          justify-content: space-between;
+          width: 50%;
           min-height: 50px;
 
           &--p {
@@ -136,8 +152,6 @@
             transition: all 10s ease-in-out;
 
             span {
-
-              background-color: brown;
               width: 0%;
               height: 15.5px;
               margin-left: -1px;
@@ -146,53 +160,40 @@
 
             }
           }
-        }
 
-        &__sweet {
-          @extend .taste__aroma;
+          &--p:nth-child(1) {
+            span {
+              background-color: brown;
 
-          &--p {
-            @extend .taste__aroma--p;
+            }
+          }
 
+          &--p:nth-child(2) {
             span {
               background-color: darkgoldenrod;
-              @extend span;
 
 
             }
           }
-        }
 
-        &__bitter {
-          @extend .taste__aroma;
-
-          &--p {
-            @extend .taste__aroma--p;
-
+          &--p:nth-child(3) {
             span {
               background-color: darkred;
-              @extend span;
-              // margin-top: -1px;
 
 
             }
           }
-        }
 
-        &__citrus {
-          @extend .taste__aroma;
-
-          &--p {
-            @extend.taste__aroma--p;
-
+          &--p:nth-child(4) {
             span {
               background-color: orangered;
-              @extend span;
 
             }
           }
         }
+
       }
+
 
     }
   }
@@ -629,7 +630,7 @@
 
           &__discount {
             font-size: 35px;
-position: unset;
+            position: unset;
           }
 
           &__still {
@@ -727,6 +728,7 @@ position: unset;
 
   }
 }
+
 @media screen and (max-width: 329px) {
   .prod {
     &__header {

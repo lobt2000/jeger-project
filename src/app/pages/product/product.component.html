@@ -4,7 +4,7 @@
   data-aos-duration="1500" *ngFor="let prod of products">
 
 <!-- <img [attr.src]="prod.mainImg" class="prod__component--img" alt=""> -->
-<div class="prod__component--img" [ngStyle]="{ 'background-image': 'url(' + prod.mainImg + ')'}"  [routerLink]="[ '/product/'+prod.id ]">
+<div class="prod__component--img" [ngStyle]="{ 'background-image': 'url(' + prod.mainImg + ')'}"  [routerLink]="[ '/product/'+prod.urlName ]">
   <p class="title">{{prod.mainTitle}}</p>
 </div>
   </div>

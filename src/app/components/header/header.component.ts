@@ -356,10 +356,9 @@ export class HeaderComponent implements OnInit {
   private getLocalProducts(): void {
     if (localStorage.getItem('basket')) {
       this.basket = JSON.parse(localStorage.getItem('basket'));
-      this.totalPrice = this.getTotal(this.basket);
+      // this.totalPrice = this.getTotal(this.basket);
       // this.id = JSON.parse(localStorage.getItem('orderId'));
-console.log(this.basket);
-
+      console.log(this.basket);
     }
 
   }
@@ -379,15 +378,12 @@ console.log(this.basket);
         this.isdisabled = false;
 
       }
-
-      
-      
     }
     this.orderService.basket.next(this.basket);
     localStorage.setItem('basket', JSON.stringify(this.basket))
     // this.totalPrice = this.getTotal(this.basket);
     this.getDisc();
-    
+
   }
   removeProd(prod: any) {
     if (confirm('Are you sure?')) {
@@ -419,24 +415,27 @@ console.log(this.basket);
         for (let i = 0; i < this.discounts.length; i++) {
           for (let j = 0; j < this.basket.length; j++) {
             if (this.discounts[i].product == this.basket[j].mainTitle) {
-              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100 );
-              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100 );
+              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
+              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
               this.checkDisc = true;
               break
             }
             else if (this.discounts[i].product == 'All') {
               // this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
               // this.checkDisc = true;
+              console.log(this.basket[j]);
+              
               console.log(this.discount);
               if (this.basket[j].discount) {
 
               }
-              else{
+              else {
                 this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
                 this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-              this.checkDisc = true;
-              
-              
+                this.checkDisc = true;
+                console.log(this.basket[j].disc);
+
+
 
               }
             }
@@ -454,9 +453,9 @@ console.log(this.basket);
         this.totalPrice = this.discount;
         for (let i = 0; i < this.discounts.length; i++) {
           for (let j = 0; j < this.basket.length; j++) {
-            
+
             if (this.discounts[i].product == this.basket[j].mainTitle) {
-              this.basket[j].disc =  this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
+              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
 
               // this.basket[j].discount = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);
               this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);;

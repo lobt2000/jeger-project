@@ -5,34 +5,35 @@
     <p class="prod__header--text"></p>
   </div>
   <div class="prod__desc">
-    <div class="prod__desc--img">
+    <div class="prod__desc--img" data-aos="fade-left" data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
       <img [attr.src]="product?.descImg" alt="">
     </div>
-    <div class="prod__desc--content">
+    <div class="prod__desc--content" data-aos="fade-right" data-aos-easing="ease-out-cubic"
+    data-aos-duration="1000">
       <p class="title"> {{product?.descTitle}}</p>
       <p class="text">{{product?.descText}}</p>
       <div class="taste">
-        <h2 class="taste__aroma">
+        <div class="taste__text">
           <span>Aromatic:</span>
-          <div class="taste__aroma--p"><span [style.width]="product?.aromatic + '%'"></span></div>
-        </h2>
-        <h2 class="taste__sweet">
           <span>Sweet:</span>
-          <div class="taste__sweet--p"><span [style.width]="product?.sweet + '%'"></span></div>
-        </h2>
-        <h2 class="taste__bitter">
           <span>Bitter:</span>
-          <div class="taste__bitter--p"><span [style.width]="product?.bitter + '%'"></span></div>
-        </h2>
-        <h2 class="taste__citrus">
           <span>Citrus:</span>
-          <div class="taste__citrus--p"><span [style.width]="product?.citrus + '%'"></span></div>
-        </h2>
+          
+        </div>
+        <div class="taste__static">
+          <div class="taste__static--p"><span [style.width]="product?.aromatic + '%'" [style.transition]="product?.aromatic ? 'width 5s ease-in-out' :  'width 5s ease-in-out'"></span></div>
+          <div class="taste__static--p"><span [style.width]="product?.sweet + '%'" [style.transition]="product?.aromatic ? 'width 5s ease-in-out' :  'width 5s ease-in-out'"></span></div>
+          <div class="taste__static--p"><span [style.width]="product?.bitter + '%'" [style.transition]="product?.aromatic ? 'width 5s ease-in-out' :  'width 5s ease-in-out'"></span></div>
+          <div class="taste__static--p"><span [style.width]="product?.citrus + '%'" [style.transition]="product?.aromatic ? 'width 5s ease-in-out' :  'width 5s ease-in-out'"></span></div>
+        </div>
+        
 
       </div>
     </div>
   </div>
-  <div class="prod__footer" *ngIf="!checkDisc">
+  <div class="prod__footer" *ngIf="!checkDisc" data-aos="fade-up" data-aos-easing="ease-out-cubic"
+  data-aos-duration="1000">
     <div class="prod__footer--order">
         <div class="price">
            <span class="price__text">Price for one:</span> {{ product?.price * product?.count  | currency }}
@@ -48,7 +49,8 @@
     <div class="prod__footer--logo"></div>
 
   </div>
-  <div class="prod__footer" *ngIf="checkDisc">
+  <div class="prod__footer" *ngIf="checkDisc" data-aos="fade-up" data-aos-easing="ease-out-cubic"
+  data-aos-duration="1000">
     <div class="prod__footer--order">
         <div class="price">
            <span class="price__text">Price for one:     </span> <span class="price__still">{{ product?.price * product?.count  | currency }}  <span class="price__still--cross"></span></span>

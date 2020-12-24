@@ -35,7 +35,7 @@ export class ProductService {
     return this.productsRef.doc(id).delete();
   }
   getOne(id):any{
-    return this.productsRef.doc(id).get()
+    return this.productsRef.ref.where('urlName', '==', id);
   
   }
 }

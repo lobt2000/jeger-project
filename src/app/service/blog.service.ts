@@ -36,7 +36,7 @@ export class BlogService {
     return this.blogsRef.doc(id).delete();
   }
   getOne(id):any{
-    return this.blogsRef.doc(id).get()
+    return this.blogsRef.ref.where('urlName', '==', id);
   
   }
 }

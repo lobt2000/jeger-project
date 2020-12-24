@@ -43,6 +43,10 @@ export class DiscountComponent implements OnInit {
     });
 
   }
+  click(){
+    console.log(this.productName);
+    
+  }
   getDiscount(): void {
     this.discService.getAllDisc().snapshotChanges().pipe(
       map(changes =>
@@ -94,7 +98,8 @@ export class DiscountComponent implements OnInit {
         this.resetForm()
       }
       else {
-
+        console.log(this.productName);
+        
         const newDisc = {id:'1',
         product:  this.productName,
          discount:  this.disc,

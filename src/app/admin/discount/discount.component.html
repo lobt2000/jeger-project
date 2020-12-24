@@ -6,9 +6,9 @@
         <div class="formStyle__input">
           <label for="chooseProd">Choose product: </label>
           <select class="custom-select"
-          id="chooseProd" [(ngModel)]="productName" name="productName">
+          id="chooseProd" [(ngModel)]="productName" name="productName" (change)="click()">
           <option class="border">
-            <p class="border">{{all}}</p>
+            <p class="border">All</p>
 
           </option>
           <option class="border" *ngFor="let prod of products">

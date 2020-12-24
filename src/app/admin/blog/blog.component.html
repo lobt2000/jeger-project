@@ -1,91 +1,103 @@
-
 <div class="myblogs">
-  <section class="modalB" [style.background]="isBlog ? colorB : colorB"
-[style.top]="isBlog ? positionB : positionB">
-<div class="modalB__blog" [style.transform]="isBlog ? transformB : transformB">
-  <div class="modalB__blog--cross" (click)="resetBlog()" (click)="createBlog()"> <img src="../../../assets/image/times-cross.svg"
-      alt=""></div>
-  <div class="modalB__blog--title">Add blog</div>
-   <div class="modalB__blog--style">
-      <div class="input">
-        <label for="title"> Title: </label>
-        <input type="text" [(ngModel)]="blogTitle" name="blogTitle"  id="title">
-        <p class="text" style="display: none;"></p>
-      </div>
-      <div class="input">
-        <label for="text"> Text: </label>
-        <div class="input__quill"> 
-          <div class="input__quill--button">
-            <button class="bold" (click)="bold()">B</button>
-          </div>
-          <div class="input__quill--button">
-            <button class="underline" (click)="underline()">U</button>
-          </div>
-          <div class="input__quill--button">
-            <button class="italic" (click)="italic()">I</button>
-          </div>
-          <div class="input__quill--button">
-            <button class="text-left" (click)="left()"></button>
-          </div>
-          <div class="input__quill--button">
-            <button class="text-center" (click)="center()"></button>
-          </div>
-          <div class="input__quill--button">
-            <button class="text-right" (click)="right()"></button>
-
-          </div>
+  <section class="modalB" [style.background]="isBlog ? colorB : colorB" [style.top]="isBlog ? positionB : positionB">
+    <div class="modalB__blog" [style.transform]="isBlog ? transformB : transformB">
+      <div class="modalB__blog--cross" (click)="resetBlog()" (click)="createBlog()"> <img
+          src="../../../assets/image/times-cross.svg" alt=""></div>
+      <div class="modalB__blog--title">Add blog</div>
+      <div class="modalB__blog--style">
+        <div class="input">
+          <label for="title"> Title: </label>
+          <input type="text" [(ngModel)]="blogTitle" name="blogTitle" id="title">
+          <p class="text" style="display: none;"></p>
         </div>
-        <textarea [(ngModel)]="textarea" name="textarea" id="textarea" cols="17" rows="1" (mouseup)="getSelectedText()"></textarea>
-      </div>
+        <div class="input">
+          <label for="text"> Text: </label>
+          <div class="input__quill">
+            <div class="input__quill--button">
+              <button class="bold" (click)="bold()">B</button>
+            </div>
+            <div class="input__quill--button">
+              <button class="underline" (click)="underline()">U</button>
+            </div>
+            <div class="input__quill--button">
+              <button class="italic" (click)="italic()">I</button>
+            </div>
+            <div class="input__quill--button">
+              <button class="text-left" (click)="left()"></button>
+            </div>
+            <div class="input__quill--button">
+              <button class="text-center" (click)="center()"></button>
+            </div>
+            <div class="input__quill--button">
+              <button class="text-right" (click)="right()"></button>
+
+            </div>
+          </div>
+          <div class="input__select">
+            <select class="custom-select" id="chooseTag" [(ngModel)]="tagName" name="tagName" (change)="select()">
+              <option [attr.selected]="true">
+                <span  >Normal</span>
+              </option>
+              <option>
+                <h2 >Heading 2</h2>
+              </option>
+              <option>
+                <h1>Heading 1</h1>
+              </option>
+            </select>
+          </div>
+          <textarea [(ngModel)]="textarea" name="textarea" id="textarea" cols="17" rows="1"
+            (mouseup)="getSelectedText()"></textarea>
+        </div>
         <div class="input">
           <div class="input__upload">
             <div class="upload-btn-wrapper">
-            <button class="btn">Upload blog Image</button>
-            <input type="file" (change)="uploadFileBlog($event)" name="myfile" />
-          </div>
+              <button class="btn">Upload blog Image</button>
+              <input type="file" (change)="uploadFileBlog($event)" name="myfile" />
+            </div>
           </div>
         </div>
-        
 
-      
 
-    </div> 
-  
-  <div class="modalB__blog--form">
-    <button class="dismiss" (click)="resetBlog()" (click)="createBlog()">Dismiss</button>
-    <button class="logout" (click)="addBlog()" (click)="createBlog()" *ngIf="!editBlogStatus">Add</button>
-    <button class="logout" (click)="saveBlog()" (click)="createBlog()"  *ngIf="editBlogStatus">Save</button>
-  </div>
-</div>
-</section>
-  
+
+
+      </div>
+
+      <div class="modalB__blog--form">
+        <button class="dismiss" (click)="resetBlog()" (click)="createBlog()">Dismiss</button>
+        <button class="logout" (click)="addBlog()" (click)="createBlog()" *ngIf="!editBlogStatus">Add</button>
+        <button class="logout" (click)="saveBlog()" (click)="createBlog()" *ngIf="editBlogStatus">Save</button>
+      </div>
+    </div>
+  </section>
+
   <h1 class="w-100 text-center mb-3 font-bolder">Blogs</h1>
   <form>
     <div class="formStyle">
       <div class="formStyle__input">
         <label for="mainTitle">Main Title: </label>
-        <input [(ngModel)]="mainTitle" name="mainTitle" type="text"  id="mainTitle">
+        <input [(ngModel)]="mainTitle" name="mainTitle" type="text" id="mainTitle">
       </div>
-  
+
       <div class="formStyle__input">
         <label for="mainText">Main text: </label>
-       <textarea name="mainText" [(ngModel)]="mainText" id="mainText" cols="30" rows="1"></textarea>
+        <textarea name="mainText" [(ngModel)]="mainText" id="mainText" cols="30" rows="1"></textarea>
       </div>
     </div>
     <div class="formStyle">
       <div class="formStyle__input">
         <label for="url">Url Name: </label>
-        <input [(ngModel)]="urlName" name="urlName" type="text"  id="url">
+        <input [(ngModel)]="urlName" name="urlName" type="text" id="url">
       </div>
     </div>
     <div class="formStyle">
-      
-        <div class="formStyle__input">
-          <label for="countS">Add blog</label>
+
+      <div class="formStyle__input">
+        <label for="countS">Add blog</label>
         <button (click)="createBlog()" class="formStyle__input--button">Add</button>
       </div>
     </div>
-    
+
 
     <div class="formStyle">
       <div class="formStyle__input">
@@ -101,24 +113,24 @@
           </thead>
           <tbody>
             <tr *ngFor="let blog of blogs; let i=index">
-                    <td>{{ i+1 }}</td>
-                    <td>
-                      {{ blog.title }}
-                    </td>
-                    <td [innerHTML]="blog.text">
-                     
-                       <!-- {{ blog.text}} -->
-                    </td>
-                    <td>
-                        <button class="btn btn-warning" (click)="editBlog(blog, i)">edit</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" (click)="deleteBlog(i)">delete</button>
-                    </td>
-                </tr>
+              <td>{{ i+1 }}</td>
+              <td>
+                {{ blog.title }}
+              </td>
+              <td [innerHTML]="blog.text">
+
+                <!-- {{ blog.text}} -->
+              </td>
+              <td>
+                <button class="btn btn-warning" (click)="editBlog(blog, i)">edit</button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteBlog(i)">delete</button>
+              </td>
+            </tr>
           </tbody>
         </table>
-        
+
       </div>
     </div>
     <div class="formStyle-last">
@@ -133,20 +145,20 @@
     </div>
     <div class="progress mt-3 mb-3">
       <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-              [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+        [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-  
-  
+
+
     <div class="formStyle">
-      <button type="button" class="mybuttom" *ngIf="!editStatus"  (click)="addFullBlog()">ADD</button>
+      <button type="button" class="mybuttom" *ngIf="!editStatus" (click)="addFullBlog()">ADD</button>
       <button type="button" class="mybuttom bg-success" *ngIf="editStatus" (click)="saveFullBlog()">SAVE</button>
       <!-- <button type="button" class="btn but btn-info">Save</button> -->
     </div>
-  
+
   </form>
   <hr>
-  
-  
+
+
   <table class="table mytable">
     <thead>
       <tr>
@@ -162,29 +174,28 @@
     </thead>
     <tbody>
       <tr *ngFor="let fullBlog of fullBlogs; let i=index">
-              <td>{{ i+1 }}</td>
-              <td>{{ fullBlog?.mainTitle }}</td>
-              <td>{{ fullBlog?.mainText }}</td>
-              <td>
-                <span *ngFor="let blog of fullBlog.blogs; let i=index">
-                  <p> {{ blog.title }}</p>
-                  <p> {{ blog.text }}</p>
-                </span>
-              </td>
-              <td>
-                <img [attr.src]="fullBlog?.mainImg" style="width: 100px;" alt="">
-              </td>
-              <td>
-                  <img [attr.src]="fullBlog?.botImg" style="width: 100px;" alt="">
-              </td>
-              <td>
-                  <button class="btn btn-warning" (click)="editFullBlog(fullBlog)">edit</button>
-              </td>
-              <td>
-                  <button class="btn btn-danger" (click)="deleteFullBlog(fullBlog)">delete</button>
-              </td>
-          </tr>
+        <td>{{ i+1 }}</td>
+        <td>{{ fullBlog?.mainTitle }}</td>
+        <td>{{ fullBlog?.mainText }}</td>
+        <td>
+          <span *ngFor="let blog of fullBlog.blogs; let i=index">
+            <p> {{ blog.title }}</p>
+            <p> {{ blog.text }}</p>
+          </span>
+        </td>
+        <td>
+          <img [attr.src]="fullBlog?.mainImg" style="width: 100px;" alt="">
+        </td>
+        <td>
+          <img [attr.src]="fullBlog?.botImg" style="width: 100px;" alt="">
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="editFullBlog(fullBlog)">edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteFullBlog(fullBlog)">delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
-

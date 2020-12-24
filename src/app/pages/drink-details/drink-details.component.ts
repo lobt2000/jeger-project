@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DrinksService } from 'src/app/service/drinks.service';
 import { IDrinks } from 'src/app/shared/interfaces/drinks.interface';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-drink-details',
@@ -13,7 +14,12 @@ drink;
   constructor(private drinkService: DrinksService,private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.getDrink()
+    AOS.init();
+    this.getDrink();
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
   private getDrink(): void {
     const name = this.activatedRoute.snapshot.paramMap.get('name');
