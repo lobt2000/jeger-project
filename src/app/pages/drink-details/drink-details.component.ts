@@ -10,8 +10,8 @@ import AOS from 'aos';
   styleUrls: ['./drink-details.component.scss']
 })
 export class DrinkDetailsComponent implements OnInit {
-drink;
-  constructor(private drinkService: DrinksService,private activatedRoute: ActivatedRoute ) { }
+  drink;
+  constructor(private drinkService: DrinksService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     AOS.init();
@@ -31,8 +31,7 @@ drink;
             ...prod.data() as IDrinks
           };
           this.drink = product;
-          console.log(this.drink.image);
-          
+
         });
       }
     );

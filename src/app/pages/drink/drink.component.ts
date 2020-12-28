@@ -14,12 +14,12 @@ export class DrinkComponent implements OnInit {
   constructor(private drinkService: DrinksService) { }
 
   ngOnInit(): void {
-  this.getDrinks();
-  AOS.init();
-  window.scroll({
-    top: 0,
-    behavior: 'smooth'
-  });
+    this.getDrinks();
+    AOS.init();
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   getDrinks(): void {
@@ -32,7 +32,7 @@ export class DrinkComponent implements OnInit {
     ).subscribe(data => {
       this.drinks = data;
     });
-  
+
   }
 
 }

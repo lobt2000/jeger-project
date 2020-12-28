@@ -12,19 +12,26 @@
         <div class="user__info">
           <div class="user__info--input">
             <label for="fuser">First Name</label>
-            <input type="text" [(ngModel)]="fuser" name="fuser" id="fuser">
+            <input type="text" [(ngModel)]="fuser" (input)="regCheckFname()"
+              [style.borderColor]="regCheckFname() ? 'green' : 'red'" name="fuser" id="fuser" placeholder="Ivan">
           </div>
           <div class="user__info--input">
             <label for="suser">Second Name</label>
-            <input type="text" [(ngModel)]="suser" name="suser" name="suser" id="suser">
+            <input type="text" [(ngModel)]="suser" (input)="regCheckSname()"
+              [style.borderColor]="regCheckSname() ? 'green' : 'red'" name="suser" name="suser" id="suser"
+              placeholder="Ivanov">
           </div>
           <div class="user__info--input">
             <label for="phoneUser">Phone number</label>
-            <input type="tel" [(ngModel)]="phoneUser" name="phoneUser" id="phoneUser">
+            <input type="tel" [(ngModel)]="phoneUser" (input)="regCheckPhone()"
+              [style.borderColor]="regCheckPhone() ? 'green' : 'red'" name="phoneUser" id="phoneUser"
+              placeholder="0__-__-__-___">
           </div>
           <div class="user__info--input">
             <label for="emailUser">Email</label>
-            <input type="email" [(ngModel)]="emailUser"  name="emailUser" id="emailUser">
+            <input type="email" [(ngModel)]="emailUser" (input)="regCheckEmail()"
+              [style.borderColor]="regCheckEmail() ? 'green' : 'red'" name="emailUser" id="emailUser"
+              placeholder="user@gmail.com">
           </div>
 
         </div>
@@ -44,8 +51,7 @@
 
           <div class="city__info--select">
             <div class="select" [style.overflow]="myclick ? overflow : overflow">
-              <div class="visible" (click)="selectClick()"> {{ userCity }}  <img src="../../../assets/image/angle-down-solid.svg"
-                  alt="">  </div>
+              <div class="visible" (click)="selectClick()"> {{ userCity }} <img [attr.src]="angle" alt=""> </div>
               <div class="hidden">
                 <div class="input-group m-auto w-75 mt-3">
                   <input type="text" placeholder="filtered here..." class="form-control"
@@ -54,15 +60,15 @@
                 </div>
                 <hr>
                 <div class="hidden__city">
-                  <div class="hidden__city--text"  *ngFor="let city of cities  | search: searchName" (click)="selectClick(city.city)">
+                  <div class="hidden__city--text" *ngFor="let city of cities  | search: searchName"
+                    (click)="select(city.city)">
                     {{city.city}}
                   </div>
                 </div>
               </div>
             </div>
             <div class="select1" [style.overflow]="myclick1 ? overflow1 : overflow1">
-              <div class="visible1" (click)="selectClick1()">{{ userRegion }} <img src="../../../assets/image/angle-down-solid.svg"
-                  alt=""></div>
+              <div class="visible1" (click)="selectClick1()">{{ userRegion }} <img [attr.src]="angle1" alt=""></div>
               <div class="hidden1">
                 <div class="input-group m-auto w-75 mt-3">
                   <input type="text" placeholder="filtered here..." class="form-control"
@@ -71,7 +77,8 @@
                 </div>
                 <hr>
                 <div class="hidden1__city">
-                  <div class="hidden1__city--text" *ngFor="let reg of cities | search: searchName" (click)="selectClick1(reg.region)">
+                  <div class="hidden1__city--text" *ngFor="let reg of cities | search: searchName"
+                    (click)="select1(reg.region)">
                     {{reg.region}}
                   </div>
                 </div>
@@ -104,11 +111,13 @@
               <div class="form__check">
                 <div class="form__check--depart">
                   <div class="checkbox">
-                    <input type="radio" name="radio" (click)="mycheck(false)" id="depart"><span>Delivery to the branch</span>
+                    <input type="radio" name="radio" (click)="mycheck(false)" id="depart"><span>Delivery to the
+                      branch</span>
                   </div>
                   <div class="input" [style.display]="checked ? isDisplayH : isDisplayH">
                     <label for="addressBranch">Enter branch address</label>
-                    <input type="text" [(ngModel)]="addressBranch" name="addressBranch" id="addressBranch">
+                    <input type="text" [(ngModel)]="addressBranch" name="addressBranch" id="addressBranch"
+                      placeholder="Red Kalina,76,№16" [style.borderColor]="addressBranch ? 'green' : 'red'">
                   </div>
 
                 </div>
@@ -119,17 +128,20 @@
                   <div class="input" [style.display]="checked ? isDisplayD : isDisplayD">
                     <div class="input__name">
                       <label for="street">Street</label>
-                      <input type="text" [(ngModel)]="street" name="street" id="street">
+                      <input type="text" [(ngModel)]="street" name="street" id="street" placeholder="Antonucha"
+                        [style.borderColor]="street ? 'green' : 'red'">
                     </div>
                     <div class="input">
                       <div class="input__name">
                         <label for="house">House</label>
-                        <input type="text"  [(ngModel)]="house" name="house" id="house">
+                        <input type="text" [(ngModel)]="house" name="house" id="house" placeholder="23"
+                          [style.borderColor]="house ? 'green' : 'red'">
                       </div>
                       <div class="input">
                         <div class="input__name">
                           <label for="fl/Of">flat/Office</label>
-                          <input type="text" [(ngModel)]="flOf" name="flOf" id="fl/Of">
+                          <input type="text" [(ngModel)]="flOf" name="flOf" id="fl/Of" placeholder="56"
+                            [style.borderColor]="flOf ? 'green' : 'red'">
                         </div>
                       </div>
                     </div>
@@ -148,8 +160,7 @@
           <h2>Pay way</h2>
         </div>
         <div class="payway__select" [style.overflow]="myclick ? overflowPay : overflowPay">
-          <div class="visible" (click)="selectPay()"> {{payway}} <img src="../../../assets/image/angle-down-solid.svg"
-              alt=""></div>
+          <div class="visible" (click)="selectPay()"> {{payway}} <img [attr.src]="anglePay" alt=""></div>
           <div class="hidden">
             <div class="hidden__pay">
               <div class="hidden__pay--text" (click)="pay(card)">
@@ -171,8 +182,8 @@
           <div class="comment__textarea--comment" (click)="commentClick()">
             {{visibleComment}}
           </div>
-          <textarea [(ngModel)]="comment" name="comment" [style.display]="isComment ? displayC : displayC" name="comment" id="textarea"
-            cols="30" rows="10"></textarea>
+          <textarea [(ngModel)]="comment" name="comment" [style.display]="isComment ? displayC : displayC"
+            name="comment" id="textarea" cols="30" rows="10"></textarea>
         </div>
 
       </div>
@@ -184,7 +195,8 @@
     <div class="order__details--prod">
       <div class="basket">
         <div class="basket__prod" *ngFor="let bask of basket">
-          <div class="basket__prod--cross"> <img src="../../../assets/image/times-dark.svg" alt=""></div>
+          <div class="basket__prod--cross"> <img src="../../../assets/image/times-dark.svg" alt=""
+              (click)="removeProd(bask)"></div>
           <div class="basket__prod--img"> <img [attr.src]="bask?.mainImg" alt=""> </div>
           <div class="basket__prod--text">
             <div class="title"> {{ bask.mainTitle }} 0.7L </div>
@@ -203,19 +215,19 @@
           </div>
         </div>
       </div>
-      <hr >
+      <hr>
       <div class="details">
         <div class="details__realP">
-            <p class="details__realP--title">Sum of order</p>
-            <p class="details__realP--text">{{notDiscTotal | currency}} </p>
+          <p class="details__realP--title">Sum of order</p>
+          <p class="details__realP--text">{{notDiscTotal | currency}} </p>
         </div>
         <div class="details__discP">
-            <p class="details__discP--title">Discount</p>
-            <p class="details__discP--text">{{(notDiscTotal - totalPrice) | currency}}</p>
+          <p class="details__discP--title">Discount</p>
+          <p class="details__discP--text">{{(notDiscTotal - totalPrice) | currency}}</p>
         </div>
         <div class="details__allP">
-            <p class="details__allP--title">Amount</p>
-            <p class="details__allP--text">{{totalPrice  | currency}}</p>
+          <p class="details__allP--title">Amount</p>
+          <p class="details__allP--text">{{totalPrice  | currency}}</p>
         </div>
       </div>
     </div>

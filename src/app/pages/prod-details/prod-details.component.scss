@@ -3,7 +3,6 @@
 
 
 .prod {
-  // padding-top: 6rem;
   font-family: sans-serif;
   line-height: 1.5;
   padding-bottom: 6rem;
@@ -26,8 +25,8 @@
       font-size: 32px;
       font-weight: 600;
       margin-left: calc(5%);
+      margin-right: calc(5%);
       margin-bottom: calc(4%);
-      //  font-style: italic;   
       text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
     }
 
@@ -37,6 +36,7 @@
       min-height: 10vh;
       font-size: 18px;
       margin-left: calc(5%);
+      margin-right: calc(5%);
       font-style: italic;
       font-stretch: condensed;
       position: relative;
@@ -63,7 +63,6 @@
   &__desc {
     width: 100%;
     margin-top: 50px;
-    // min-height: 95vh;
     @include flexbox(row, wrap, space-between, center);
     color: white;
 
@@ -79,7 +78,6 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        // margin-top: 105px;
         border: none;
       }
     }
@@ -87,8 +85,6 @@
     &--content {
       width: 50%;
       @include flexbox(column, wrap, flex-start, center);
-      // height: 100%;
-      //   min-height: 95vh;
 
       .title {
 
@@ -105,7 +101,7 @@
       .text {
         font-family: sans-serif;
         min-height: 10vh;
-        font-size: 18px;
+        font-size: 20px;
         font-style: italic;
         font-stretch: condensed;
         width: 55%;
@@ -218,7 +214,6 @@
         text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
 
         &__text {
-          //  color: orange;
           font-size: 35px;
           text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
         }
@@ -258,7 +253,6 @@
         @include flexbox(row, wrap, center, center);
 
         &__amount {
-          // width: 100%;
           text-align: center;
           color: white;
           margin-top: 30px;
@@ -290,7 +284,6 @@
 
         input {
           height: 50px;
-          // border-radius: 10px;
           border: none;
           border-bottom: 4px solid sandybrown;
           background: transparent;
@@ -337,6 +330,11 @@
         background: transparent;
         color: orangered;
       }
+
+      .makeOrder:focus {
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
+      }
     }
   }
 
@@ -351,7 +349,6 @@
         font-weight: 600;
         margin-left: calc(5%);
         margin-bottom: calc(4%);
-        //  font-style: italic;   
         text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
       }
 
@@ -386,14 +383,11 @@
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
-          // margin-top: 105px;
           border: none;
         }
       }
 
       &--content {
-        // height: 100%;
-        //   min-height: 95vh;
 
         .title {
           font-size: 28px;
@@ -401,7 +395,7 @@
         }
 
         .text {
-          font-size: 16px;
+          font-size: 18px;
           width: 65%;
         }
 
@@ -429,7 +423,6 @@
 
 
           &__text {
-            //  color: orange;
             font-size: 30px;
           }
 
@@ -458,11 +451,7 @@
           @include flexbox(row, wrap, center, center);
 
           &__amount {
-            // width: 100%;
-
             font-size: 30px;
-
-
           }
 
           .mybtn {
@@ -543,7 +532,6 @@
         font-weight: 600;
         margin-left: calc(5%);
         margin-bottom: calc(4%);
-        //  font-style: italic;   
         text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
       }
 
@@ -572,6 +560,9 @@
 
       &--img {
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
           width: 100%;
@@ -579,14 +570,12 @@
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
-          // margin-top: 105px;
           border: none;
         }
       }
 
       &--content {
-        // height: 100%;
-        //   min-height: 95vh;
+
         width: 100%;
 
         .title {
@@ -624,7 +613,6 @@
 
 
           &__text {
-            //  color: orange;
             font-size: 30px;
           }
 
@@ -762,8 +750,6 @@
       flex-flow: column;
 
       &--content {
-        // height: 100%;
-        //   min-height: 95vh;
         width: 100%;
 
         .title {

@@ -1,0 +1,65 @@
+<div class="contact">
+  <h1>Website developer</h1>
+  <div class="contact__info">
+    <div class="contact__info--photo"><img
+        src="https://firebasestorage.googleapis.com/v0/b/jeger-49c21.appspot.com/o/images%2Fphoto_2020-12-27_13-55-53.jpg?alt=media&token=104d4d1a-705b-493c-a291-b5fe7a1fc237"
+        alt=""></div>
+    <div class="contact__info--data">
+      <p>Kolodii Bohdan</p>
+      <p>bkolodiy20013@gmail.com </p>
+      <p class="link">
+        <a href="https://www.instagram.com/kol_bod/" target="_blank" class="link__insta"></a>
+        <a href="https://github.com/lobt2000" target="_blank" class="link__git"></a>
+        <a href="https://www.facebook.com/profile.php?id=100009156216854" target="_blank" class="link__face"></a>
+        <a href="https://www.linkedin.com/in/bohdan-kolodiy-2907011b4/" target="_blank" class="link__lin"></a>
+      </p>
+    </div>
+  </div>
+  <div class="contact__comment">
+    <div class="contact__comment--visible" (click)="selectClick()">Ask a question or leave a review <img img
+        [attr.src]="angle" alt=""></div>
+    <div class="contact__comment--hidden" [style.height]="myclick ? height : height"
+      [style.transition]="'height 600ms ease-in-out'">
+      <div class="input">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" [(ngModel)]="commentFname" name="commentFname" (input)="regCheckFname()"
+          [style.borderColor]="regCheckFname() ? 'green' : 'red'">
+      </div>
+      <div class="input">
+        <label for="secondName">Second name</label>
+        <input type="text" id="secondName" [(ngModel)]="commentSname" name="commentSname" (input)="regCheckSname()"
+          [style.borderColor]="regCheckSname() ? 'green' : 'red'">
+      </div>
+      <div class="input">
+        <label for="commentEmail">Email address</label>
+        <input type="text" id="commentEmail" [(ngModel)]="commentEmail" name="commentEmail" (input)="regCheckEmail()"
+          [style.borderColor]="regCheckEmail() ? 'green' : 'red'">
+      </div>
+      <div class="input">
+        <label for="message">Message</label>
+        <textarea name="comment" [(ngModel)]="comment" id="message" cols="20" rows="10"></textarea>
+      </div>
+      <div class="button">
+        <button (click)="save()">Send</button>
+      </div>
+      <div></div>
+    </div>
+  </div>
+  <div class="contact__privacy">
+    <h2>DATA PRIVACY STATEMENT</h2>
+    <p> We appreciate your interest in our company. Data privacy is of particular importance to the Management Board of
+      MJSE. The use of the web pages of MJSE is possible without any indication of personal data. However, if a data
+      subject wants to use special enterprise services via our website, processing of personal data could become
+      necessary. If the processing of personal data is necessary and there is no statutory basis for such processing, we
+      generally obtain consent from the data subject. The processing of personal data, such as the name, address, email
+      address, or telephone number of a data subject shall always be in line with the General Data Protection Regulation
+      (GDPR), and in accordance with the country-specific data protection regulations applicable to MJSE. By means of
+      this Data Privacy Statement, our enterprise would like to inform the general public of the nature, scope, and
+      purpose of the personal data we collect, use and process. Furthermore, data subjects are informed, by means of
+      this Data Privacy Statement, of the rights to which they are entitled. As the controller, MJSE has implemented
+      numerous technical and organisational measures to ensure the most complete protection of personal data processed
+      through this website. However, Internet-based data transmissions may in principle have security gaps, so absolute
+      protection cannot be guaranteed. For this reason, every data subject is free to transfer personal data to us via
+      alternative means, e.g. by telephone. </p>
+  </div>
+</div>

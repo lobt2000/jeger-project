@@ -1,10 +1,10 @@
 <footer class="footer">
   <div class="footer__menu">
     <div class="footer__menu__link">
-      <a href="" class="footer__menu__link__item">History</a>
-      <a href="" class="footer__menu__link__item">Products</a>
-      <a href="" class="footer__menu__link__item">Drinks</a>
-      <a href="" class="footer__menu__link__item">Contact</a>
+      <a href="" class="footer__menu__link__item" [routerLink]="[ 'history' ]"  routerLinkActive="focus">History</a>
+      <a href="" class="footer__menu__link__item" [routerLink]="[ 'product' ]"  routerLinkActive="focus">Products</a>
+      <a href="" class="footer__menu__link__item" [routerLink]="[ 'drink' ]"  routerLinkActive="focus">Drinks</a>
+      <a href="" class="footer__menu__link__item" [routerLink]="[ 'contact' ]"  routerLinkActive="focus">Contact</a>
     </div>
     <!-- <div class="footer__menu__link">
       <a href="" class="footer__menu__link__item">Basket</a>
@@ -14,8 +14,8 @@
   </div>
   <div class="footer__menu__button">
     <div class="footer__menu__button">
-      <button class="footer__menu__button__icon"></button>
-      <button class="footer__menu__button__face"></button>
+      <a class="footer__menu__button__icon" href="https://www.instagram.com/kol_bod/" target="_blank"></a>
+      <a class="footer__menu__button__face" href="https://www.facebook.com/profile.php?id=100009156216854" target="_blank" ></a>
     </div>
   </div>
 </footer>

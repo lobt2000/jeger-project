@@ -3,7 +3,6 @@
   min-height: 10vh;
   display: flex;
   flex-flow: column;
-  // align-items: center;
   justify-content: center;
 
 
@@ -40,11 +39,13 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid green;
-    -webkit-text-fill-color: green;
+    border: 1px solid orangered !important;
+    -webkit-text-fill-color: white;
     border-radius: 10px;
-
-    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    padding-left: 5px !important;
+    background-color: orangered !important;
+    box-shadow: 0 0 0px 1000px #f83600 inset;
+    background: linear-gradient(to right, #f83600, #fe8c00);
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -161,17 +162,6 @@
     opacity: 0;
   }
 
-  //   input:hover{
-  //     background: transparent;
-  //     color: #fe8c00;
-
-  // }
-  // input:focus {
-  //   outline: none;
-  //   box-shadow: 0 0 0 0.25rem #fe8c00;
-  //   border: 1px solid #fe8c00;
-
-  // }
 
   .mybuttom {
     width: 50%;
@@ -195,9 +185,6 @@
 
   }
 
-  // .mytable{
-  //     margin-top: 50px;
-  // }
 
   hr {
     margin-top: 50px;
@@ -208,8 +195,7 @@
 
   }
 
-  th {
-    // border: 1px solid #dee2e6;  
+  th { 
     font-size: 18px;
   }
 
@@ -282,8 +268,7 @@
 
   &__ingred {
     transition: transform 1000ms linear;
-    // transform: translate3d(0, 0, 0);
-   min-height: 70vh;
+    min-height: 70vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
     background-repeat: no-repeat;
@@ -305,7 +290,7 @@
       justify-content: flex-end;
       align-items: center;
 
-      
+
       img {
         width: 45px;
         height: 45px;
@@ -315,7 +300,8 @@
         transition: transform 600ms ease-in-out;
 
       }
-      img:hover{
+
+      img:hover {
         transform: rotate(360deg);
       }
     }
@@ -340,8 +326,6 @@
     }
 
     &--style {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
       display: flex;
       justify-content: space-around;
       width: 40%;
@@ -349,7 +333,6 @@
       flex-flow: row wrap;
 
       .input {
-        // margin-top: 10px;
         width: 100%;
         min-height: 10vh;
         display: flex;
@@ -453,7 +436,6 @@
 
       .dismiss:hover {
         background: transparent;
-        // color:;
       }
 
       .logout {
@@ -493,7 +475,8 @@
   z-index: 4;
   background: rgba(0, 0, 0, .7);
   box-sizing: border-box;
-border-radius: 10px;
+  border-radius: 10px;
+
   input {
     width: 100%;
     margin-top: 10px;
@@ -529,9 +512,8 @@ border-radius: 10px;
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  &__step{
+  &__step {
     transition: transform 1000ms linear;
-    // transform: translate3d(0, 0, 0);
     min-height: 70vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
@@ -564,11 +546,12 @@ border-radius: 10px;
         transition: transform 600ms ease-in-out;
 
       }
-      img:hover{
+
+      img:hover {
         transform: rotate(360deg);
       }
     }
-   
+
 
     &--title {
       width: 100%;
@@ -590,8 +573,6 @@ border-radius: 10px;
     }
 
     &--style {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
       display: flex;
       justify-content: space-around;
       width: 40%;
@@ -599,7 +580,6 @@ border-radius: 10px;
       flex-flow: row wrap;
 
       .input {
-        // margin-top: 10px;
         width: 100%;
         display: flex;
         flex-flow: column;
@@ -657,6 +637,7 @@ border-radius: 10px;
             font-weight: bold;
             transition: background .250s linear, color .250s linear, border .250s linear;
           }
+
           .upload-btn-wrapper input[type=file] {
             font-size: 100px;
             position: absolute;
@@ -802,14 +783,18 @@ border-radius: 10px;
         right: 0;
         top: 0;
 
-      }}
+      }
+    }
+
     .modalS {
       &__step {
         width: 100%;
         right: 0;
         top: 0;
 
-      }}
+      }
+    }
+
     .formStyle {
       font-size: 16px;
       flex-flow: column wrap;
@@ -819,8 +804,9 @@ border-radius: 10px;
         width: 100%;
       }
     }
-    .upload-btn-wrapper{
-      .btn{
+
+    .upload-btn-wrapper {
+      .btn {
         font-size: 16px;
       }
     }

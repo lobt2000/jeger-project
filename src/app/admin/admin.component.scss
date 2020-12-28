@@ -1,74 +1,101 @@
-
 @import "../../assets/style/mixins";
 
-.admin-block{
-min-height: 10vh;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid orangered !important;
+  -webkit-text-fill-color: white;
+  border-radius: 10px;
+  padding-left: 5px !important;
+  background-color: orangered !important;
+  box-shadow: 0 0 0px 1000px #f83600 inset;
+  background: linear-gradient(to right, #f83600, #fe8c00);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.admin-block {
+  min-height: 10vh;
   padding-top: 5rem;
   padding-left: 2rem;
   padding-right: 2rem;
-//   padding: 15px;
-//   background: #434343;
   @include flexbox(row, wrap, center, center);
 
   .admin-box {
-      color: white;
-      font-size: 24px;
-  padding: 1rem;
+    color: white;
+    font-size: 24px;
+    padding: 1rem;
     background: transparent;
     border-radius: 10px;
     @include flexbox(row, wrap, center, center);
     width: 100%;
-  }}
-.dark-mode-text{
-    color: white;
+  }
 }
 
-.dark-mode{
-    outline: none;
-    background-color: orangered;
-    color: #fefefe;
-    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+.dark-mode-text {
+  color: white;
 }
-.padd{
-    margin-top: 20px!important;
+
+.dark-mode {
+  outline: none;
+  background-color: orangered;
+  color: #fefefe;
+  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
 }
-.reng-flex{
-    display: flex;
-    flex-flow: column;
+
+.padd {
+  margin-top: 20px !important;
 }
-.flex-box{
-    display: flex;
+
+.reng-flex {
+  display: flex;
+  flex-flow: column;
+}
+
+.flex-box {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.mywidth {
+  width: 80%;
+}
+
+@media screen and (max-width: 696px) {
+  .admin-block {
+    .admin-box {
+      font-size: 20px;
+    }
+  }
+
+  .reng-flex {
     flex-flow: row;
-    justify-content: space-between;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .flex-box {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mywidth {
+    width: 100%;
+  }
 }
-.mywidth{
-    width: 80%;
-}
-@media screen and (max-width: 696px){
-    .admin-block{
-    .admin-box{
-        font-size: 20px;
+
+@media screen and (max-width: 367px) {
+  .admin-block {
+    .admin-box {
+      font-size: 14px;
     }
-}
-    .reng-flex{
-flex-flow: row;
-margin-bottom: 10px;
-justify-content: center;
-    }
-    .flex-box{
-        flex-flow: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .mywidth{
-        width: 100%;
-    }
-}
-@media screen and (max-width: 367px){
-    .admin-block{
-    .admin-box{
-        font-size: 14px;
-    }
-}
-  
+  }
+
 }

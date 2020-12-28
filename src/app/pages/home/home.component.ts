@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.getBlogs();
-    // window.screenY = 0;
     window.scroll({
       top: 0,
       behavior: 'smooth'
@@ -31,11 +30,11 @@ export class HomeComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     let scroll = window.scrollY;
-    
-    
+
+
   }
   getBlogs() {
-    
+
     this.blogService.getAllBlogs().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -49,15 +48,11 @@ export class HomeComponent implements OnInit {
       this.third = this.blogs[2]
       this.fourth = this.blogs[3]
       this.fifth = this.blogs[4]
-
-      console.log(data);
     });
   }
 
-  getItems(): Array<IBlogs>{
-// console.log(this.blogs.filter((blog,index) => index > 4 ) );
-
-    return this.blogs.filter((blog,index) => index > 2 )
+  getItems(): Array<IBlogs> {
+    return this.blogs.filter((blog, index) => index > 2)
 
   }
 

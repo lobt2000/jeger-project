@@ -2,32 +2,35 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   id = 'TV6VV6OblUW4DQslkA6G';
-  number
+  number;
+  localUser: any;
+  private dbPath = '/users';
+  checkSign: Subject<any> = new Subject<any>();
+  profRef: AngularFirestoreCollection<any> = null;
   private dbPath1 = '/cardNumber';
   cardNumbRef: AngularFirestoreCollection<any> = null;
-  localUser: any;
-  checkSign: Subject<any> = new Subject<any>();
-  constructor(private db: AngularFirestore, 
-    private auth: AngularFireAuth, 
+  constructor(private db: AngularFirestore,
+    private auth: AngularFireAuth,
+    private toastr: ToastrService,
     private router: Router) {
-
+    this.profRef = this.db.collection(this.dbPath);
     this.cardNumbRef = this.db.collection(this.dbPath1);
   }
- 
+
 
   signUp(email: string, password: string, userFname: string, userSname: string, cardNum: number): void {
     this.auth.createUserWithEmailAndPassword(email, password)
-    
+
       .then(userResponse => {
         const user = {
-          // id: userResponse.user.uid,
           email: userResponse.user.email,
           password: password,
           role: 'user',
@@ -36,13 +39,11 @@ export class AuthService {
           cardNumber: cardNum,
           image: 'https://firebasestorage.googleapis.com/v0/b/admin-blog-f6b6a.appspot.com/o/images%2FPngItem_1468479.png?alt=media&token=ff01da5f-daf1-4479-803e-e811324e50b0',
         }
- 
+
         this.db.collection('users').add(user)
           .then(collection => {
             collection.get()
               .then(user => {
-                console.log(user);
-                
                 const myUser = {
                   id: user.id,
                   ...user.data() as any
@@ -66,11 +67,12 @@ export class AuthService {
           })
 
       })
-      
+
       .catch(
         err => {
           console.log(err);
-          
+          this.toastr.error('You write invalid password!', 'Denied');
+
         }
       )
   }
@@ -92,12 +94,12 @@ export class AuthService {
                 this.router.navigateByUrl('admin');
                 this.checkSign.next(true);
               }
-              else if(this.localUser.role === 'user'){
+              else if (this.localUser.role === 'user') {
                 this.checkSign.next('user');
                 this.router.navigateByUrl('profile');
 
               }
-              else{
+              else {
                 this.checkSign.next(false);
                 this.router.navigateByUrl('home');
               }
@@ -105,13 +107,20 @@ export class AuthService {
           }
         )
       })
+      .catch(
+        () => {
+          this.toastr.error('You write invalid password!', 'Denied');
+
+        }
+
+      )
   }
-  checkUser():void{
-    if(localStorage.getItem('user')){
+  checkUser(): void {
+    if (localStorage.getItem('user')) {
       this.localUser = JSON.parse(localStorage.getItem('user'))
       if (this.localUser.role === 'user') {
         this.checkSign.next('user');
-        
+
       }
       else if (this.localUser.role === 'admin') {
         this.checkSign.next('admin');
@@ -121,10 +130,10 @@ export class AuthService {
 
       }
     }
-    else{
+    else {
       this.checkSign.next(false);
     }
-                 
+
   }
 
   signOut(): void {
@@ -138,13 +147,19 @@ export class AuthService {
 
 
   updateID(data: any): Promise<void> {
-    console.log(data);
     const ordId = {
       id: data
     }
     localStorage.setItem('cardId', JSON.stringify(data))
     return this.cardNumbRef.doc(this.id).update(ordId);
   }
+  getUser(): Observable<any> {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+  update(id: string, data: any): Promise<void> {
+    return this.profRef.doc(id).update({ ...data });
+  }
+
 
   getId(): any {
 

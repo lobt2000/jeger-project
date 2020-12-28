@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { map } from 'rxjs/operators';
 import { DiscountService } from 'src/app/service/discount.service';
@@ -21,7 +22,7 @@ export class DiscountComponent implements OnInit {
   discId: any;
   editStatus = false;
   check: boolean
-  constructor(private prodService: ProductService, private discService: DiscountService) { }
+  constructor(private prodService: ProductService, private discService: DiscountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getProd();
@@ -37,16 +38,10 @@ export class DiscountComponent implements OnInit {
       )
     ).subscribe(data => {
       this.products = data;
-      console.log(data);
-
-
     });
 
   }
-  click(){
-    console.log(this.productName);
-    
-  }
+
   getDiscount(): void {
     this.discService.getAllDisc().snapshotChanges().pipe(
       map(changes =>
@@ -89,42 +84,38 @@ export class DiscountComponent implements OnInit {
   }
 
   addDisc(status: boolean): void {
-    console.log(this.productName);
 
     if (this.disc) {
       if (!status) {
         console.log('There is already a discount on this product');
-        // this.toastr.error('There is already a discount on this product', 'Denied');
+        this.toastr.error('There is already a discount on this product', 'Denied');
         this.resetForm()
       }
       else {
-        console.log(this.productName);
-        
-        const newDisc = {id:'1',
-        product:  this.productName,
-         discount:  this.disc,
-      }
+
+        const newDisc = {
+          id: '1',
+          product: this.productName,
+          discount: this.disc,
+        }
         delete newDisc.id;
         this.discService.create(newDisc)
         this.discService.updProd.subscribe(
           data => {
-            console.log(data);
             newDisc.id = data
             this.discService.update(data, newDisc).then(
 
               () => {
                 this.products.forEach(
                   element => {
-                   if(element.mainTitle == newDisc.product ){
-                    element.discount = newDisc
-                    console.log(element);
-                    
-                     this.prodService.update(element.id, {...element})
-                     this.getProd();
-                   }
+                    if (element.mainTitle == newDisc.product) {
+                      element.discount = newDisc
+                      this.prodService.update(element.id, { ...element })
+                      this.getProd();
+                    }
                   }
                 )
-                
+
                 this.getDiscount();
                 this.resetForm()
 
@@ -143,11 +134,11 @@ export class DiscountComponent implements OnInit {
 
     this.discService.delete(disc.id.toString())
       .then(() => {
-        // this.toastr.success('Product delete', 'Successed');
+        this.toastr.success('Discount delete', 'Successed');
         this.getDiscount()
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
   }
   deleteOne(disc: IDiscount): void {
@@ -156,32 +147,31 @@ export class DiscountComponent implements OnInit {
       .then(() => {
         this.products.forEach(
           element => {
-           if(element.mainTitle == disc.product ){
-            console.log(element);
-            element.discount = {}
-             this.prodService.update(element.id, {...element})
-             this.getProd();
-             this.getDiscount();
-           }
+            if (element.mainTitle == disc.product) {
+              element.discount = {}
+              this.prodService.update(element.id, { ...element })
+              this.getProd();
+              this.getDiscount();
+            }
           }
         )
-        // this.toastr.success('Product delete', 'Successed');
+        this.toastr.success('Discount delete', 'Successed');
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
   }
-  editDisc(disc: IDiscount, id:any): void {
+  editDisc(disc: IDiscount, id: any): void {
     this.discId = disc.id;
     this.productName = disc.product;
     this.disc = disc.discount;
     this.editStatus = true;
     this.deleteOne(disc)
-    
+
   }
   saveDisc(status: boolean): void {
     console.log('There is already a discount on this product');
-    // this.toastr.error('There is already a discount on this product', 'Denied');
+    this.toastr.error('There is already a discount on this product', 'Denied');
     if (!status) {
       this.resetForm();
     }
@@ -194,21 +184,19 @@ export class DiscountComponent implements OnInit {
       this.discService.create(saveD)
       this.discService.updProd.subscribe(
         data => {
-          console.log(data);
           saveD.id = data
           this.discService.update(data, saveD).then(
             () => {
               this.products.forEach(
                 element => {
-                 if(element.mainTitle == saveD.product ){
-                  console.log(element);
-                  element.discount = saveD
-                   this.prodService.update(element.id, {...element})
-                   this.getProd();
-                 }
+                  if (element.mainTitle == saveD.product) {
+                    element.discount = saveD
+                    this.prodService.update(element.id, { ...element })
+                    this.getProd();
+                  }
                 }
               )
-             
+
 
             }
           )

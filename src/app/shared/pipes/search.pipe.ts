@@ -7,8 +7,7 @@ import { ICity } from '../interfaces/city.interface';
 export class SearchPipe implements PipeTransform {
 
   transform(value: Array<ICity>, field: string): Array<ICity> {
-    console.log(value, field);
-    
+   
     if(!value){
       return value
     }

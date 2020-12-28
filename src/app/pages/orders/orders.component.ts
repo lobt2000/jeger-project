@@ -7,7 +7,6 @@ import { OrderService } from 'src/app/service/order.service';
 import { ICity } from 'src/app/shared/interfaces/city.interface';
 import { IDiscount } from 'src/app/shared/interfaces/discounts.interface';
 import { IProd } from 'src/app/shared/interfaces/prod.interface';
-// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-orders',
@@ -53,9 +52,17 @@ export class OrdersComponent implements OnInit {
   street: string = '';
   flOf: string = '';
   comment: string = '';
+  angle: string = '../../../assets/image/angle-down-solid.svg';
+  angle1: string = '../../../assets/image/angle-down-solid.svg';
+  anglePay: string = '../../../assets/image/angle-down-solid.svg';
   id;
   userOrder;
   user;
+  regExpEmail = /^[a-z0-9\-\.]{1,}@gmail\.com|net\.us|org\.ua$/i;
+  regExpFname = /^[a-z]{2,}$/i;
+  regExpSname = /^[a-z]{2,}$/i;
+  regExpPhone = /^[0-9]{1,10}$/i;
+  regExpBranch = /^[a-zA-Z0-9\,\ ]{3,}$/;
   constructor(private orderService: OrderService,
     private discService: DiscountService,
     private toastr: ToastrService) { }
@@ -64,6 +71,7 @@ export class OrdersComponent implements OnInit {
     this.getLocalProducts();
     this.getDisc();
     this.getCity();
+    this.getProfile();
     window.scroll({
       top: 0,
       behavior: 'smooth'
@@ -80,44 +88,65 @@ export class OrdersComponent implements OnInit {
       this.cities = data;
     });
   }
+  getProfile(): void {
+    if (localStorage.getItem('user')) {
+
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.orderService.getUser(this.user.id).subscribe(
+        data => {
+          this.user = data.data();
+          this.phoneUser = this.user.phone;
+          this.emailUser = this.user.email;
+          this.fuser = this.user.firstName;
+          this.suser = this.user.secondName;
+        }
+      )
+
+    }
+  }
 
   selectClick(city?: string): void {
     this.myclick = !this.myclick;
     if (this.myclick) {
-
+      this.angle = '../../../assets/image/angle-up-solid.svg';
       this.overflow = 'visible';
 
 
     }
     else {
+      this.angle = '../../../assets/image/angle-down-solid.svg';
       this.overflow = 'hidden';
-      this.userCity = city;
-      console.log(this.userCity);
+
     }
   }
-  selectClick1(region?: string): void {
+  select(city?: string): void {
+    this.userCity = city;
+    this.selectClick();
+  }
+  selectClick1(): void {
     this.myclick1 = !this.myclick1;
     if (this.myclick1) {
-
+      this.angle1 = '../../../assets/image/angle-up-solid.svg';
       this.overflow1 = 'visible';
 
     }
     else {
+      this.angle1 = '../../../assets/image/angle-down-solid.svg';
       this.overflow1 = 'hidden';
-      this.userRegion = region;
-      console.log(this.userCity);
+
     }
+  }
+
+  select1(region?: string): void {
+    this.userRegion = region;
+    this.selectClick1();
   }
   chooseCity(city: string): void {
     this.userCity = city
-    console.log(city);
-
     this.cities.forEach(
       elem => {
-        console.log(elem.city.toLocaleLowerCase());
 
         if (elem.city == city) {
-          // console.log(());
 
           this.userRegion = elem.region;
         }
@@ -134,7 +163,6 @@ export class OrdersComponent implements OnInit {
     }
   }
   mycheck(status: boolean) {
-    console.log(this.checked);
     if (status) {
       this.isDisplayD = 'flex';
       this.isDisplayH = 'none';
@@ -149,19 +177,19 @@ export class OrdersComponent implements OnInit {
   }
   pay(pay: string): void {
     this.payway = pay;
-    console.log(this.payway);
-
     this.selectPay();
   }
 
   selectPay(): void {
     this.myPay = !this.myPay;
     if (this.myPay) {
-
+      this.anglePay = '../../../assets/image/angle-up-solid.svg';
       this.overflowPay = 'visible';
 
     }
     else {
+      this.anglePay = '../../../assets/image/angle-down-solid.svg';
+
       this.overflowPay = 'hidden';
     }
   }
@@ -177,29 +205,9 @@ export class OrdersComponent implements OnInit {
   }
 
 
-  // myDisc():void{
-  //   if(this.count == 0){
-  //     this.getDisc();
-  //     console.log('loh');
-
-  //   }
-  //   else{
-  // console.log('loh');
-
-  //   }
-  // }
-
-
-
-
-
-
   private getLocalProducts(): void {
     if (localStorage.getItem('basket')) {
       this.basket = JSON.parse(localStorage.getItem('basket'));
-      // this.totalPrice = this.getTotal(this.basket);
-      // this.id = JSON.parse(localStorage.getItem('orderId'));
-      console.log(this.basket);
       this.id = JSON.parse(localStorage.getItem('orderId'));
 
     }
@@ -210,7 +218,6 @@ export class OrdersComponent implements OnInit {
   }
 
   productCount(prod: any, status: boolean): void {
-    // this.orderService.getId()
     if (status) {
       this.count = 0;
       prod.count++;
@@ -227,7 +234,6 @@ export class OrdersComponent implements OnInit {
     }
     this.orderService.basket.next(this.basket);
     localStorage.setItem('basket', JSON.stringify(this.basket))
-    // this.totalPrice = this.getTotal(this.basket);
     this.getDisc();
 
   }
@@ -237,12 +243,34 @@ export class OrdersComponent implements OnInit {
       this.basket.splice(index, 1)
       this.totalPrice = this.getTotal(this.basket);
       this.orderService.basket.next(this.basket);
-      localStorage.setItem('basket', JSON.stringify(this.basket))
+      localStorage.setItem('basket', JSON.stringify(this.basket));
+      this.count = 0;
+      this.getLocalProducts();
+      this.getDisc();
     }
 
 
   }
+  regCheckEmail(): boolean {
+    return this.regExpEmail.test(this.emailUser);
 
+  }
+  regCheckFname(): boolean {
+    return this.regExpFname.test(this.fuser);
+
+  }
+  regCheckSname(): boolean {
+    return this.regExpSname.test(this.suser);
+
+  }
+  regCheckPhone(): boolean {
+    return this.regExpPhone.test(this.phoneUser);
+
+  }
+  regCheckBranch(): boolean {
+    return this.regExpBranch.test(this.addressBranch);
+
+  }
 
   getDisc() {
     this.basket = JSON.parse(localStorage.getItem('basket'));
@@ -275,10 +303,7 @@ export class OrdersComponent implements OnInit {
                 break
               }
               else if (this.discounts[i].product == 'All') {
-                // this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-                // this.checkDisc = true;
-                console.log(this.discount);
-                if (this.basket[j].discount) {
+                if (this.basket[j].discount.hasOwnProperty('discount')) {
 
                 }
                 else {
@@ -307,15 +332,15 @@ export class OrdersComponent implements OnInit {
           this.totalPrice = this.discount;
           for (let i = 0; i < this.discounts.length; i++) {
             for (let j = 0; j < this.basket.length; j++) {
-
               if (this.discounts[i].product == this.basket[j].mainTitle) {
                 this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
-
-                // this.basket[j].discount = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);
                 this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);;
                 this.checkDisc = true;
-
                 break;
+              }
+              else if (!this.basket[j].discount.hasOwnProperty('discount')) {
+                this.basket[j].disc = 0
+                this.checkDisc = false;
               }
             }
 
@@ -325,7 +350,6 @@ export class OrdersComponent implements OnInit {
               this.checkDisc = true;
             }
             else {
-              console.log(element);
               element.disc = 0
               this.discount += element.price * element.count
               this.checkDisc = false;
@@ -365,6 +389,7 @@ export class OrdersComponent implements OnInit {
         };
       }
       else {
+
         this.userOrder =
         {
           product: this.basket,
@@ -384,11 +409,6 @@ export class OrdersComponent implements OnInit {
           comments: this.comment,
         };
       }
-
-
-      console.log(this.id);
-
-
       if (localStorage.getItem('user')) {
         this.user = JSON.parse(localStorage.getItem('user'));
         if (typeof this.user.orders != 'undefined') {
@@ -406,25 +426,21 @@ export class OrdersComponent implements OnInit {
             localStorage.removeItem('basket');
             this.orderService.basket.next(this.basket);
             this.totalPrice = 0;
-
-            // this.toastr.success('Thanks for your orders!', 'Success');
+            this.toastr.success('Thanks for your orders!', 'Success');
             this.updateLocal();
           }
         )
         this.orderService.updateID(this.id).then(
           () => {
-            console.log('dsadas');
-
           }
         )
         this.orderService.create(this.userOrder).then()
+        this.resetForm();
 
       }
       else {
         this.orderService.updateID(this.id).then(
           () => {
-            console.log('dsadas');
-
           }
         )
         this.orderService.create(this.userOrder).then(
@@ -433,7 +449,7 @@ export class OrdersComponent implements OnInit {
             this.resetForm();
             localStorage.removeItem('basket');
             this.orderService.basket.next(this.basket);
-            // this.toastr.success('Thanks for your orders!', 'Success');
+            this.toastr.success('Thanks for your orders!', 'Success');
             this.totalPrice = 0;
 
           });
@@ -441,9 +457,18 @@ export class OrdersComponent implements OnInit {
 
     }
     else {
-      // this.toastr.error('Please buy something!', 'Denied');
+      this.toastr.error('Please buy something!', 'Denied');
+      this.resetForm();
     }
-
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
+    this.resetForm();
+    this.getLocalProducts();
+    this.getDisc();
+    this.getCity();
+    this.getProfile();
   }
 
   private updateLocal(): void {

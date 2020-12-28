@@ -8,6 +8,7 @@ import { ProductsComponent } from './admin/products/products.component';
 import { AdminGuard } from './guards/admin.guard';
 import { ProfileGuard } from './guards/profile.guard';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { DrinkDetailsComponent } from './pages/drink-details/drink-details.component';
 import { DrinkComponent } from './pages/drink/drink.component';
 import { HistoryComponent } from './pages/history/history.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'drink/:name', component: DrinkDetailsComponent }, 
   { path: 'history', component: HistoryComponent},
   { path: 'orders', component: OrdersComponent},
+  { path: 'contact', component: ContactComponent},
   
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard],  children: [
     { path: '', pathMatch: 'full', redirectTo: 'drinks' },

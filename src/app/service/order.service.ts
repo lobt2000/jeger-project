@@ -62,7 +62,6 @@ export class OrderService {
     return this.usersRef.doc(id).update({ ...data });
   }
   updateID(data: any): Promise<void> {
-    console.log(data);
     const ordId = {
       id: data
     }

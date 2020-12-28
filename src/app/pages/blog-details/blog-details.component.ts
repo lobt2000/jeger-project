@@ -12,7 +12,7 @@ import AOS from 'aos';
 export class BlogDetailsComponent implements OnInit {
   blog;
   width: number;
-  constructor(private blogService: BlogService,private activatedRoute: ActivatedRoute ) { }
+  constructor(private blogService: BlogService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getBlog();
@@ -25,7 +25,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
 
-  
+
   private getBlog(): void {
     const name = this.activatedRoute.snapshot.paramMap.get('name');
     this.blogService.getOne(name).onSnapshot(
@@ -36,19 +36,14 @@ export class BlogDetailsComponent implements OnInit {
             ...prod.data() as IBlogs
           };
           this.blog = blog;
- 
-          
+
+
         });
       }
     );
   }
- 
-  style(){
-    // document.querySelector('.prod__header--text').innerHTML = this.product.mainText
 
-    // if (this.blog.urlName == 'Manifest') {
-      document.getElementById('blog').style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.8) 20%,rgba(0, 0, 0, .9) 50%,rgba(0, 0, 0, 1) 100%)';
-
-    // }
+  style() {
+    document.getElementById('blog').style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.8) 20%,rgba(0, 0, 0, .9) 50%,rgba(0, 0, 0, 1) 100%)';
   }
 }

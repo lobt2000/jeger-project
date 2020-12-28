@@ -6,6 +6,25 @@ header {
   position: relative;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid orangered !important;
+  -webkit-text-fill-color: white;
+  border-radius: 10px;
+  padding-left: 5px !important;
+  background-color: orangered !important;
+  box-shadow: 0 0 0px 1000px #f83600 inset;
+  background: linear-gradient(to right, #f83600, #fe8c00);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .active {
   outline: none;
 }
@@ -680,6 +699,13 @@ header {
         width: 50px;
         height: 50px;
         fill: white;
+        transition: transform 600ms ease-in-out;
+
+      }
+
+      img:hover {
+        transition: transform 600ms ease-in-out;
+        transform: rotate(360deg);
       }
     }
 
@@ -760,6 +786,11 @@ header {
         background: transparent;
         color: orangered;
       }
+
+      .login:focus {
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
+      }
     }
   }
 }
@@ -781,7 +812,6 @@ header {
 
   &__signOut {
     transition: transform 600ms linear;
-    // transform: translate3d(0, 0, 0);
     height: 50vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
@@ -806,6 +836,13 @@ header {
         width: 50px;
         height: 50px;
         fill: white;
+        transition: transform 600ms ease-in-out;
+
+      }
+
+      img:hover {
+        transition: transform 600ms ease-in-out;
+        transform: rotate(360deg);
       }
     }
 
@@ -853,7 +890,11 @@ header {
 
       .dismiss:hover {
         background: transparent;
-        // color:;
+      }
+      .dismiss:focus{
+        border: 1px solid black;
+        outline: none;
+        box-shadow: 0 0 2px 3px black;
       }
 
       .logout {
@@ -873,6 +914,12 @@ header {
       .logout:hover {
         background: transparent;
         color: orangered;
+      }
+
+      .logout:focus {
+        border: 1px solid orangered;
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
       }
     }
 
@@ -897,7 +944,6 @@ header {
 
   &__signUp {
     transition: transform 600ms linear;
-    // transform: translate3d(0, 0, 0);
     height: 100vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
@@ -922,6 +968,13 @@ header {
         width: 50px;
         height: 50px;
         fill: white;
+        transition: transform 600ms ease-in-out;
+
+      }
+
+      img:hover {
+        transition: transform 600ms ease-in-out;
+        transform: rotate(360deg);
       }
     }
 
@@ -1136,6 +1189,11 @@ header {
         background: transparent;
         color: orangered;
       }
+
+      .regist:focus {
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
+      }
     }
   }
 }
@@ -1159,7 +1217,6 @@ header {
 
   &__basket {
     transition: transform 600ms linear;
-    // transform: translate3d(0, 0, 0);
     min-height: 50vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
@@ -1192,7 +1249,13 @@ header {
           height: 50px;
           fill: white;
           margin-right: 10px;
+          transition: transform 600ms ease-in-out;
 
+        }
+
+        img:hover {
+          transition: transform 600ms ease-in-out;
+          transform: rotate(360deg);
         }
 
       }
@@ -1213,9 +1276,6 @@ header {
       height: 30vh;
       padding: 1rem;
       overflow-y: scroll;
-
-      // @include flexbox()
-      // text-align: center;
       .product {
         margin-top: 20px;
         @include flexbox(row, wrap, space-between, center);
@@ -1229,6 +1289,13 @@ header {
           img {
             width: 40px;
             height: 40px;
+            transition: transform 600ms ease-in-out;
+
+          }
+
+          img:hover {
+            transition: transform 600ms ease-in-out;
+            transform: rotate(360deg);
           }
         }
 
@@ -1247,7 +1314,6 @@ header {
           width: 30%;
           min-height: 10vh;
           font-size: 14px;
-          // word-break: break-all;
           color: white;
           font-weight: 800;
           text-align: center;
@@ -1260,11 +1326,9 @@ header {
           @include flexbox(column, wrap, flex-start, center);
 
           &--amount {
-            // width: 100%;
             text-align: center;
             color: orangered;
             font-size: 18px;
-            // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
 
           }
 
@@ -1293,7 +1357,6 @@ header {
 
             input {
               height: 30px;
-              // border-radius: 10px;
               border: none;
               border-bottom: 4px solid sandybrown;
               background: transparent;
@@ -1301,7 +1364,6 @@ header {
               color: bisque;
               font-size: 22px;
               width: 50px;
-              // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
             }
 
             .mybtn:last-child {
@@ -1323,8 +1385,6 @@ header {
         }
 
         &__discount {
-          // font-size: 14px;
-          // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
           position: relative;
           color: white;
 
@@ -1399,6 +1459,11 @@ header {
           border: none;
           cursor: pointer;
         }
+
+        &__button:focus {
+          outline: none;
+          box-shadow: 0 0 2px 3px rgb(210 30 81);
+        }
       }
 
     }
@@ -1448,7 +1513,7 @@ header {
           margin-right: calc(23%);
 
           a {
-            background: url('../../../assets/image/2f6ecbae732a75c1aa929a95f095c186.png') center center no-repeat;
+            // background: url('../../../assets/image/2f6ecbae732a75c1aa929a95f095c186.png') center center no-repeat;
             display: inline-block;
             vertical-align: middle;
             height: 4rem;
@@ -1505,7 +1570,6 @@ header {
     width: 40px;
     height: 40px;
     display: flex;
-    // flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -1514,12 +1578,9 @@ header {
   .mobi_manu:active {
     outline: none;
     outline: 4px solid white;
-    // border-radius: 10px;
   }
 
   .menu_icon {
-    // width: 100px;
-    // height: 100px;
     background-image: url('../../../assets/image/bars-solid.svg');
     width: 30px;
     height: 35px;
@@ -1564,7 +1625,7 @@ header {
         flex-flow: column;
         font-size: 36px;
         font-weight: bolder;
-        // display: none;
+        //  display: none;
 
         &__link {
           position: relative;
@@ -2064,8 +2125,8 @@ header {
         padding: 1rem;
         overflow-y: scroll;
 
-        // @include flexbox()
-        // text-align: center;
+
+
         .product {
 
           &__img {
@@ -2082,7 +2143,6 @@ header {
             width: 30%;
             min-height: 10vh;
             font-size: 14px;
-            // word-break: break-all;
             color: white;
             font-weight: 800;
             text-align: center;
@@ -2095,11 +2155,9 @@ header {
             @include flexbox(column, wrap, flex-start, center);
 
             &--amount {
-              // width: 100%;
               text-align: center;
               color: orangered;
               font-size: 18px;
-              // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
 
             }
 
@@ -2128,7 +2186,6 @@ header {
 
               input {
                 height: 30px;
-                // border-radius: 10px;
                 border: none;
                 border-bottom: 4px solid sandybrown;
                 background: transparent;
@@ -2136,7 +2193,6 @@ header {
                 color: bisque;
                 font-size: 22px;
                 width: 50px;
-                // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
               }
 
               .mybtn:last-child {
@@ -2404,12 +2460,7 @@ header {
         overflow-x: scroll;
         overflow-y: hidden;
         display: flex;
-
-
-        // @include flexbox()
-        // text-align: center;
         .product {
-          // height: 70vh;
           flex-flow: column;
           justify-content: space-around;
           margin-top: 0%;
@@ -2439,7 +2490,6 @@ header {
             width: 100%;
             min-height: 10vh;
             font-size: 16px;
-            // word-break: break-all;
             color: white;
             font-weight: 800;
             text-align: center;
@@ -2457,7 +2507,6 @@ header {
               text-align: center;
               color: orangered;
               font-size: 18px;
-              // text-shadow: 0 0 0px #fff, 0 0 5px #fff, 0 0 0px #fff, 0 0 15px #FF9900, 0 0 20px #FF9900, 0 0 25px #FF9900;
 
             }
 
@@ -2486,7 +2535,6 @@ header {
 
               input {
                 height: 30px;
-                // border-radius: 10px;
                 border: none;
                 border-bottom: 4px solid sandybrown;
                 background: transparent;
@@ -2494,7 +2542,6 @@ header {
                 color: bisque;
                 font-size: 22px;
                 width: 40px;
-                // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
               }
 
               .mybtn:last-child {

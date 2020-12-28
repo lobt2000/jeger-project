@@ -1,251 +1,253 @@
 .myprod {
+  width: 100%;
+  min-height: 10vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+
+
+  h1 {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+
+
+  input {
     width: 100%;
-    min-height: 10vh;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid sandybrown;
+    color: bisque;
+    padding-left: 10px;
+
+  }
+
+  input:focus {
+    background-color: transparent;
+    color: bisque;
+    border-color: #86b7fe;
+    outline: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    background-color: orangered;
+    color: orangered;
+    margin-right: 10px;
+  }
+
+
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid orangered !important;
+    -webkit-text-fill-color: white;
+    border-radius: 10px;
+    padding-left: 5px !important;
+    background-color: orangered !important;
+    box-shadow: 0 0 0px 1000px #f83600 inset;
+    background: linear-gradient(to right, #f83600, #fe8c00);
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+
+
+  .formStyle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    flex-flow: row wrap;
+
+    &__input {
+      margin-top: 10px;
+      width: 40%;
+      min-height: 10vh;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      select {
+        width: 100%;
+        cursor: pointer;
+        margin-top: 10px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 3px solid sandybrown;
+        color: orangered;
+        padding-left: 10px;
+
+        option {
+          background-color: transparent;
+        }
+      }
+
+
+    }
+
+
+
+  }
+
+
+
+
+
+
+  .mybuttom {
+    width: 50%;
+    border-radius: 20px;
+    border: 1px solid orangered;
+    background: orangered;
+    height: 6vh;
+    color: white;
+    transition: background .250s linear, color .250s linear, border .250s linear;
+  }
+
+  .mybuttom:hover {
+    background: transparent;
+    color: orangered;
+  }
+
+  .mybuttom:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem orangered;
+    border: 1px solid orangered;
+
+  }
+
+  hr {
+    margin-top: 50px;
+  }
+
+  table {
+    color: #dee2e6;
+
+  }
+
+  th {
+    font-size: 18px;
+  }
+
+  td {
+    font-size: 14px;
+  }
+}
+
+
+@media screen and (max-width: 1300px) {
+  table {
+    display: flex;
+    overflow-x: scroll;
+    color: white;
+  }
+
+  td {
+    text-overflow: ellipsis;
+    white-space: wrap;
+    border: 1px solid #dee2e6;
+  }
+
+  th {
+    margin-right: 0 !important;
+    border: 1px solid #dee2e6;
+  }
+
+  tr {
+    border: 1px solid #dee2e6;
     display: flex;
     flex-flow: column;
-    // align-items: center;
-    justify-content: center;
-  
-  
-    h1 {
-      text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
-      text-transform: uppercase;
-      font-size: 30px;
-    }
-  
-  
-    input {
-      width: 100%;
-      cursor: pointer;
-      margin-top: 10px;
-      background-color: transparent;
-      border: none;
-      border-bottom: 3px solid sandybrown;
-      color: bisque;
-      padding-left: 10px;
-  
-    }
-  
-    input:focus {
-      background-color: transparent;
-      color: bisque;
-      border-color: #86b7fe;
-      outline: 0;
-      border-radius: 10px;
-      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
-    }
-  
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      // -webkit-appearance: none;
-      background-color: orangered;
-      color: orangered;
-      margin-right: 10px;
-    }
-  
-    
-  
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-      border: 1px solid green;
-      -webkit-text-fill-color: green;
-      border-radius: 10px;
-  
-      -webkit-box-shadow: 0 0 0px 1000px #000 inset;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-  
-  
-
-    .formStyle {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      align-items: center;
-      flex-flow: row wrap;
-  
-      &__input {
-        margin-top: 10px;
-        width: 40%;
-        min-height: 10vh;
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-  
-        select{
-          width: 100%;
-          cursor: pointer;
-          margin-top: 10px;
-          background-color: transparent;
-          border: none;
-          border-bottom: 3px solid sandybrown;
-          color: orangered;
-          padding-left: 10px;
-          option{
-            background-color: transparent;
-          }
-        }
-        
-  
-      }
-  
-  
-  
-    }
-  
-   
-  
-
-  
-  
-    .mybuttom {
-      width: 50%;
-      border-radius: 20px;
-      border: 1px solid orangered;
-      background: orangered;
-      height: 6vh;
-      color: white;
-      transition: background .250s linear, color .250s linear, border .250s linear;
-    }
-  
-    .mybuttom:hover {
-      background: transparent;
-      color: orangered;
-    }
-  
-    .mybuttom:focus {
-      outline: none;
-      box-shadow: 0 0 0 0.25rem orangered;
-      border: 1px solid orangered;
-  
-    }
-  
-    hr {
-      margin-top: 50px;
-    }
-  
-    table {
-      color: #dee2e6;
-  
-    }
-  
-    th {
-      font-size: 18px;
-    }
-  
-    td {
-      font-size: 14px;
-    }
   }
-  
-  
-  @media screen and (max-width: 1300px) {
+
+  tbody {
+    display: flex;
+  }
+}
+
+
+
+@media screen and (max-width: 990px) {
+  .myprod {
+    .formStyle {
+      flex-flow: column;
+    }
+
+
+
+  }
+}
+
+@media screen and (max-width: 696px) {
+  .mydrinks {
+    .formStyle {
+      font-size: 20px;
+      flex-flow: column wrap;
+
+      &__input {
+        flex-flow: row wrap;
+        width: 100%;
+      }
+    }
+
     table {
       display: flex;
       overflow-x: scroll;
       color: white;
     }
-  
+
     td {
       text-overflow: ellipsis;
-      white-space: wrap;
-      border: 1px solid #dee2e6;
+      white-space: nowrap;
     }
-  
+
     th {
       margin-right: 0 !important;
       border: 1px solid #dee2e6;
     }
-  
+
     tr {
       border: 1px solid #dee2e6;
       display: flex;
       flex-flow: column;
     }
-  
+
     tbody {
       display: flex;
     }
   }
-  
-  
-  
-  @media screen and (max-width: 990px) {
-    .myprod {
-      .formStyle {
-        flex-flow: column;
-      }
-  
-     
-  
-    }
-  }
-  
-  @media screen and (max-width: 696px) {
-    .mydrinks {
-      .formStyle {
-        font-size: 20px;
-        flex-flow: column wrap;
-  
-        &__input {
-          flex-flow: row wrap;
-          width: 100%;
-        }
-      }
-  
-      table {
-        display: flex;
-        overflow-x: scroll;
-        color: white;
-      }
-  
-      td {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-  
-      th {
-        margin-right: 0 !important;
-        border: 1px solid #dee2e6;
-      }
-  
-      tr {
-        border: 1px solid #dee2e6;
-        display: flex;
-        flex-flow: column;
-      }
-  
-      tbody {
-        display: flex;
+
+}
+
+@media screen and (max-width: 696px) {
+  .myprod {
+    .formStyle {
+      font-size: 16px;
+      flex-flow: column wrap;
+
+
+      &__input {
+        flex-flow: row wrap;
+        width: 100%;
       }
     }
-  
+
+
   }
-  
-  @media screen and (max-width: 696px) {
-    .myprod {
-      .formStyle {
-        font-size: 16px;
-        flex-flow: column wrap;
-  
-  
-        &__input {
-          flex-flow: row wrap;
-          width: 100%;
-        }
-      }
-  
-      
-    }
-  }
+}

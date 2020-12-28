@@ -11,6 +11,8 @@ import { Blogs } from 'src/app/shared/classes/blogs.model';
 import { element } from 'protractor';
 import { IfStmt } from '@angular/compiler';
 import { spawn } from 'child_process';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-blog',
@@ -21,7 +23,7 @@ export class BlogComponent implements OnInit {
   isBlog = false;
   blogImg: string = '';
   blogTitle: string = '';
-  blogText: any ;
+  blogText: any;
   blogs: Array<any> = [];
   uploadProgress: Observable<number>;
   mainImg: string;
@@ -48,19 +50,37 @@ export class BlogComponent implements OnInit {
   leftCount = 0;
   centerCount = 0;
   rightCount = 0;
-  // Count = 0;
   tagName: string = 'Normal';
   tag: string = 'span';
   prevTag: string = 'span';
-
+  editorForm: FormGroup;
+  editorStyle = {
+    height: '300px'
+  }
+  config = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline'],
+      [{ 'align': null }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
+      [{ color: ['black', 'white'] }]
+    ]
+  }
+  snow = 'snow'
   constructor(private storage: AngularFireStorage,
     private drinkService: DrinksService,
-    private blogService: BlogService) { }
+    private blogService: BlogService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    this.editorForm = new FormGroup({
+      'editor': new FormControl(null)
+    })
     this.getBlogs();
   }
+
+  onSubmit() {
+  }
+
   createBlog(): void {
     this.isBlog = !this.isBlog;
     if (this.isBlog) {
@@ -99,14 +119,10 @@ export class BlogComponent implements OnInit {
 
     const blog = {
       title: this.blogTitle,
-      text: this.textarea,
+      text: this.editorForm.get('editor').value,
       image: this.blogImg
     }
     this.blogs.push(blog);
-
-
-    // document.querySelector('.textBox').innerHTML = blog.text 
-    // document.querySelector('.textBox').innerHTML = blog.text 
     this.resetBlog();
 
 
@@ -116,9 +132,7 @@ export class BlogComponent implements OnInit {
     this.createBlog()
     this.blogsId = id;
     this.blogTitle = blog.title;
-    this.textarea = blog.text;
-    console.log(this.textarea);
-
+    this.editorForm.get('editor').setValue(blog.text)
     this.blogImg = blog.image
     this.editBlogStatus = true
   }
@@ -149,8 +163,15 @@ export class BlogComponent implements OnInit {
         this.mainImg = url;
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
   uploadFileBot(event): void {
     const file = event.target.files[0];
@@ -160,13 +181,18 @@ export class BlogComponent implements OnInit {
 
     upload.then(image => {
       this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-        console.log(url);
-
         this.botImg = url
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
   uploadFileBlog(event): void {
     const file = event.target.files[0];
@@ -176,13 +202,18 @@ export class BlogComponent implements OnInit {
 
     upload.then(image => {
       this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-        console.log(url);
-
         this.blogImg = url
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
 
 
@@ -214,7 +245,7 @@ export class BlogComponent implements OnInit {
       this.blogService.create(newBlog)
       this.blogService.updProd.subscribe(
         data => {
-          console.log(data);
+
           newBlog.id = data
           this.blogService.update(data, newBlog).then(
             () => {
@@ -223,7 +254,7 @@ export class BlogComponent implements OnInit {
           )
         }
       )
-      // this.toastr.success('Product add', 'Successed');
+      this.toastr.success('Blog add', 'Successed');
 
       this.resetForm()
     }
@@ -236,11 +267,11 @@ export class BlogComponent implements OnInit {
 
     this.blogService.delete(blog.id.toString())
       .then(() => {
-        // this.toastr.success('Product delete', 'Successed');
+        this.toastr.success('Blog delete', 'Successed');
         this.getBlogs()
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
   }
   editFullBlog(blog: IBlogs): void {
@@ -259,11 +290,11 @@ export class BlogComponent implements OnInit {
     saveB.id = this.fullBlogId;
     this.blogService.update(saveB.id.toString(), saveB)
       .then(() => {
-        // this.toastr.success('Product update', 'Successed');
+        this.toastr.success('Blog update', 'Successed');
         this.getBlogs()
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
     this.resetForm();
     this.editStatus = false;
@@ -272,211 +303,21 @@ export class BlogComponent implements OnInit {
     this.mainText = '';
     this.mainTitle = '';
     this.blogs = [];
-
     this.mainImg = '';
     this.urlName = '';
     this.blogText = '';
     this.blogTitle = '';
     this.textarea = '';
     this.botImg = '';
-    // this.success = false;
-    // this.procent = true;
+    this.editorForm.get('editor').setValue('');
   }
   resetBlog(): void {
     this.blogText = '';
     this.blogTitle = '';
     this.textarea = '';
     this.botImg = '';
-  }
-  bold(): void {
-    if (this.textarea) {
-      if (this.boldCount == 0) {
-        this.setStyle('<b>', `</b>`)
-        this.boldCount++
-      }
-      else {
-        this.removeStyle('<b>', `</b>`);
-        this.boldCount = 0
-      }
-    }
-  }
-  underline(): void {
-    if (this.textarea) {
-
-      if (this.uCount == 0) {
-        this.setStyle('<u>', `</u>`)
-        this.uCount++
-      }
-      else {
-        this.removeStyle('<u>', `</u>`);
-        this.uCount = 0
-      }
-    }
-  }
-  italic(): void {
-    if (this.textarea) {
-
-      if (this.iCount == 0) {
-        this.setStyle('<i>', `</i>`)
-        this.uCount++
-      }
-      else {
-        this.removeStyle('<i>', `</i>`);
-        this.uCount = 0
-      }
-    }
+    this.editorForm.get('editor').setValue('')
 
   }
-  left(): void {
-    if (this.textarea) {
-
-      if (this.leftCount == 0) {
-        if (this.selectedText) {
-          this.regExp = new RegExp(`\\b${this.selectedText}\\b`, 'gi');
-          this.textarea = this.textarea.replace(this.regExp, `<span style="text-align: left">${this.selectedText}</span>`);
-
-        }
-        else {
-          this.textarea = `<${this.tag} style="text-align: left">${this.textarea}</${this.tag}>`;
-          console.log(this.textarea);
-
-        }
-        this.leftCount++
-      }
-      else {
-        this.removeStyle('<span style="text-align: left">', `</span>`);
-        if (this.selectedText) {
-          this.regExp = new RegExp(`<span style="text-align: left">`);
-          this.blogText = this.selectedText.replace(this.regExp, '');
-          this.regExp = new RegExp(`</span>`);
-          this.blogText = this.blogText.replace(this.regExp, '');
-          this.regExp = new RegExp(this.selectedText, 'gi');
-          this.textarea = this.textarea.replace(this.regExp, `${this.blogText}`);
-          console.log(this.blogText);
-        }
-        else {
-          this.regExp = new RegExp(`<${this.tag} style="text-align: left">`);
-          this.blogText = this.textarea.replace(this.regExp, '');
-          this.regExp = new RegExp(`</${this.tag}>`);
-          this.blogText = this.blogText.replace(this.regExp, '');
-          this.textarea = this.blogText;
-          console.log(this.blogText);
-
-        }
-        this.leftCount = 0
-      }
-    }
-  }
-  center(): void {
-    if (this.textarea) {
-
-      if (this.centerCount == 0) {
-        this.setStyle('<span style="text-align: center">', `</span>`)
-        this.centerCount++
-      }
-      else {
-        this.removeStyle('<span style="text-align: center">', `</span>`);
-        this.centerCount = 0
-      }
-    }
-
-  }
-  right(): void {
-    if (this.textarea) {
-
-      if (this.rightCount == 0) {
-        this.setStyle('<span style="text-align: right">', `</span>`)
-        this.rightCount++
-      }
-      else {
-        this.removeStyle('<span style="text-align: right">', `</span>`);
-        this.rightCount = 0
-      }
-    }
-
-  }
-  select(): void {
-    if (this.textarea) {
-      if (this.selectedText) {
-        console.log('It isnt work with selected text');
-
-      }
-      else {
-        if (this.tagName == 'Heading 1') {
-          this.tag = 'h1';
-          this.regExp = new RegExp(`<${this.prevTag}>`);
-          this.blogText = this.textarea.replace(this.regExp, '');
-          this.regExp = new RegExp(`</${this.prevTag}>`);
-          this.blogText = this.blogText.replace(this.regExp, '');
-          this.textarea = this.blogText;
-          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
-          this.prevTag = this.tag
-
-        }
-        else if (this.tagName == 'Heading 2') {
-          this.tag = 'h2';
-          this.regExp = new RegExp(`<${this.prevTag}>`);
-          this.blogText = this.textarea.replace(this.regExp, '');
-          this.regExp = new RegExp(`</${this.prevTag}>`);
-          this.blogText = this.blogText.replace(this.regExp, '');
-          this.textarea = this.blogText;
-          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
-          this.prevTag = this.tag
-
-        }
-        else {
-          this.tag = 'span';
-          this.regExp = new RegExp(`<${this.prevTag}>`);
-          this.blogText = this.textarea.replace(this.regExp, '');
-          this.regExp = new RegExp(`</${this.prevTag}>`);
-          this.blogText = this.blogText.replace(this.regExp, '');
-          this.textarea = this.blogText;
-          this.textarea = `<${this.tag}>${this.textarea}</${this.tag}>`;
-          this.prevTag = this.tag
-
-        }
-      }
-
-    }
-  }
-
-  getSelectedText(): void {
-    // let selectedText;
-    this.selectedText = window.getSelection().toString();
-    console.log(this.selectedText);
-
-  }
-
-  setStyle(openTag: string, closeTag: string): void {
-    if (this.selectedText) {
-      this.regExp = new RegExp(`\\b${this.selectedText}\\b`, 'gi');
-      this.textarea = this.textarea.replace(this.regExp, `${openTag}${this.selectedText}${closeTag}`);
-
-    }
-    else {
-      this.textarea = `${openTag}${this.textarea}${closeTag}`;
-      console.log(this.textarea);
-
-    }
-  }
-  removeStyle(openTag: string, closeTag: string): void {
-    if (this.selectedText) {
-      this.regExp = new RegExp(`${openTag}`);
-      this.blogText = this.selectedText.replace(this.regExp, '');
-      this.regExp = new RegExp(`${closeTag}`);
-      this.blogText = this.blogText.replace(this.regExp, '');
-      this.regExp = new RegExp(this.selectedText, 'gi');
-      this.textarea = this.textarea.replace(this.regExp, `${this.blogText}`);
-      console.log(this.blogText);
-    }
-    else {
-      this.regExp = new RegExp(`${openTag}`);
-      this.blogText = this.textarea.replace(this.regExp, '');
-      this.regExp = new RegExp(`${closeTag}`);
-      this.blogText = this.blogText.replace(this.regExp, '');
-      this.textarea = this.blogText;
-      console.log(this.blogText);
-
-    }
-  }
+ 
 }

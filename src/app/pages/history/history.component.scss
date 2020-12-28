@@ -1,5 +1,4 @@
 .history {
-  // background: linear-gradient(to right,rgba(0, 0, 0, .6),transparent 40%), linear-gradient(to left,rgba(0, 0, 0, .6),transparent 40%), url('../../../assets/image/a4c9a1b158d9f54470dabafef9ccb97b.png'), rgb(25, 62, 15);
   width: 100%;
   min-height: 20vh;
   background-image: url('../../../assets/image/a4c9a1b158d9f54470dabafef9ccb97b.png');
@@ -19,7 +18,7 @@
       background-repeat: no-repeat;
       width: 60%;
       height: 50vw;
-      // height: 90vh;
+
     }
 
     &__blog {
@@ -354,7 +353,7 @@
           width: 50%;
         }
 
-        &__text { 
+        &__text {
           width: 30%;
           line-height: 1.5;
           word-spacing: 1px;
@@ -498,7 +497,6 @@
 
         .bottle-blog {
           width: 100%;
-          // align-items: center;
           text-align: left;
 
           .title {
@@ -586,6 +584,10 @@
 
         }
 
+        .text {
+          text-align: center;
+        }
+
       }
 
       &--story {
@@ -604,6 +606,7 @@
               width: 60%;
               color: #e9e3c7;
               margin: 10px auto;
+              text-align: center;
 
             }
           }
@@ -634,6 +637,7 @@
             text-align: right;
             font-size: 16px;
             font-style: italic;
+            text-align: center;
 
 
           }

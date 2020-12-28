@@ -1,38 +1,38 @@
-
 <div class="img">
-    <div class="blog">
-        <div class="blog__component"  data-aos="fade-up" data-aos-easing="ease-out-cubic"
-        data-aos-duration="1000">
-            <div class="blog__component__item " [routerLink]="[ '/home/' + blogs[0]?.urlName]" [ngStyle]="{ 'background-image': 'url(' + blogs[0]?.mainImg + ')'}" >
-                <div class="blog__component__item__title">{{ blogs[0]?.mainTitle }}</div>
-            </div>
-            <div class="blog__component__item" [ngStyle]="{ 'background-image': 'url(' + blogs[1]?.mainImg + ')'}" [routerLink]="[ '/home/' + blogs[1]?.urlName]">
-                <div class="blog__component__item__title">{{ blogs[1]?.mainTitle }}</div>
-            </div>
-        </div>
-        <div class="blog__component"  data-aos="fade-up" data-aos-easing="ease-out-cubic"
-        data-aos-duration="1000">
-            <div class="blog__component__itemBot" [routerLink]="[ '/product/Manifest']">
-                <div class="blog__component__itemBot__title">Jägermeister Manifest</div>
-              
-            </div>
-            <div class="blog__component__itemBot" [ngStyle]="{ 'background-image': 'url(' + blogs[2]?.mainImg + ')'}" [routerLink]="[ '/home/' + blogs[2]?.urlName]">
-                <div class="blog__component__itemBot__title">{{ blogs[2]?.mainTitle }}</div>
-            </div>
-            <div class="blog__component__itemBot" [routerLink]="[ '/drink']">
-                <div class="blog__component__itemBot__title">Best served ice-cold</div>
-            </div>
-
-        </div>
-        <div class="blog__component"  data-aos="fade-up" data-aos-easing="ease-out-cubic"
-        data-aos-duration="1000">
-            <div class="blog__component__itemBlog" *ngFor="let blog of getItems()"   [ngStyle]="{ 'background-image': 'url(' + blog.mainImg + ')'}" [routerLink]="[ '/home/' + blog?.urlName]">
-                <div class="blog__component__itemBlog__title">{{blog.mainTitle}}</div>
-              
-            </div>
-           
-
-        </div>
-        
+  <div class="blog">
+    <div class="blog__component" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
+      <div class="blog__component__item " [routerLink]="[ '/home/' + blogs[0]?.urlName]"
+        [ngStyle]="{ 'background-image': 'url(' + blogs[0]?.mainImg + ')'}">
+        <div class="blog__component__item__title">{{ blogs[0]?.mainTitle }}</div>
+      </div>
+      <div class="blog__component__item" [ngStyle]="{ 'background-image': 'url(' + blogs[1]?.mainImg + ')'}"
+        [routerLink]="[ '/home/' + blogs[1]?.urlName]">
+        <div class="blog__component__item__title">{{ blogs[1]?.mainTitle }}</div>
+      </div>
     </div>
+    <div class="blog__component" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
+      <div class="blog__component__itemBot" [routerLink]="[ '/product/Manifest']">
+        <div class="blog__component__itemBot__title">Jägermeister Manifest</div>
+
+      </div>
+      <div class="blog__component__itemBot" [ngStyle]="{ 'background-image': 'url(' + blogs[2]?.mainImg + ')'}"
+        [routerLink]="[ '/home/' + blogs[2]?.urlName]">
+        <div class="blog__component__itemBot__title">{{ blogs[2]?.mainTitle }}</div>
+      </div>
+      <div class="blog__component__itemBot" [routerLink]="[ '/drink']">
+        <div class="blog__component__itemBot__title">Best served ice-cold</div>
+      </div>
+
+    </div>
+    <div class="blog__component" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
+      <div class="blog__component__itemBlog" *ngFor="let blog of getItems()"
+        [ngStyle]="{ 'background-image': 'url(' + blog.mainImg + ')'}" [routerLink]="[ '/home/' + blog?.urlName]">
+        <div class="blog__component__itemBlog__title">{{blog.mainTitle}}</div>
+
+      </div>
+
+
+    </div>
+
+  </div>
 </div>

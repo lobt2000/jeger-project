@@ -12,7 +12,6 @@
   width: 100%;
   min-height: 20vh;
 
-  // transition: all 600ms ease-in-out;
   &__component:first-child {
     width: 100%;
     display: flex;
@@ -26,7 +25,6 @@
     width: 100%;
     display: flex;
     flex-flow: wrap;
-    // margin-bottom: 100px;
     min-height: 50vh;
 
 
@@ -39,7 +37,7 @@
     min-height: 50vh;
 
     &__item:first-child {
-      background-image: url('../../../assets/image/PNG_derivative-JM__STN_LimBo_Bottle_Photography.webp');
+      // background-image: url('../../../assets/image/PNG_derivative-JM__STN_LimBo_Bottle_Photography.webp');
       width: 64%;
       overflow: hidden;
       transition: all 1s ease-in-out;
@@ -47,9 +45,9 @@
     }
 
     &__item:nth-child(2) {
-      background-image: url('../../../assets/image/20180719_Header_16x9.jpg ');
+      // background-image: url('../../../assets/image/20180719_Header_16x9.jpg ');
       width: 36%;
-      background-position: 10%;
+      background-position: 50%;
       transition: width 600ms ease-in-out;
     }
 
@@ -86,8 +84,8 @@
         min-height: 2.5em;
         border-bottom: 0.5em solid rgb(221, 90, 18);
         position: absolute;
-        top: calc(10%);
-        left: calc(-17%);
+        top: calc(20%);
+        left: calc(-14%);
         box-sizing: border-box;
         transition: width 600ms ease-in-out;
       }
@@ -100,7 +98,7 @@
     }
 
     &__item:hover:last-child {
-      animation: backPosImg infinite 10s ease-in-out;
+      animation: backPos infinite 10s ease-in-out;
     }
 
     &__item:hover:last-child>.blog__component__item__title::after {
@@ -176,7 +174,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-      background-image: url('../../../assets/image/03-JM-Manifest.jpg');
+      // background-image: url('../../../assets/image/03-JM-Manifest.jpg');
       transition: all 600ms ease-in-out;
 
       cursor: pointer;
@@ -218,12 +216,13 @@
     &__itemBot:hover {
       animation: backPos infinite 15s ease-in-out;
     }
+
     &__itemBot:hover:nth-child(3) {
       animation: backPosImg infinite 15s ease-in-out;
     }
 
     &__itemBot:nth-child(2) {
-      background-image: url('../../../assets/image/HP_img_fts.webp');
+      // background-image: url('../../../assets/image/HP_img_fts.webp');
 
 
     }
@@ -261,28 +260,18 @@
         min-height: 50vh;
       }
 
-      &__item:hover:first-child {
-        // transition: ;
-        // animation: backSize infinite 10s ease-in-out;
-        // transform: scale(0.7) 1s ease-in-out;
-      }
+      &__item:hover:first-child {}
 
       &__item:hover:last-child {
         animation: backPosImg infinite 10s ease-in-out;
-
-        // animation: backSize 10s ease-in-out;
       }
 
       &__itemBot:hover {
         animation: backPos infinite 10s ease-in-out;
-
-        // animation: backSize 10s ease-in-out;
       }
 
       &__itemBlog:hover {
         animation: backPos infinite 10s ease-in-out;
-
-        // animation: backSize 10s ease-in-out;
       }
 
     }

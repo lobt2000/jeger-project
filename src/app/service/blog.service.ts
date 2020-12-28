@@ -12,31 +12,31 @@ export class BlogService {
   prod: Subject<any> = new Subject<any>();
   updProd: Subject<any> = new Subject<any>();
   blogsRef: AngularFirestoreCollection<IBlogs> = null;
-  constructor( private db: AngularFirestore) {
+  constructor(private db: AngularFirestore) {
     this.blogsRef = this.db.collection(this.dbPath);
   }
 
-  getAllBlogs():AngularFirestoreCollection<IBlogs>{
+  getAllBlogs(): AngularFirestoreCollection<IBlogs> {
     return this.blogsRef;
-    
-    
+
+
   }
-  create(blog: IBlogs):any{
-   this.blogsRef.add( {...blog} ).then(
-     data =>{
-      this.updProd.next(data.id);
-       
-     }
-   );
+  create(blog: IBlogs): any {
+    this.blogsRef.add({ ...blog }).then(
+      data => {
+        this.updProd.next(data.id);
+
+      }
+    );
   }
-  update(id:string, data: any):Promise<void>{
-    return this.blogsRef.doc(id).update( {...data} );
+  update(id: string, data: any): Promise<void> {
+    return this.blogsRef.doc(id).update({ ...data });
   }
-  delete(id:string):Promise<void>{
+  delete(id: string): Promise<void> {
     return this.blogsRef.doc(id).delete();
   }
-  getOne(id):any{
+  getOne(id): any {
     return this.blogsRef.ref.where('urlName', '==', id);
-  
+
   }
 }

@@ -5,8 +5,8 @@ hr {
   background-color: white;
 }
 
+
 .order {
-  // padding-top: 6rem;
   font-family: sans-serif;
   line-height: 1.5;
   padding: 2rem;
@@ -42,7 +42,7 @@ hr {
 
         &__li {
           width: 100%;
-          height: 10vh;
+          min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
           span {
@@ -113,7 +113,7 @@ hr {
 
         &__li {
           width: 100%;
-          height: 10vh;
+          min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
           span {
@@ -150,7 +150,6 @@ hr {
               min-width: 50px;
               height: 40px;
               font-size: 26px;
-              // font-style: oblique;
               border-bottom: 1px dashed bisque;
               color: white;
               cursor: pointer;
@@ -167,11 +166,8 @@ hr {
 
             .select {
               width: 200px;
-              //   background-color: white;
               height: 40px;
               position: relative;
-              //   border-radius: 10px;
-              //   overflow: hidden;
 
               .visible {
                 position: absolute;
@@ -190,8 +186,6 @@ hr {
                 cursor: pointer;
                 z-index: 0;
 
-                // background-color: yellow;
-                // border-radius: 10px;
                 img {
                   width: 20px;
                   height: 20px;
@@ -218,7 +212,6 @@ hr {
                   overflow-x: hidden;
                   overflow-y: scroll;
                   height: 150px;
-                  // background-color: yellow;
                   margin: 0 auto;
 
                   &--text {
@@ -234,11 +227,8 @@ hr {
 
             .select1 {
               width: 200px;
-              //   background-color: white;
               height: 40px;
               position: relative;
-              //   border-radius: 10px;
-              //   overflow: hidden;
 
               .visible1 {
                 position: absolute;
@@ -257,8 +247,6 @@ hr {
                 cursor: pointer;
                 z-index: 0;
 
-                // background-color: yellow;
-                // border-radius: 10px;
                 img {
                   width: 20px;
                   height: 20px;
@@ -285,7 +273,6 @@ hr {
                   overflow-x: hidden;
                   overflow-y: scroll;
                   height: 150px;
-                  // background-color: yellow;
                   margin: 0 auto;
 
                   &--text {
@@ -312,7 +299,7 @@ hr {
 
         &__li {
           width: 100%;
-          height: 10vh;
+          min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
           span {
@@ -360,7 +347,6 @@ hr {
             .title:hover {
               transition: background-color 600ms ease-in-out;
               background-color: rgb(159, 51, 12);
-              // color: black;
             }
 
             .form {
@@ -400,7 +386,6 @@ hr {
                     cursor: pointer;
 
                     span {
-                      // margin-bottom: 5px;
                       line-height: -1.5px;
                       min-height: 20px;
                       margin-left: 20px;
@@ -456,7 +441,6 @@ hr {
                     font-size: 16px;
 
                     span {
-                      // margin-bottom: 5px;
                       line-height: -1.5px;
                       min-height: 20px;
                       margin-left: 20px;
@@ -516,7 +500,7 @@ hr {
 
         &__li {
           width: 100%;
-          height: 10vh;
+          min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
           span {
@@ -562,8 +546,6 @@ hr {
             color: gray;
             cursor: pointer;
 
-            // background-color: yellow;
-            // border-radius: 10px;
             img {
               width: 20px;
               height: 20px;
@@ -587,7 +569,6 @@ hr {
               flex-flow: column;
               justify-content: center;
               height: 70px;
-              // background-color: yellow;
               margin: 5px auto;
 
               &--text {
@@ -611,7 +592,7 @@ hr {
 
         &__li {
           width: 100%;
-          height: 10vh;
+          min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
           span {
@@ -700,6 +681,17 @@ hr {
           outline: none;
           cursor: pointer;
         }
+
+        &__but:focus {
+          box-shadow: 0px 0px 2px 3px rgb(185 22 69);
+        }
+
+        &__but:hover {
+          transition: background 600ms linear, color 600ms linear, border 600ms linear;
+          background: transparent;
+          color: rgb(185 22 69);
+          border: 1px solid rgb(185 22 69);
+        }
       }
     }
 
@@ -730,6 +722,13 @@ hr {
             img {
               width: 20px;
               height: 100%;
+              transition: transform 600ms ease-in-out;
+            }
+
+            img:hover {
+              transition: transform 600ms ease-in-out;
+              transform: rotate(360deg);
+
             }
           }
 
@@ -785,7 +784,6 @@ hr {
 
               input {
                 height: 30px;
-                // border-radius: 10px;
                 border: none;
                 border-bottom: 4px solid sandybrown;
                 background: transparent;
@@ -793,7 +791,6 @@ hr {
                 color: bisque;
                 font-size: 22px;
                 width: 50px;
-                // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
               }
 
               .mybtn:last-child {
@@ -817,8 +814,6 @@ hr {
             }
 
             .discount {
-              // font-size: 14px;
-              // text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
               position: relative;
               color: white;
 
@@ -938,9 +933,9 @@ hr {
 
       &--prod {
         margin-top: 20px;
-        // width: 100%;
-        .basket{
-          &__prod{
+
+        .basket {
+          &__prod {
             justify-content: space-between;
           }
         }
@@ -984,43 +979,53 @@ hr {
 
       &--prod {
         margin-top: 20px;
-        .basket{
-          &__prod{
+
+        .basket {
+          &__prod {
             justify-content: space-between;
-            &--img{
+
+            &--img {
               width: 65px;
               height: 50px;
-              img{
+
+              img {
                 width: 65px;
                 height: 100%;
               }
             }
-            &--text{
+
+            &--text {
               width: 120px;
               margin-left: 5px;
-              .title{
+
+              .title {
                 font-size: 14px;
               }
-              .counter{
 
-                .mybtn{
+              .counter {
+
+                .mybtn {
                   width: 25px;
                   height: 25px;
                   margin: 0;
                 }
-                input{
+
+                input {
                   font-size: 14px;
                   width: 30px;
                 }
               }
             }
-            &--price{
+
+            &--price {
               min-width: 10px;
-              .discount{
-                &__real{
+
+              .discount {
+                &__real {
                   font-size: 12px;
                 }
-                &__disc{
+
+                &__disc {
                   font-size: 14px;
                 }
               }
@@ -1032,6 +1037,7 @@ hr {
   }
 
 }
+
 @media screen and (max-width:350px) {
   .order {
     &__details {
@@ -1050,6 +1056,22 @@ hr {
 
         .delivery {
           margin-top: 20px;
+
+          &__info {
+            &--input {
+              .form {
+                &__check {
+                  &--home {
+                    .input {
+                      padding: 0%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+
         }
 
         .payway {
@@ -1067,43 +1089,53 @@ hr {
 
       &--prod {
         margin-top: 20px;
-        .basket{
-          &__prod{
+
+        .basket {
+          &__prod {
             justify-content: space-between;
-            &--img{
+
+            &--img {
               width: 50px;
               height: 50px;
-              img{
+
+              img {
                 width: 50px;
                 height: 100%;
               }
             }
-            &--text{
+
+            &--text {
               width: 80px;
               margin-left: 5px;
-              .title{
+
+              .title {
                 font-size: 12px;
               }
-              .counter{
 
-                .mybtn{
+              .counter {
+
+                .mybtn {
                   width: 20px;
                   height: 20px;
                   margin: 0;
                 }
-                input{
+
+                input {
                   font-size: 12px;
                   width: 20px;
                 }
               }
             }
-            &--price{
+
+            &--price {
               min-width: 10px;
-              .discount{
-                &__real{
+
+              .discount {
+                &__real {
                   font-size: 12px;
                 }
-                &__disc{
+
+                &__disc {
                   font-size: 14px;
                 }
               }

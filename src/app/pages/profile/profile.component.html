@@ -1,1 +1,93 @@
-<p>profile works!</p>
+<div class="prof">
+  <h1>Account ditails</h1>
+  <div class="prof__container">
+    <div class="prof__container--photo">
+      <img [attr.src]="profUser.image" alt="">
+    </div>
+    <div class="prof__container--inform">
+      <div class="userTitle">
+        <p>Email</p>
+        <p>First Name</p>
+        <p>Second Name</p>
+        <p>Phone</p>
+      </div>
+      <div [style.display]="!isEdit ? 'block' : 'none'" [style.transition]="'display 1s ease-in-out'" class="userData">
+        <p *ngIf="profUser.email">{{profUser.email}}</p>
+        <p *ngIf="!profUser.email">No data</p>
+        <p *ngIf="profUser.firstName">{{profUser.firstName}}</p>
+        <p *ngIf="!profUser.firstName">No data</p>
+        <p *ngIf="profUser.secondName">{{profUser.secondName}}</p>
+        <p *ngIf="!profUser.secondName">No data</p>
+        <p *ngIf="profUser.phone">{{profUser.phone}}</p>
+        <p *ngIf="!profUser.phone">No data</p>
+
+      </div>
+      <!-- <ng-template #data> -->
+      <div class="userData" [style.display]="isEdit ? 'block' : 'none'" [style.transition]="'display 1s ease-in-out'">
+        <input type="text" [(ngModel)]="profUser.email" name="profUser.email" placeholder="Write data here"
+          (input)="regCheckEmail()" [style.borderColor]="regCheckEmail() ? 'green' : 'red'">
+        <input type="text" [(ngModel)]="profUser.firstName" name="profUser.firstName" placeholder="Write data here"
+          (input)="regCheckFname()" [style.borderColor]="regCheckFname() ? 'green' : 'red'">
+        <input type="text" [(ngModel)]="profUser.secondName" name="profUser.secondName" placeholder="Write data here"
+          (input)="regCheckSname()" [style.borderColor]="regCheckSname() ? 'green' : 'red'">
+        <input type="text" [(ngModel)]="profUser.phone" name="profUser.phone" placeholder="Write data here"
+          (input)="regCheckPhone()" [style.borderColor]="regCheckPhone() ? 'green' : 'red'">
+        <div class="upload-btn-wrapper">
+          <button class="btn">Upload blog Image</button>
+          <input type="file" (change)="uploadFile($event)" name="myfile" />
+        </div>
+      </div>
+
+      <!-- </ng-template> -->
+
+    </div>
+
+  </div>
+  <div class="prof__button">
+    <button *ngIf="!isEdit" (click)="edit()" class="prof__button--edit">Edit</button>
+    <button *ngIf="isEdit" (click)="save()" class="prof__button--save">Save</button>
+  </div>
+
+  <div class="prof__orders">
+    <h2>My orders</h2>
+    <div class="prof__orders--list">
+      <div class="empty" *ngIf="!isOrder"> <a [routerLink]="[ '/product' ]">You have not yet placed an order click here
+          to proceed to shopping</a> </div>
+      <!-- <div class="prod" *ngFor="let order of profUser.orders" [style.display]="isOrder ? 'block' : 'none'"> -->
+      <div class="scroll" *ngIf="isOrder">
+        <div class="prod" *ngFor="let order of profUser.orders">
+          <div class="basket">
+            <div class="basket__prod" *ngFor="let prod of order.product">
+              <div class="basket__prod--img"> <img [attr.src]="prod?.mainImg" alt=""> </div>
+              <div class="basket__prod--text">
+                <div class="title"> {{ prod.mainTitle }} 0.7L </div>
+                <div class="counter">
+                  <p>{{prod?.count}}</p>
+                </div>
+              </div>
+              <div class="basket__prod--price">
+                <div class="price " *ngIf="prod.disc < 1">{{ prod?.price * prod?.count  | currency }}</div>
+                <div class="discount" *ngIf="prod.disc > 1">
+                  <p class="discount__real">{{  prod?.price * prod?.count   | currency }}</p>
+                  <p class="discount__disc">{{ prod?.disc | currency }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="details">
+            <div class="details__allP">
+              <p class="details__allP--title">Sum of order with discount</p>
+              <p class="details__allP--text">{{order.price  | currency}}</p>
+            </div>
+            <div class="details__order">
+              <button class="details__order--but" (click)="orderMore(order.product)">Order more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

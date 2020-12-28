@@ -1,31 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/style/reset";
+
 body {
-    background: url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
-}       
+  font-family: sans-serif;
+  background: url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
+}
+
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    background: transparent;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    // box-shadow: inset 0 0 5px grey;
-    // background:url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
-    // border-radius: 10px;
-    background: orangered;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    // background: url(./assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat, linear-gradient(to right, rgba(0, 0, 0, 0.612) 0%, rgba(0, 0, 0, 0.626) 100%), url(./assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
-    background: rgb(255, 30, 0); 
-    // border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(255, 30, 0); 
-  }
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: orangered;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 30, 0);
+  ;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 30, 0);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid orangered !important;
+  -webkit-text-fill-color: white;
+  border-radius: 10px;
+  padding-left: 5px !important;
+  background-color: orangered !important;
+  box-shadow: 0 0 0px 1000px #f83600 inset;
+  background: linear-gradient(to right, #f83600, #fe8c00);
+  transition: background-color 5000s ease-in-out 0s;
+}

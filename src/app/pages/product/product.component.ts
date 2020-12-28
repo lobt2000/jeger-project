@@ -10,7 +10,7 @@ import AOS from 'aos'
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-products: Array<IProd>
+  products: Array<IProd>
   constructor(private prodService: ProductService) { }
 
   ngOnInit(): void {
@@ -24,10 +24,8 @@ products: Array<IProd>
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
     let scroll = window.scrollY;
-    console.log(scroll);
-    
   }
-  getProducts(){
+  getProducts() {
     this.prodService.getAllProds().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -36,12 +34,11 @@ products: Array<IProd>
       )
     ).subscribe(data => {
       this.products = data;
-      console.log(data);
-      
-      
+
+
     });
   }
 
 
- 
+
 }

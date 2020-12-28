@@ -1,10 +1,27 @@
 @import "../../../assets/style/mixins";
+.focus {
+  outline: none;
+  color: #fefefe;
+  animation: focus-blink 3.5s ease-in-out infinite;
+}
 
+@keyframes focus-blink {
+  0% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 0px #0073e6, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6;
+  }
+
+  50% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6;
+  }
+
+  100% {
+    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 0px #0073e6, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6;
+  }
+}
 .footer {
   background: url(../../../assets/image/417fc787924a18cc899d30276edb056a.png) right top no-repeat,
     linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 100%),
     url(../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg);
-  //   position: absolute;
   font-family: sans-serif;
   background-size: auto 100%, auto;
   left: 0;
@@ -21,7 +38,6 @@
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: wrap;
-    // height: 14vh;
 
     &__link {
       width: 100%;
@@ -48,7 +64,7 @@
       @include flexbox(row, wrap, flex-end, none);
       width: 100%;
 
-      // height: 3rem;
+  
       &__icon {
         display: inline-block;
         vertical-align: middle;
@@ -131,7 +147,6 @@
       }
 
       &__face::before {
-        // color: orange;
         opacity: 0;
         z-index: 0;
         line-height: 0.7;
@@ -273,7 +288,6 @@
         }
 
         &__face::before {
-          // color: orange;
           opacity: 0;
           z-index: 0;
           line-height: 0.7;

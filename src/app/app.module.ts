@@ -8,13 +8,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { AdminComponent } from './admin/admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BlogComponent } from './admin/blog/blog.component';
 import { DrinksComponent } from './admin/drinks/drinks.component';
@@ -33,9 +33,12 @@ import { BlogDetailsComponent } from './pages/blog-details/blog-details.componen
 
 
 
-import { NgxUiLoaderModule, NgxUiLoaderRouterModule  } from "ngx-ui-loader";
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
 import { ngxUiLoaderConfig } from './preloader-config';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QuillModule } from 'ngx-quill';
+import { ContactComponent } from './pages/contact/contact.component'
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { ngxUiLoaderConfig } from './preloader-config';
     OrdersComponent,
     SearchPipe,
     BlogDetailsComponent,
+    ContactComponent,
 
   ],
   imports: [
@@ -69,8 +73,10 @@ import { ngxUiLoaderConfig } from './preloader-config';
     FormsModule,
     ToastrModule.forRoot(),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderRouterModule
-  ],
+    NgxUiLoaderRouterModule,
+    BrowserAnimationsModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,24 +1,22 @@
-
 <div class="admin-block">
-    <div class="admin-box " >
-        <section class="container-fluid   mt-3">
-            <div class=" flex-box"> 
-              <div class="">
-                <div class="nav reng-flex nav-pills">
-                  <a class="nav-link dark-mode-text" [routerLink]="[ 'drinks' ]" routerLinkActive="dark-mode">Drinks</a>
-                  <a class="nav-link dark-mode-text" [routerLink]="[ 'products' ]" routerLinkActive="dark-mode">Products</a>
-                  <a class="nav-link dark-mode-text" [routerLink]="[ 'adminBlogs' ]" routerLinkActive="dark-mode">Blogs</a>
-                  <a class="nav-link dark-mode-text" [routerLink]="[ 'discount' ]" routerLinkActive="dark-mode">Discounts</a>
-          
-                </div>
-              </div>
-              <div class="mywidth">
-                <div class="tab-content">
-                    <router-outlet></router-outlet>
-                </div>
-              </div>
-            </div>
-          </section>
-    </div>
-</div>
+  <div class="admin-box ">
+    <section class="container-fluid   mt-3">
+      <div class=" flex-box">
+        <div class="">
+          <div class="nav reng-flex nav-pills">
+            <a class="nav-link dark-mode-text" [routerLink]="[ 'drinks' ]" routerLinkActive="dark-mode">Drinks</a>
+            <a class="nav-link dark-mode-text" [routerLink]="[ 'products' ]" routerLinkActive="dark-mode">Products</a>
+            <a class="nav-link dark-mode-text" [routerLink]="[ 'adminBlogs' ]" routerLinkActive="dark-mode">Blogs</a>
+            <a class="nav-link dark-mode-text" [routerLink]="[ 'discount' ]" routerLinkActive="dark-mode">Discounts</a>
 
+          </div>
+        </div>
+        <div class="mywidth">
+          <div class="tab-content">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

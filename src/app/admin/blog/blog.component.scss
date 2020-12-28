@@ -3,7 +3,6 @@
   min-height: 10vh;
   display: flex;
   flex-flow: column;
-  // align-items: center;
   justify-content: center;
 
 
@@ -51,11 +50,13 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid green;
-    -webkit-text-fill-color: green;
+    border: 1px solid orangered !important;
+    -webkit-text-fill-color: white;
     border-radius: 10px;
-
-    box-shadow: 0 0 0px 1000px #000 inset;
+    padding-left: 5px !important;
+    background-color: orangered !important;
+    box-shadow: 0 0 0px 1000px #f83600 inset;
+    background: linear-gradient(to right, #f83600, #fe8c00);
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -70,11 +71,6 @@
     height: 10vh;
     margin-top: 20px;
   }
-
-  // textarea:focus {
-  //   background-color: transparent;
-  //   color: bisque;
-  // }
 
   .formStyle {
     margin-top: 20px;
@@ -272,7 +268,6 @@
 
   &__blog {
     transition: transform 1000ms linear;
-    // transform: translate3d(0, 0, 0);
     min-height: 95vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
     background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
@@ -285,7 +280,6 @@
     position: relative;
     display: flex;
     flex-flow: column wrap;
-    // justify-content: space-between;
     align-items: center;
 
     &--cross {
@@ -332,8 +326,6 @@
     }
 
     &--style {
-      // margin-top: 20px;
-      // margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -341,7 +333,6 @@
       flex-flow: column wrap;
 
       .input {
-        // margin-top: 10px;
         width: 100%;
         min-height: 10vh;
         display: flex;
@@ -362,111 +353,8 @@
           flex-flow: row wrap;
           min-height: 10vh;
 
-          &--button {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
 
-
-            button {
-              width: 100%;
-              height: 100%;
-              border-radius: 10px;
-              background: linear-gradient(to right, #f83600, #fe8c00);
-              border: 1px solid #f83600;
-              color: white;
-              transition: transform 1s ease-in-out;
-
-            }
-
-            .text-left {
-              background-color: orangered;
-              background-image: url('../../../assets/image/align-left-solid.svg');
-              background-size: 50%;
-              background-position: 50%;
-              background-repeat: no-repeat;
-            }
-
-            .text-center {
-              background-color: orangered;
-
-              background-image: url('../../../assets/image/align-center-solid.svg');
-              background-size: 50%;
-              background-position: 50%;
-              background-repeat: no-repeat;
-            }
-
-            .text-right {
-              background-color: orangered;
-
-              background-image: url('../../../assets/image/align-right-solid.svg');
-              background-size: 50%;
-              background-position: 50%;
-              background-repeat: no-repeat;
-            }
-
-            button:hover {
-              transform: scale(1.1);
-            }
-
-            button:focus {
-              outline: none;
-              box-shadow: 0 0 1px orangered, 0 0 5px orangered, 0 0 5px orangered, 0 0 10px orangered;
-            }
-          }
         }
-
-        &__select {
-          width: 100%;
-          height: 100px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          select {
-            width: 150px;
-            height: 50px;
-            margin-top: 10px;
-            border-radius: 10px;
-            background: linear-gradient(to right, #f83600, #fe8c00);
-            border: 1px solid #f83600;
-            color: white;
-            padding-left: 5px;
-          }
-
-          select:focus {
-            // background-color: transparent;
-            outline: none;
-            box-shadow: 0 0 1px orangered, 0 0 5px orangered, 0 0 5px orangered, 0 0 10px orangered;
-          }
-
-          option {
-            color: white;
-            background: orangered;
-            border: none;
-          }
-
-          option:nth-child(2) {
-            display: block;
-            font-size: 1.5em;
-            margin-block-start: 0.83em;
-            margin-block-end: 0.83em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold;
-          }
-
-          option:last-child {
-            display: block;
-            font-size: 2em;
-            margin-block-start: 0.67em;
-            margin-block-end: 0.67em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold;
-          }
-        }
-
         #textarea {
           width: 80%;
           font-family: -webkit-pictograph;
@@ -667,7 +555,6 @@
 
       &__input {
         flex-flow: column wrap;
-        // width: 100%;
       }
     }
 

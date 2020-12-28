@@ -11,18 +11,21 @@
         <div class="navBar__container__item__text ">
           <div class="navBar__container__item__text__adapt">
             <div class="navBar__container__item__text__adapt__desc">
-              <a href="" class="navBar__container__item__text__adapt__desc__link focus-text" [routerLink]="[ 'history' ]"
-                routerLinkActive="focus">History</a>
-              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"  routerLinkActive="focus">Products</a>
-              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"  routerLinkActive="focus">Drinks</a>
-              <a href="" class="navBar__container__item__text__adapt__desc__link">Contact</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link focus-text"
+                [routerLink]="[ 'history' ]" routerLinkActive="focus">History</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"
+                routerLinkActive="focus">Products</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"
+                routerLinkActive="focus">Drinks</a>
+              <a href="" class="navBar__container__item__text__adapt__desc__link" [routerLink]="[ 'contact' ]"
+                routerLinkActive="focus">Contact</a>
             </div>
           </div>
         </div>
       </div>
 
       <div class="navBar__container__item">
-        <button class="navBar__container__item__signIn"  *ngIf="!isUser; else logout" (click)="modalSignIn()">
+        <button class="navBar__container__item__signIn" *ngIf="!isUser; else logout" (click)="modalSignIn()">
           <div class="navBar__container__item__signIn__icon"></div>
         </button>
         <ng-template #logout>
@@ -30,24 +33,25 @@
             <div class="navBar__container__item__signOut__icon"></div>
           </button>
         </ng-template>
-        <button class="navBar__container__item__signUp" (click)="modalSignUp()" *ngIf="!userSign; else profile" >
+        <button class="navBar__container__item__signUp" (click)="modalSignUp()" *ngIf="!userSign; else profile">
           <div class="navBar__container__item__signUp__icon"></div>
         </button>
 
         <ng-template #profile>
           <button class="navBar__container__item__user" *ngIf="!admin" [routerLink]="[ 'profile' ]"
-          routerLinkActive="focus">
+            routerLinkActive="focus">
             <div class="navBar__container__item__user__icon"></div>
           </button>
-          <button class="navBar__container__item__admin" *ngIf="admin" [routerLink]="[ 'admin' ]"  routerLinkActive="focus">
+          <button class="navBar__container__item__admin" *ngIf="admin" [routerLink]="[ 'admin' ]"
+            routerLinkActive="focus">
             <div class="navBar__container__item__admin__icon"></div>
           </button>
         </ng-template>
-        
 
-        <button class="navBar__container__item__insta" >
+
+        <a class="navBar__container__item__insta" href="https://www.instagram.com/kol_bod/" target="_blank">
           <div class="navBar__container__item__insta__icon"></div>
-        </button>
+        </a>
         <button class="navBar__container__item__basket" (click)="modalBasket()">
           <div class="navBar__container__item__basket__icon"></div>
         </button>
@@ -59,16 +63,21 @@
     <div class="navBar__mobi__item__text__adapt">
       <div class="navBar__mobi__item__text__adapt__desc">
         <a class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'history' ]"
-        routerLinkActive="focus">History</a>
-        <a  class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"  routerLinkActive="focus">Products</a>
-        <a  class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"  routerLinkActive="focus">Drinks</a>
-        <a  class="navBar__mobi__item__text__adapt__desc__link">Contact</a>
+          routerLinkActive="focus">History</a>
+        <a class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'product' ]"
+          routerLinkActive="focus">Products</a>
+        <a class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'drink' ]"
+          routerLinkActive="focus">Drinks</a>
+        <a class="navBar__mobi__item__text__adapt__desc__link" [routerLink]="[ 'contact' ]"
+          routerLinkActive="focus">Contact</a>
       </div>
       <div class="navBar__mobi__item__text__adapt__mobi">
-        <button class="navBar__mobi__item__text__adapt__mobi__insta">
+        <a href="https://www.instagram.com/kol_bod/" target="_blank"
+          class="navBar__mobi__item__text__adapt__mobi__insta">
           <div class="navBar__mobi__item__text__adapt__mobi__insta__icon"></div>
-        </button>
-        <button class="navBar__mobi__item__text__adapt__mobi__signIn" (click)="modalSignIn()" *ngIf="!isUser; else logout1">
+        </a>
+        <button class="navBar__mobi__item__text__adapt__mobi__signIn" (click)="modalSignIn()"
+          *ngIf="!isUser; else logout1">
           <div class="navBar__mobi__item__text__adapt__mobi__signIn__icon"></div>
         </button>
         <ng-template #logout1>
@@ -76,17 +85,19 @@
             <div class="navBar__mobi__item__text__adapt__mobi__signOut__icon"></div>
           </button>
         </ng-template>
-        
-        <button class="navBar__mobi__item__text__adapt__mobi__signUp" (click)="modalSignUp()" *ngIf="!userSign; else profile1">
+
+        <button class="navBar__mobi__item__text__adapt__mobi__signUp" (click)="modalSignUp()"
+          *ngIf="!userSign; else profile1">
           <div class="navBar__mobi__item__text__adapt__mobi__signUp__icon"></div>
         </button>
         <ng-template #profile1>
-          <button class="navBar__mobi__item__text__adapt__mobi__user" *ngIf="!admin"  [routerLink]="[ 'profile' ]"
-          routerLinkActive="focus" >
-            <div class="navBar__mobi__item__text__adapt__mobi__user__icon"  [routerLink]="[ 'profile' ]"
-            routerLinkActive="focus"></div>
+          <button class="navBar__mobi__item__text__adapt__mobi__user" *ngIf="!admin" [routerLink]="[ 'profile' ]"
+            routerLinkActive="focus">
+            <div class="navBar__mobi__item__text__adapt__mobi__user__icon" [routerLink]="[ 'profile' ]"
+              routerLinkActive="focus"></div>
           </button>
-          <button class="navBar__mobi__item__text__adapt__mobi__admin" *ngIf="admin"  [routerLink]="[ 'admin' ]"  routerLinkActive="focus">
+          <button class="navBar__mobi__item__text__adapt__mobi__admin" *ngIf="admin" [routerLink]="[ 'admin' ]"
+            routerLinkActive="focus">
             <div class="navBar__mobi__item__text__adapt__mobi__admin__icon"></div>
           </button>
         </ng-template>
@@ -97,15 +108,19 @@
   <section class="modalI" [style.background]="isSignIn ? colorI : colorI"
     [style.position]="isSignIn ? positionI : positionI">
     <div class="modalI__signIn" [style.transform]="isSignIn ? transformI : transformI">
-      <div class="modalI__signIn--cross" (click)="modalSignIn()"> <img src="../../../assets/image/times-solid.svg"
-          alt=""></div>
+      <div class="modalI__signIn--cross" (click)="modalSignIn()" (click)="resetForm()"> <img
+          src="../../../assets/image/times-cross.svg" alt=""></div>
       <div class="modalI__signIn--title">Sign In</div>
       <div class="modalI__signIn--text">You can enter to your club account here</div>
       <div class="modalI__signIn--form">
         <label for="clubNumber">Club number</label>
-        <input type="text" [(ngModel)]="inputUser"  name="inputUser" id="clubNumber" placeholder="Please enter your club number">
+        <input type="text" [(ngModel)]="inputUser" (input)="regCheck()"
+          [style.borderColor]="regCheck() ? 'green' : 'red'" name="inputUser" id="clubNumber"
+          placeholder="Please enter your club number">
         <label for="password">Password</label>
-        <input type="password" [(ngModel)]="inputPass" name="inputPass" id="password" placeholder="Please enter your password">
+        <input type="password" [(ngModel)]="inputPass" (input)="regCheckPass()"
+          [style.borderColor]="regCheckPass() ? 'green' : 'red'" name="inputPass" id="password"
+          placeholder="Please enter your password">
       </div>
       <div class="modalI__signIn--logIn">
         <button class="login" (click)="signIN()" (click)="modalSignIn()">Sign In</button>
@@ -113,33 +128,42 @@
     </div>
   </section>
   <section class="modalU" [style.background]="isSignUp ? colorU : colorU"
-  [style.position]="isSignUp ? positionU : positionU">
+    [style.position]="isSignUp ? positionU : positionU">
     <div class="modalU__signUp" [style.transform]="isSignUp ? transformU : transformU">
-      <div class="modalU__signUp--cross" (click)="modalSignUp()"> <img src="../../../assets/image/times-solid.svg" alt=""></div>
+      <div class="modalU__signUp--cross" (click)="modalSignUp()" (click)="resetForm()"> <img
+          src="../../../assets/image/times-cross.svg" alt=""></div>
       <div class="modalU__signUp--title">Sign Up</div>
       <div class="modalU__signUp--text">Make registration to become a member of the club</div>
       <div class="modalU__signUp--form">
         <div class="user-form">
           <div class="userFname">
-            <label for="fname" >First name</label>
-            <input [(ngModel)]="userFname" name="userFname" id="fname" type="text" placeholder="Please enter your first name">
+            <label for="fname">First name</label>
+            <input [(ngModel)]="userFname" name="userFname" (input)="regCheckFname()"
+              [style.borderColor]="regCheckFname() ? 'green' : 'red'" id="fname" type="text"
+              placeholder="Please enter your first name">
           </div>
           <div class="userSname">
             <label for="sname">Second Name</label>
-            <input type="text" [(ngModel)]="userSname" name="userSname" id="sname" placeholder="Please enter your second name">
+            <input type="text" [(ngModel)]="userSname" (input)="regCheckSname()"
+              [style.borderColor]="regCheckSname() ? 'green' : 'red'" name="userSname" id="sname"
+              placeholder="Please enter your second name">
           </div>
 
         </div>
         <div class="regist-form">
           <div class="userEmail">
             <label for="email">Email</label>
-            <input type="text" [(ngModel)]="userEmail" name="userEmail" id="email"  placeholder="Please enter your email">
+            <input type="text" [(ngModel)]="userEmail" (input)="regCheckUEmail()"
+              [style.borderColor]="regCheckUEmail() ? 'green' : 'red'" name="userEmail" id="email"
+              placeholder="Please enter your email">
           </div>
-         <div class="userPass">
-          <label for="userPassword">Password</label>
-          <input type="password" [(ngModel)]="userPassword" name="userPassword" id="userPassword" placeholder="Please enter your password">
-         </div>
-          
+          <div class="userPass">
+            <label for="userPassword">Password</label>
+            <input type="password" [(ngModel)]="userPassword" name="userPassword" (input)="regCheckUPass()"
+              [style.borderColor]="regCheckUPass() ? 'green' : 'red'" id="userPassword"
+              placeholder="Please enter your password">
+          </div>
+
         </div>
       </div>
       <div class="modalU__signUp--logUp">
@@ -152,7 +176,7 @@
   <section class="modalO" [style.background]="isSignOut ? colorO : colorO"
     [style.position]="isSignOut ? positionO : positionO">
     <div class="modalO__signOut" [style.transform]="isSignOut ? transformO : transformO">
-      <div class="modalO__signOut--cross" (click)="modalSignOut()"> <img src="../../../assets/image/times-solid.svg"
+      <div class="modalO__signOut--cross" (click)="modalSignOut()"> <img src="../../../assets/image/times-cross.svg"
           alt=""></div>
       <div class="modalO__signOut--title">Sign Out</div>
       <div class="modalO__signOut--text">Are you shure to sign out from your account?</div>
@@ -168,22 +192,22 @@
     <div class="modalB__basket" [style.transform]="isBasket ? transformB : transformB">
       <div class="modalB__basket--header">
         <h2 class="title">Basket</h2>
-        <div class="cross" (click)="modalBasket()"> <img src="../../../assets/image/times-cross.svg"
-          alt=""></div>
+        <div class="cross" (click)="modalBasket()"> <img src="../../../assets/image/times-cross.svg" alt=""></div>
       </div>
       <div class="modalB__basket--main">
         <div class="product" *ngFor="let bask of basket">
-          <div class="product__cross" (click)="removeProd(bask)"><img src="../../../assets/image/times-cross.svg" alt=""></div>
+          <div class="product__cross" (click)="removeProd(bask)"><img src="../../../assets/image/times-cross.svg"
+              alt=""></div>
           <div class="product__img"> <img [attr.src]="bask?.mainImg" alt=""></div>
           <div class="product__name">{{ bask.mainTitle }} 0.7L </div>
-          <div class="product__count"> 
+          <div class="product__count">
             <span class="product__count--amount">Amount:</span>
             <div class="product__count--button">
               <button class="mybtn" (click)="productCount(bask, false)">-</button>
-              <input type="text" minlength='1'  [value]="bask?.count">
+              <input type="text" minlength='1' [value]="bask?.count">
               <button class="mybtn" (click)="productCount(bask, true)">+</button>
             </div>
-            
+
           </div>
           <div class="product__price " *ngIf="bask.disc < 1">{{ bask?.price * bask?.count  | currency }}</div>
           <div class="product__discount" *ngIf="bask.disc > 1">
@@ -194,16 +218,16 @@
 
       </div>
       <div class="modalB__basket--footer">
-        <a [routerLink]="[ 'product' ]"  (click)="modalBasket()">Return to shopping</a>
+        <a [routerLink]="[ 'product' ]" (click)="modalBasket()">Return to shopping</a>
         <div class="order">
           <div class="order__price">
-            <span class="order__price--title">Amount:</span> 
-            <span class="order__price--text">{{totalPrice | currency }}</span> 
+            <span class="order__price--title">Amount:</span>
+            <span class="order__price--text">{{totalPrice | currency }}</span>
           </div>
           <button class="order__button" [routerLink]="[ 'orders' ]" (click)="modalBasket()">Make order</button>
         </div>
       </div>
-     
+
     </div>
   </section>
 </header>

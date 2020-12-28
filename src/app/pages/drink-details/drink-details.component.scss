@@ -24,7 +24,6 @@
       font-weight: 600;
       margin-left: calc(5%);
       margin-bottom: calc(4%);
-      //  font-style: italic;   
       text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
     }
 
@@ -99,13 +98,13 @@
 
     &--list {
       padding: 1rem;
-      width: 49%;
+      width: 80%;
       min-height: 100%;
       @include flexbox(row, wrap, center, center);
 
       .ingredient {
-        width: 200px;
-        height: 40vh;
+        width: 350px;
+        min-height: 40vh;
         display: flex;
         align-items: center;
         flex-flow: column;
@@ -114,8 +113,8 @@
         font-weight: bolder;
 
         img {
-          width: 250px;
-          height: 35vh;
+          width: 350px;
+          height: 40vh;
           ;
           display: flex;
           justify-content: center;
@@ -180,12 +179,10 @@
         align-items: center;
         flex-flow: column;
         justify-content: center;
-        // color: rgb(221, 90, 18);
         font-weight: bolder;
         position: relative;
         background: -webkit-linear-gradient(rgba(221, 90, 18, 0.8), rgba(221, 90, 18, 0.1));
-        // border: 1px solid;
-      margin-top: 20px;
+        margin-top: 20px;
 
 
         &_desc {
@@ -201,8 +198,6 @@
 
         &__count {
           position: absolute;
-          //   top: calc(35%);
-          //   left: (50%);
           font-weight: 900;
           font-size: 190px;
           z-index: 0;
@@ -216,4 +211,20 @@
     }
   }
 
+}
+
+@media screen and (max-width:400px) {
+
+  .drink {
+    &__ingred {
+      &--list {
+        .ingredient {
+          img {
+            width: 100%;
+            height: 30vh;
+          }
+        }
+      }
+    }
+  }
 }

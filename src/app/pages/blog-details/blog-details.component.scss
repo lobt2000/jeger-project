@@ -3,14 +3,11 @@
 
 
 .blog {
-  // padding-top: 6rem;
   font-family: sans-serif;
   line-height: 1.5;
-  //   padding-bottom: 6rem;
   width: 100%;
   min-height: 20vh;
   @include flexbox(column, wrap, center, center);
-  // overflow-x: hidden;
   overflow: hidden;
 
   &__header {
@@ -29,7 +26,6 @@
       font-weight: 600;
       margin-left: calc(5%);
       margin-bottom: calc(4%);
-      //  font-style: italic;   
       text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
     }
 
@@ -65,7 +61,6 @@
   &__desc {
     width: 100%;
     margin-top: 50px;
-    // min-height: 95vh;
     @include flexbox(row, wrap, center, center);
     color: white;
     margin-bottom: 50px;
@@ -82,7 +77,6 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        // margin-top: 105px;
         border: none;
       }
     }
@@ -90,8 +84,8 @@
     &--content {
       width: 50%;
       @include flexbox(column, wrap, flex-start, center);
-      // height: 100%;
-      //   min-height: 95vh;
+
+
 
       .title {
 
@@ -119,45 +113,51 @@
   }
 
   &__footer {
-    //   margin-top: 50px;
     width: 100%;
     min-height: 80vh;
-    //   background-position: co;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
   }
 }
 
-@media screen and (max-width:679px) {
+@media screen and (max-width:700px) {
   .blog {
     &__header {
-        &--title{
-            width: 80%;
-      font-size: 20px;
+      &--title {
+        width: 80%;
+        font-size: 20px;
 
-        }
-        &--text{
-            width: 80%;
-            font-size: 14px;
-        }
+      }
+
+      &--text {
+        width: 80%;
+        font-size: 14px;
+      }
     }
+
     &__desc {
+      width: 100%;
+      flex-flow: column !important;
+
+      &--img {
         width: 100%;
-        flex-flow: column!important;
-        &--img{
-            width: 100%;
+        img{
+          min-height: 35vh;
+        }
+      }
+
+      &--content {
+        width: 100% !important;
+
+        .title {
+          font-size: 20px;
         }
 
-        &--content{
-            width: 100%!important;
-            .title{
-                font-size: 20px;
-            }
-            .text{
-                font-size: 14px;
-            }
+        .text {
+          font-size: 14px;
         }
+      }
     }
 
   }

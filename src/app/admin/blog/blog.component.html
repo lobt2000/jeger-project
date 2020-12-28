@@ -12,28 +12,14 @@
         </div>
         <div class="input">
           <label for="text"> Text: </label>
-          <div class="input__quill">
-            <div class="input__quill--button">
-              <button class="bold" (click)="bold()">B</button>
-            </div>
-            <div class="input__quill--button">
-              <button class="underline" (click)="underline()">U</button>
-            </div>
-            <div class="input__quill--button">
-              <button class="italic" (click)="italic()">I</button>
-            </div>
-            <div class="input__quill--button">
-              <button class="text-left" (click)="left()"></button>
-            </div>
-            <div class="input__quill--button">
-              <button class="text-center" (click)="center()"></button>
-            </div>
-            <div class="input__quill--button">
-              <button class="text-right" (click)="right()"></button>
-
-            </div>
+          <div class="input__quill" id="input__quill">
+            <form [formGroup]="editorForm" (ngSubmit)="onSubmit()" class="bg-light text-dark mt-3">
+              <div class="form-group">
+                <quill-editor [style]="editorStyle" [theme]="snow" [modules]='config' formControlName="editor"></quill-editor>
+              </div>
+            </form>
           </div>
-          <div class="input__select">
+          <!-- <div class="input__select">
             <select class="custom-select" id="chooseTag" [(ngModel)]="tagName" name="tagName" (change)="select()">
               <option [attr.selected]="true">
                 <span  >Normal</span>
@@ -45,9 +31,9 @@
                 <h1>Heading 1</h1>
               </option>
             </select>
-          </div>
-          <textarea [(ngModel)]="textarea" name="textarea" id="textarea" cols="17" rows="1"
-            (mouseup)="getSelectedText()"></textarea>
+          </div> -->
+          <!-- <textarea [(ngModel)]="textarea" name="textarea" id="textarea" cols="17" rows="1"
+            (mouseup)="getSelectedText()"></textarea> -->
         </div>
         <div class="input">
           <div class="input__upload">

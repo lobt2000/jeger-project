@@ -18,8 +18,8 @@ export class ProdDetailsComponent implements OnInit {
   product;
   discounts: Array<IDiscount> = [];
   discount: number;
-  checkDisc = false
-  // mainImg: string;
+  checkDisc = false;
+  inputC: number = 1;
   constructor(private prodService: ProductService,
     private activatedRoute: ActivatedRoute,
     private discService: DiscountService,
@@ -35,16 +35,6 @@ export class ProdDetailsComponent implements OnInit {
 
   }
   getProd(): void {
-    // const id = this.activatedRoute.snapshot.paramMap.get('id');
-    // // console.log(this.activatedRoute.snapshot.paramMap);
-    // // const id = '6rm3eR3awpM0F0AaSIUL';
-    // this.prodService.getOne(id).subscribe(
-    //   data => {
-    //     this.product = data.data();
-
-    //   }
-    // )
-
     const name = this.activatedRoute.snapshot.paramMap.get('name');
     this.prodService.getOne(name).onSnapshot(
       document => {
@@ -87,14 +77,12 @@ export class ProdDetailsComponent implements OnInit {
 
           if (this.discounts[i].product == this.product.mainTitle) {
             this.discount = this.discounts[i].discount / 100 + this.discounts[0].discount / 100;
-            console.log(this.discount);
             this.checkDisc = true;
             break
           }
           else if (this.discounts[i].product == "All") {
             this.discount = this.discounts[0].discount / 100;
             this.checkDisc = true
-            console.log(this.discounts[0].discount);
 
           }
         }
@@ -118,7 +106,6 @@ export class ProdDetailsComponent implements OnInit {
 
 
   prodCount(prod: any, status: boolean): void {
-    // console.log(prod);
 
     if (status) {
       prod.count++;
@@ -133,6 +120,10 @@ export class ProdDetailsComponent implements OnInit {
   addToBasket(prod: IProd): void {
     this.orderService.addBasket(prod)
     prod.count = 1;
+  }
+
+  inputCount(prod: IProd): void {
+    prod.count = this.inputC;
   }
 
 }

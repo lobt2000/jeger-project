@@ -6,6 +6,8 @@ import { IBlogs } from 'src/app/shared/interfaces/blogs.interface';
 import { map } from 'rxjs/operators';
 import { IProd } from 'src/app/shared/interfaces/prod.interface';
 import { Prod } from 'src/app/shared/classes/prod.model';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -32,14 +34,12 @@ export class ProductsComponent implements OnInit {
   count: number = 1;
   disc = {}
 
-  constructor(private storage: AngularFireStorage, private prodService: ProductService) { }
+  constructor(private storage: AngularFireStorage, private prodService: ProductService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getProd()
   }
   uploadFileMain(event): void {
-    console.log(document.querySelectorAll('.formStyle'));
-    
     const file = event.target.files[0];
     const filePath = `image/${file.name}`;
     const upload = this.storage.upload(filePath, file);
@@ -50,8 +50,15 @@ export class ProductsComponent implements OnInit {
         this.mainImg = url;
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
   uploadFileBot(event): void {
     const file = event.target.files[0];
@@ -61,13 +68,18 @@ export class ProductsComponent implements OnInit {
 
     upload.then(image => {
       this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-        console.log(url);
-
         this.headerImg = url
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
   uploadFileDesc(event): void {
     const file = event.target.files[0];
@@ -77,13 +89,18 @@ export class ProductsComponent implements OnInit {
 
     upload.then(image => {
       this.storage.ref(`image/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-        console.log(url);
-
         this.descImg = url
       });
       console.log('Photo added!');
+      this.toastr.success('Photo added!', 'Successed');
 
     });
+    upload.catch(
+      () =>{
+      this.toastr.error('Something go wrong', 'Denied');
+
+      }
+    )
   }
 
 
@@ -125,7 +142,6 @@ export class ProductsComponent implements OnInit {
       this.prodService.create(newProd)
       this.prodService.updProd.subscribe(
         data => {
-          console.log(data);
           newProd.id = data
           this.prodService.update(data, newProd).then(
             () => {
@@ -134,7 +150,7 @@ export class ProductsComponent implements OnInit {
           )
         }
       )
-      // this.toastr.success('Product add', 'Successed');
+      this.toastr.success('Product add', 'Successed');
 
       this.resetForm()
     }
@@ -147,13 +163,12 @@ export class ProductsComponent implements OnInit {
 
     this.prodService.delete(prod.id.toString())
       .then(() => {
-console.log('sdfsd');
 
-        // this.toastr.success('Product delete', 'Successed');
+        this.toastr.success('Product delete', 'Successed');
         this.getProd()
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
   }
   editProd(prod: IProd): void {
@@ -196,11 +211,11 @@ console.log('sdfsd');
     saveP.id = this.prodsId;
     this.prodService.update(saveP.id, saveP)
       .then(() => {
-        // this.toastr.success('Product update', 'Successed');
+        this.toastr.success('Product update', 'Successed');
         this.getProd()
       })
       .catch(err => {
-        // this.toastr.error('Something go wrong', 'Denied');
+        this.toastr.error('Something go wrong', 'Denied');
       });
     this.resetForm();
     this.editStatus = false;

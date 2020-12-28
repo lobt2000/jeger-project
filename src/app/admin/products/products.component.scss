@@ -3,7 +3,7 @@
   min-height: 10vh;
   display: flex;
   flex-flow: column;
-  // align-items: center;
+  align-items: center;
   justify-content: center;
 
 
@@ -36,7 +36,7 @@
 
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
-    // -webkit-appearance: none;
+    -webkit-appearance: none;
     background-color: orangered;
     color: orangered;
     margin-right: 10px;
@@ -60,11 +60,13 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid green;
-    -webkit-text-fill-color: green;
+    border: 1px solid orangered !important;
+    -webkit-text-fill-color: white;
     border-radius: 10px;
-
-    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    padding-left: 5px !important;
+    background-color: orangered !important;
+    box-shadow: 0 0 0px 1000px #f83600 inset;
+    background: linear-gradient(to right, #f83600, #fe8c00);
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -79,10 +81,10 @@
     border-bottom: 3px solid sandybrown;
   }
 
-  // textarea:focus {
-  //   background-color: transparent;
-  //   color: bisque;
-  // }
+  textarea:focus {
+    background-color: transparent;
+    color: bisque;
+  }
 
   .formStyle {
     margin-top: 20px;
