@@ -454,7 +454,7 @@ select:-webkit-autofill:focus {
         margin-top: 10px;
         width: 100%;
         justify-content: center;
-        flex-flow: column;
+        // flex-flow: column;
         align-items: center;
 
         .userTitle {
@@ -468,6 +468,7 @@ select:-webkit-autofill:focus {
           p {
             text-align: center;
             font-size: 18px;
+            word-break: break-all;
           }
 
           input {

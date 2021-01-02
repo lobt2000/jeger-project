@@ -26,6 +26,8 @@
       font-weight: 600;
       margin-left: calc(5%);
       margin-bottom: calc(4%);
+      position: relative;
+      z-index: 2;
       text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
     }
 
@@ -37,20 +39,18 @@
       margin-left: calc(5%);
       font-style: italic;
       font-stretch: condensed;
-      position: relative;
-      z-index: 2;
       white-space: break-spaces;
     }
 
-    &--text::before {
+    &--title::before {
       content: "";
-      width: 10.3333em;
+      min-width: 10.3333em;
       height: 5px;
       min-height: 1.5em;
       border-bottom: 0.5em solid #dd5a12;
       position: absolute;
-      top: calc(23%);
-      right: calc(-15%);
+      top: calc(0%);
+      left: calc(-20%);
       box-sizing: border-box;
       transition: width 1000ms ease-in-out;
       opacity: 0.7;

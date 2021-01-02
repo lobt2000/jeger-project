@@ -28,10 +28,7 @@ export class ProdDetailsComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.getProd();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
 
   }
   getProd(): void {

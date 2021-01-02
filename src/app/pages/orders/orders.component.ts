@@ -72,10 +72,8 @@ export class OrdersComponent implements OnInit {
     this.getDisc();
     this.getCity();
     this.getProfile();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
   }
   getCity(): void {
     this.orderService.getAllCity().snapshotChanges().pipe(
@@ -209,7 +207,7 @@ export class OrdersComponent implements OnInit {
     if (localStorage.getItem('basket')) {
       this.basket = JSON.parse(localStorage.getItem('basket'));
       this.id = JSON.parse(localStorage.getItem('orderId'));
-
+      this.calcDisc();
     }
 
   }
@@ -234,7 +232,7 @@ export class OrdersComponent implements OnInit {
     }
     this.orderService.basket.next(this.basket);
     localStorage.setItem('basket', JSON.stringify(this.basket))
-    this.getDisc();
+    this.calcDisc();
 
   }
   removeProd(prod: any) {
@@ -246,7 +244,7 @@ export class OrdersComponent implements OnInit {
       localStorage.setItem('basket', JSON.stringify(this.basket));
       this.count = 0;
       this.getLocalProducts();
-      this.getDisc();
+      this.calcDisc();
     }
 
 
@@ -273,95 +271,24 @@ export class OrdersComponent implements OnInit {
   }
 
   getDisc() {
-    this.basket = JSON.parse(localStorage.getItem('basket'));
-    this.discount = 0;
-    this.totalPrice = this.discount;
-    this.discService.getAllDisc().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.discounts = data;
-      this.calcDisc();
-
-
-    });
-  }
-  calcDisc(): void {
-    if (this.count == 0) {
-      this.count++;
-      if (this.basket != null) {
-        if (localStorage.getItem('user')) {
-          for (let i = 0; i < this.discounts.length; i++) {
-            for (let j = 0; j < this.basket.length; j++) {
-              if (this.discounts[i].product == this.basket[j].mainTitle) {
-                this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
-                this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
-                this.checkDisc = true;
-                break
-              }
-              else if (this.discounts[i].product == 'All') {
-                if (this.basket[j].discount.hasOwnProperty('discount')) {
-
-                }
-                else {
-                  this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-                  this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-                  this.checkDisc = true;
-
-
-
-                }
-              }
-
-            }
-
-
-          }
-          this.orderService.basket.next(this.basket);
-          localStorage.setItem('basket', JSON.stringify(this.basket))
-          this.totalPrice = this.discount;
-          this.notDiscTotal = this.notDisc(this.basket);
-
-
-        }
-        else {
-          this.discount = 0;
-          this.totalPrice = this.discount;
-          for (let i = 0; i < this.discounts.length; i++) {
-            for (let j = 0; j < this.basket.length; j++) {
-              if (this.discounts[i].product == this.basket[j].mainTitle) {
-                this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
-                this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);;
-                this.checkDisc = true;
-                break;
-              }
-              else if (!this.basket[j].discount.hasOwnProperty('discount')) {
-                this.basket[j].disc = 0
-                this.checkDisc = false;
-              }
-            }
-
-          }
-          this.basket.forEach(element => {
-            if (element.disc > 1) {
-              this.checkDisc = true;
-            }
-            else {
-              element.disc = 0
-              this.discount += element.price * element.count
-              this.checkDisc = false;
-            }
-          });
-          this.orderService.basket.next(this.basket);
-          localStorage.setItem('basket', JSON.stringify(this.basket))
-          this.totalPrice = this.discount;
-          this.notDiscTotal = this.notDisc(this.basket);
-        }
+    this.orderService.getDisc()
+   this.orderService.checkDisc.subscribe(
+     (data) =>{
+      if(data){
+        this.calcDisc();
       }
-    }
+     }
+   )
+  }
+  calcDisc(): void {  
+      this.totalPrice = this.orderService.calcDisc();
+      this.orderService.basket.subscribe(
+        data =>{
+          this.basket = data;
+          this.notDiscTotal = this.notDisc(this.basket);
+          
+        }
+      )
   }
   private notDisc(products: Array<IProd>): number {
     return products.reduce((total, prod) => total + (prod.price * prod.count), 0)
@@ -466,7 +393,7 @@ export class OrdersComponent implements OnInit {
     });
     this.resetForm();
     this.getLocalProducts();
-    this.getDisc();
+    this.calcDisc();
     this.getCity();
     this.getProfile();
   }

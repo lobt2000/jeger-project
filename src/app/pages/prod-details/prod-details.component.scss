@@ -27,9 +27,24 @@
       margin-left: calc(5%);
       margin-right: calc(5%);
       margin-bottom: calc(4%);
+      position: relative;
+      z-index: 2;
       text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
     }
-
+    &--title::before {
+      content: "";
+      min-width: 10.3333em;
+      height: 5px;
+      min-height: 1.5em;
+      border-bottom: 0.5em solid #dd5a12;
+      position: absolute;
+      top: calc(0%);
+      left: calc(-20%);
+      box-sizing: border-box;
+      transition: width 1000ms ease-in-out;
+      opacity: 0.7;
+      z-index: -1;
+    }
     &--text {
       font-family: sans-serif;
       width: 30%;
@@ -39,25 +54,11 @@
       margin-right: calc(5%);
       font-style: italic;
       font-stretch: condensed;
-      position: relative;
-      z-index: 2;
+      
       white-space: break-spaces;
     }
 
-    &--text::before {
-      content: "";
-      width: 10.3333em;
-      height: 5px;
-      min-height: 1.5em;
-      border-bottom: 0.5em solid #dd5a12;
-      position: absolute;
-      top: calc(23%);
-      right: calc(23%);
-      box-sizing: border-box;
-      transition: width 1000ms ease-in-out;
-      opacity: 0.7;
-      z-index: -1;
-    }
+   
   }
 
   &__desc {
@@ -355,21 +356,6 @@
       &--text {
         width: 40%;
       }
-
-      &--text::before {
-        content: "";
-        width: 10.3333em;
-        height: 5px;
-        min-height: 1.5em;
-        border-bottom: 0.5em solid #dd5a12;
-        position: absolute;
-        top: calc(33%);
-        right: calc(12%);
-        box-sizing: border-box;
-        transition: width 1000ms ease-in-out;
-        opacity: 0.7;
-        z-index: -1;
-      }
     }
 
     &__desc {
@@ -537,21 +523,6 @@
 
       &--text {
         width: 250px;
-      }
-
-      &--text::before {
-        content: "";
-        width: 7.3333em;
-        height: 5px;
-        min-height: 1.5em;
-        border-bottom: 0.5em solid #dd5a12;
-        position: absolute;
-        top: calc(23%);
-        left: calc(55%);
-        box-sizing: border-box;
-        transition: width 1000ms ease-in-out;
-        opacity: 0.7;
-        z-index: -1;
       }
     }
 
@@ -728,21 +699,6 @@
       &--text {
         font-size: 14px;
         width: 200px;
-      }
-
-      &--text::before {
-        content: "";
-        width: 7.3333em;
-        height: 5px;
-        min-height: 1.5em;
-        border-bottom: 0.5em solid #dd5a12;
-        position: absolute;
-        top: calc(23%);
-        left: calc(45%);
-        box-sizing: border-box;
-        transition: width 1000ms ease-in-out;
-        opacity: 0.7;
-        z-index: -1;
       }
     }
 

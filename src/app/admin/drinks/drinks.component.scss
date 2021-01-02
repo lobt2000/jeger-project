@@ -270,7 +270,7 @@
     transition: transform 1000ms linear;
     min-height: 70vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-25%);
@@ -456,6 +456,15 @@
         background: transparent;
         color: orangered;
       }
+      .logout:focus {
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
+      }
+      .dismiss:focus{
+        border: 1px solid black;
+        outline: none;
+        box-shadow: 0 0 2px 3px black;
+      }
     }
 
 
@@ -516,7 +525,7 @@
     transition: transform 1000ms linear;
     min-height: 70vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-25%);
@@ -695,6 +704,15 @@
         background: transparent;
         color: orangered;
       }
+      .logout:focus {
+        outline: none;
+        box-shadow: 0 0 2px 3px orangered;
+      }
+      .dismiss:focus{
+        border: 1px solid black;
+        outline: none;
+        box-shadow: 0 0 2px 3px black;
+      }
     }
 
 
@@ -775,7 +793,7 @@
 
 }
 
-@media screen and (max-width: 696px) {
+@media screen and (max-width: 396px) {
   .mydrinks {
     .modalI {
       &__ingred {
@@ -802,6 +820,9 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
+        &--button{
+          width: 150px;
+        }
       }
     }
 

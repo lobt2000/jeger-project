@@ -35,8 +35,6 @@ export class HeaderComponent implements OnInit {
   userSname: string = '';
   inputUser: string = '';
   inputPass: string = '';
-  cardNumber: number = 19360;
-
   isUser = false;
   isBasket = false;
   transformO = 'translate3d(0,-150%,0)';
@@ -64,10 +62,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.getDisc();
     this.checkLocalUser();
     this.getLocalProducts();
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
   }
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
@@ -179,7 +177,7 @@ export class HeaderComponent implements OnInit {
       this.transformB = 'translate3d(0, 0%,0)';
       this.colorB = "rgba(0, 0, 0, .7)";
       this.positionB = 'fixed';
-      this.getDisc();
+      this.calcDisc();
     }
     else {
       this.transformB = 'translate3d(0,-150%,0)';
@@ -208,13 +206,11 @@ export class HeaderComponent implements OnInit {
         this.admin = false;
         this.userSign = true;
         this.isUser = true;
-        // this.toastr.success('Hello user!', 'Success');
       }
       else {
         this.admin = true;
         this.userSign = true;
         this.isUser = true;
-        // this.toastr.success('Hello admin!', 'Success');
 
       }
 
@@ -223,7 +219,6 @@ export class HeaderComponent implements OnInit {
       this.admin = false;
       this.userSign = false;
       this.isUser = false;
-      // this.toastr.error('You write invalid data!', 'Denied');
     }
   }
 
@@ -233,8 +228,7 @@ export class HeaderComponent implements OnInit {
 
     if (this.userEmail && this.userPassword && this.userSname && this.userFname) {
       if (this.regExpEmail.test(this.userEmail) && this.regExpPass.test(this.userPassword) && this.regExpSname.test(this.userSname) && this.regExpFname.test(this.userFname)) {
-        this.cardNumber += 1;
-        this.authService.signUp(this.userEmail, this.userPassword, this.userFname, this.userSname, this.cardNumber)
+        this.authService.signUp(this.userEmail, this.userPassword, this.userFname, this.userSname)
         this.checkLocalUser();
         this.authService.checkSign.subscribe((data) => {
           if (data == 'user') {
@@ -242,23 +236,20 @@ export class HeaderComponent implements OnInit {
             this.userSign = true;
             this.isUser = true;
             this.toastr.success('You log success!', 'Success');
-            this.getDisc();
+            this.calcDisc();
 
           }
           else {
             this.userSign = data
             this.admin = data
             this.isUser = data;
-            this.getDisc();
+            this.calcDisc();
 
             this.toastr.error('You write invalid data!', 'Denied');
 
           }
         })
-        this.authService.updateID(this.cardNumber).then(
-          () => {
-          }
-        )
+      
         this.resetForm();
 
       }
@@ -275,7 +266,7 @@ export class HeaderComponent implements OnInit {
     else {
       this.userSign = false;
       this.isUser = false;
-      this.getDisc();
+      this.calcDisc();
       this.resetForm();
       this.toastr.error('You write invalid data!', 'Denied');
     }
@@ -292,7 +283,7 @@ export class HeaderComponent implements OnInit {
                   this.admin = true
                   this.userSign = true;
                   this.isUser = true;
-                  this.getDisc();
+                  this.calcDisc();
                   this.resetForm()
                   this.toastr.success('You log as admin!', 'Hello admin');
                 }
@@ -300,7 +291,7 @@ export class HeaderComponent implements OnInit {
                   this.admin = false;
                   this.userSign = true;
                   this.isUser = true;
-                  this.getDisc();
+                  this.calcDisc();
 
                   this.resetForm();
                   this.toastr.success('You log as user!', 'Hello user');
@@ -310,7 +301,7 @@ export class HeaderComponent implements OnInit {
                 this.admin = false;
                 this.userSign = false;
                 this.isUser = false;
-                this.getDisc();
+                this.calcDisc();
 
                 this.resetForm();
                 this.toastr.error('You write invalid data!', 'Denied');
@@ -409,7 +400,8 @@ export class HeaderComponent implements OnInit {
     }
     this.orderService.basket.next(this.basket);
     localStorage.setItem('basket', JSON.stringify(this.basket))
-    this.getDisc();
+    this.calcDisc();
+    // this.getDisc();
 
   }
   removeProd(prod: any) {
@@ -424,91 +416,23 @@ export class HeaderComponent implements OnInit {
 
 
   }
-
-
   getDisc() {
-    this.basket = JSON.parse(localStorage.getItem('basket'));
-    this.discount = 0;
-    this.totalPrice = this.discount;
-    this.checkLocalUser();
-    this.discService.getAllDisc().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.discounts = data;
-
-      if (localStorage.getItem('user')) {
-        for (let i = 0; i < this.discounts.length; i++) {
-          for (let j = 0; j < this.basket.length; j++) {
-
-            if (this.discounts[i].product == this.basket[j].mainTitle) {
-              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
-              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100 + this.discounts[0].discount / 100);
-              this.checkDisc = true;
-
-              break
-            }
-            else if (this.discounts[i].product == 'All') {
-              if (this.basket[j].discount.hasOwnProperty('discount')) {
-              }
-              else {
-                this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-                this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[0].discount / 100);
-                this.checkDisc = true;
-              }
-            }
-
-          }
-
-
-        }
-        this.orderService.basket.next(this.basket);
-        localStorage.setItem('basket', JSON.stringify(this.basket))
-        this.totalPrice = this.discount;
-
+    this.orderService.getDisc()
+   this.orderService.checkDisc.subscribe(
+     (data) =>{
+      if(data){
+        this.calcDisc();
       }
-      else {
-        this.discount = 0;
-        this.totalPrice = this.discount;
-        for (let i = 0; i < this.discounts.length; i++) {
-          for (let j = 0; j < this.basket.length; j++) {
-            if (this.discounts[i].product == this.basket[j].mainTitle) {
-              this.basket[j].disc = this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100)
-              this.discount += this.basket[j].price * this.basket[j].count - this.basket[j].price * this.basket[j].count * (this.discounts[i].discount / 100);;
-              this.checkDisc = true;
-              break;
-            }
-
-
-            else if (!this.basket[j].discount.hasOwnProperty('discount')) {
-              this.basket[j].disc = 0
-              this.checkDisc = false;
-
-            }
-          }
-
-        }
-        this.basket.forEach(element => {
-          if (element.disc > 1) {
-            this.checkDisc = true;
-          }
-          else {
-            element.disc = 0
-            this.discount += element.price * element.count
-            this.checkDisc = false;
-          }
-        });
-        this.orderService.basket.next(this.basket);
-        localStorage.setItem('basket', JSON.stringify(this.basket))
-        this.totalPrice = this.discount;
-      }
-
-
-    });
+     }
+   )
   }
-
+  calcDisc(): void {
+      this.totalPrice = this.orderService.calcDisc();
+      this.orderService.basket.subscribe(
+        data =>{
+          this.basket = data;
+        }
+      )
+  }
 }
 

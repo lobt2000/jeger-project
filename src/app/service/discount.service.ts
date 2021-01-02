@@ -33,4 +33,9 @@ export class DiscountService {
   delete(id:string):Promise<void>{
     return this.discountsRef.doc(id).delete();
   }
+
+
+
+
+  
 }

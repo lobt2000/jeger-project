@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import { CommentService } from 'src/app/service/comment.service';
 
 @Component({
@@ -11,6 +12,9 @@ export class ContactComponent implements OnInit {
   myclick = false;
   angle = '../../../assets/image/angle-down-solid.svg';
   height = '0px';
+  myclick1 = false;
+  angle1 = '../../../assets/image/angle-down-solid.svg';
+  height1 = '0px';
   regExpEmail = /^[a-z0-9\-\.]{1,}@gmail\.com|net\.us|org\.ua$/i;
   regExpFname = /^[a-z]{2,}$/i;
   regExpSname = /^[a-z]{2,}$/i;
@@ -18,9 +22,28 @@ export class ContactComponent implements OnInit {
   commentFname: string = '';
   commentSname: string = '';
   comment: string = '';
+  comments: Array<string> = [];
   constructor(private commService: CommentService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.getComments();
+    window.scrollTo(0, 0);
+
+  }
+
+  getComments(): void {
+    this.commService.getAllComm().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.comments = data;
+      console.log(this.comments);
+      
+    });
+
   }
 
   selectClick(): void {
@@ -34,6 +57,20 @@ export class ContactComponent implements OnInit {
     else {
       this.angle = '../../../assets/image/angle-down-solid.svg';
       this.height = '0px';
+
+    }
+  }
+  selectClick1(): void {
+    this.myclick1 = !this.myclick1;
+    if (this.myclick1) {
+      this.angle1 = '../../../assets/image/angle-up-solid.svg';
+      this.height1 = 'auto';
+
+
+    }
+    else {
+      this.angle1 = '../../../assets/image/angle-down-solid.svg';
+      this.height1 = '0px';
 
     }
   }
@@ -58,7 +95,8 @@ export class ContactComponent implements OnInit {
         const comm = {
           email: this.commentEmail,
           fname: this.commentFname,
-          sname: this.commentSname
+          sname: this.commentSname,
+          comment: this.comment
         }
         this.commService.create(comm).then(
           () => {

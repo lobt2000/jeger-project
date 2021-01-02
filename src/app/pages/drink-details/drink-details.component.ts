@@ -16,10 +16,8 @@ export class DrinkDetailsComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.getDrink();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
   }
   private getDrink(): void {
     const name = this.activatedRoute.snapshot.paramMap.get('name');

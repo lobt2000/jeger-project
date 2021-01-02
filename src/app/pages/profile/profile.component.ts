@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { OrderService } from 'src/app/service/order.service';
 
@@ -17,14 +18,15 @@ export class ProfileComponent implements OnInit {
   isEdit = false;
   isOrder = false;
   regExpEmail = /^[a-z0-9\-\.]{1,}@gmail\.com|net\.us|org\.ua$/i;
-  regExpPhone = /^[0-9]{6,10}$/;
+  regExpPhone = /^[0-9]{10}$/;
   regExpFname = /^[a-z]{2,}$/i;
   regExpSname = /^[a-z]{2,}$/i;
   constructor(private profService: AuthService,
     private auth: AngularFireAuth,
     private db: AngularFirestore,
     private storage: AngularFireStorage,
-    private orderService: OrderService) { }
+    private orderService: OrderService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -73,11 +75,26 @@ export class ProfileComponent implements OnInit {
   }
   save(): void {
     if (this.profUser.email.length > 0) {
-      this.profService.update(this.profUser.id, this.profUser).then(
-        () => {
-          this.updateLocal(this.profUser)
-        }
-      )
+      if (this.regExpEmail.test(this.profUser.email) && this.regExpPhone.test(this.profUser.phone) && this.regExpSname.test(this.profUser.secondname) && this.regExpFname.test(this.profUser.firstName)) {
+
+        this.profService.update(this.profUser.id, this.profUser).then(
+          () => {
+            this.updateLocal(this.profUser)
+            this.toastr.success('Changes saved success!', 'Success');
+            this.edit();
+
+
+          }
+        )
+
+      }
+      else {
+        this.toastr.error('You write invalid data!', 'Denied');
+      }
+
+    }
+    else {
+      this.toastr.error('You write invalid data!', 'Denied');
     }
 
   }
@@ -87,7 +104,6 @@ export class ProfileComponent implements OnInit {
       ...data
     }
     localStorage.setItem('user', JSON.stringify(update))
-    this.edit();
   }
   orderMore(product: any): void {
     product.forEach(element => {

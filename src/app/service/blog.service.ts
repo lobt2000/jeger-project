@@ -18,8 +18,6 @@ export class BlogService {
 
   getAllBlogs(): AngularFirestoreCollection<IBlogs> {
     return this.blogsRef;
-
-
   }
   create(blog: IBlogs): any {
     this.blogsRef.add({ ...blog }).then(

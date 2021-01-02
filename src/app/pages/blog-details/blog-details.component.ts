@@ -16,10 +16,8 @@ export class BlogDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBlog();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
     this.style();
     AOS.init();
   }

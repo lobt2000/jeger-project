@@ -26,7 +26,7 @@ export class AuthService {
   }
 
 
-  signUp(email: string, password: string, userFname: string, userSname: string, cardNum: number): void {
+  signUp(email: string, password: string, userFname: string, userSname: string): void {
     this.auth.createUserWithEmailAndPassword(email, password)
 
       .then(userResponse => {
@@ -36,7 +36,6 @@ export class AuthService {
           role: 'user',
           firstName: userFname,
           secondName: userSname,
-          cardNumber: cardNum,
           image: 'https://firebasestorage.googleapis.com/v0/b/admin-blog-f6b6a.appspot.com/o/images%2FPngItem_1468479.png?alt=media&token=ff01da5f-daf1-4479-803e-e811324e50b0',
         }
 
@@ -146,13 +145,7 @@ export class AuthService {
 
 
 
-  updateID(data: any): Promise<void> {
-    const ordId = {
-      id: data
-    }
-    localStorage.setItem('cardId', JSON.stringify(data))
-    return this.cardNumbRef.doc(this.id).update(ordId);
-  }
+
   getUser(): Observable<any> {
     return JSON.parse(localStorage.getItem('user'));
   }
@@ -161,16 +154,4 @@ export class AuthService {
   }
 
 
-  getId(): any {
-
-    this.cardNumbRef.doc(this.id).get().subscribe(
-      data => {
-        this.number = data.data()
-
-        localStorage.setItem('cardId', JSON.stringify(this.number.id))
-
-      }
-    )
-
-  }
 }

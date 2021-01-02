@@ -208,7 +208,7 @@
     }
 
     &__itemBot:nth-child(1) {
-      background-image: url('../../../assets/image/03-JM-Manifest.jpg');
+      background-image: url('../../../assets/image/03-JM-Manifest.webp');
 
 
     }
@@ -228,7 +228,7 @@
     }
 
     &__itemBot:nth-child(3) {
-      background-image: url('../../../assets/image/20180719_Header_16x9.jpg ');
+      background-image: url('../../../assets/image/20180719_Header_16x9.webp ');
       background-position: 10%;
       transition: width 600ms ease-in-out;
 
@@ -272,6 +272,22 @@
 
       &__itemBlog:hover {
         animation: backPos infinite 10s ease-in-out;
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .blog {
+    &__component {
+      &__item:hover:last-child>.blog__component__item__title::after {
+
+        width: 7em;
+      }
+      &__item:hover:first-child>.blog__component__item__title::after {
+
+        width: 7em;
       }
 
     }

@@ -21,10 +21,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.getBlogs();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
 
   }
   @HostListener('window:scroll', ['$event'])

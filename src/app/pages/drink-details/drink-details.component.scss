@@ -216,6 +216,12 @@
 @media screen and (max-width:400px) {
 
   .drink {
+    &__header{
+      &--title{
+        font-size: 20px;
+        word-break: break-all;
+      }
+    }
     &__ingred {
       &--list {
         .ingredient {

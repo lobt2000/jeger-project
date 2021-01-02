@@ -677,7 +677,7 @@ select:-webkit-autofill:focus {
     transform: translate3d(0, 0, 0);
     height: 100vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-50%);
@@ -814,7 +814,7 @@ select:-webkit-autofill:focus {
     transition: transform 600ms linear;
     height: 50vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-25%);
@@ -891,7 +891,8 @@ select:-webkit-autofill:focus {
       .dismiss:hover {
         background: transparent;
       }
-      .dismiss:focus{
+
+      .dismiss:focus {
         border: 1px solid black;
         outline: none;
         box-shadow: 0 0 2px 3px black;
@@ -946,7 +947,7 @@ select:-webkit-autofill:focus {
     transition: transform 600ms linear;
     height: 100vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-50%);
@@ -1219,7 +1220,7 @@ select:-webkit-autofill:focus {
     transition: transform 600ms linear;
     min-height: 50vh;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     background-repeat: no-repeat;
     background-size: cover;
     right: calc(-15%);
@@ -1276,6 +1277,7 @@ select:-webkit-autofill:focus {
       height: 30vh;
       padding: 1rem;
       overflow-y: scroll;
+
       .product {
         margin-top: 20px;
         @include flexbox(row, wrap, space-between, center);
@@ -2460,6 +2462,7 @@ select:-webkit-autofill:focus {
         overflow-x: scroll;
         overflow-y: hidden;
         display: flex;
+
         .product {
           flex-flow: column;
           justify-content: space-around;
@@ -2648,6 +2651,10 @@ select:-webkit-autofill:focus {
   .navBar__container__item {
     &__text {
       display: none;
+    }
+
+    &__basket:hover::before {
+      left: calc(15%);
     }
 
     &__logo {

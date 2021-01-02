@@ -10,10 +10,8 @@ export class HistoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
   }
 
 }

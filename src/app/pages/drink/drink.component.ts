@@ -16,10 +16,8 @@ export class DrinkComponent implements OnInit {
   ngOnInit(): void {
     this.getDrinks();
     AOS.init();
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo(0, 0);
+
   }
 
   getDrinks(): void {

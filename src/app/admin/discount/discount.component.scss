@@ -95,6 +95,7 @@
         padding-left: 10px;
 
         option {
+          font-size: 14px;
           background-color: transparent;
         }
       }
@@ -188,7 +189,12 @@
     .formStyle {
       flex-flow: column;
     }
-
+    &__input {
+      select:first-child{
+        // width: 150px;
+        font-size: 10px!important;
+      }
+    }
 
 
   }
@@ -203,6 +209,10 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
+        option{
+          width: 150px;
+          font-size: 10px;
+        }
       }
     }
 
@@ -235,7 +245,7 @@
 
 }
 
-@media screen and (max-width: 696px) {
+@media screen and (max-width: 460px) {
   .myprod {
     .formStyle {
       font-size: 16px;
@@ -245,6 +255,34 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
+        select {
+  
+          option {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+
+
+  }
+}
+@media screen and (max-width: 280px) {
+  .myprod {
+    .formStyle {
+      font-size: 16px;
+      flex-flow: column wrap;
+
+
+      &__input {
+        flex-flow: row wrap;
+        width: 100%;
+        select {
+  
+          option {
+            font-size: 8px;
+          }
+        }
       }
     }
 

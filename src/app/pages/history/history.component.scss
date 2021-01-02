@@ -1,7 +1,7 @@
 .history {
   width: 100%;
   min-height: 20vh;
-  background-image: url('../../../assets/image/a4c9a1b158d9f54470dabafef9ccb97b.png');
+  background-image: url('../../../assets/image/a4c9a1b158d9f54470dabafef9ccb97b.webp');
   font-family: sans-serif;
   line-height: 1.5;
 
@@ -89,7 +89,7 @@
     }
 
     &--icon {
-      background-image: url('../../../assets/image/curt_maist.png');
+      background-image: url('../../../assets/image/curt_maist_1.webp');
       background-size: contain;
       background-repeat: no-repeat;
       width: 40%;
@@ -100,7 +100,7 @@
     }
 
     &--shield {
-      background-image: url('../../../assets/image/wolfenbuttel_D_v2.jpg');
+      background-image: url('../../../assets/image/wolfenbuttel_D_v2.webp');
       background-size: cover;
       background-repeat: no-repeat;
       width: 100%;
@@ -162,7 +162,7 @@
       flex-flow: column wrap;
 
       .main-icon {
-        background-image: url('../../../assets/image/hubertus_D.jpg');
+        background-image: url('../../../assets/image/hubertus_D.webp');
         width: 100%;
         background-repeat: no-repeat;
         background-size: contain;
@@ -176,7 +176,7 @@
 
         .logo {
           width: 50%;
-          background-image: url('../../../assets/image/JM_logo_label_optim.png');
+          background-image: url('../../../assets/image/JM_logo_label_optim.webp');
           background-repeat: no-repeat;
           background-size: contain;
           margin-top: -150px;
@@ -278,7 +278,7 @@
       }
 
       .bottle-icon {
-        background-image: url('../../../assets/image/history.png');
+        background-image: url('../../../assets/image/history.webp');
         background-size: contain;
         background-repeat: no-repeat;
         width: 40%;
@@ -289,7 +289,7 @@
 
   &__legend:first-child::before {
     content: '';
-    background-image: url('../../../assets/image/98db489d3fb4c227fb80532e5b37265c.png');
+    background-image: url('../../../assets/image/98db489d3fb4c227fb80532e5b37265c.webp');
 
     position: absolute;
     top: 0;
@@ -304,7 +304,7 @@
   &__legend:nth-child(2) {
     position: relative;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     width: 100%;
     display: flex;
     justify-content: center;
@@ -316,7 +316,7 @@
   &__legend:nth-child(3) {
     position: relative;
     background: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent 40%), linear-gradient(270deg, rgba(0, 0, 0, .6), transparent 40%), rgba(9, 17, 7, 0.95);
-    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.jpg');
+    background-image: url('../../../assets/image/e25c53fa7d42851bb5d2e5fd47e37918.webp');
     width: 100%;
     display: flex;
     justify-content: center;
@@ -398,7 +398,7 @@
       }
 
       &--shield {
-        background-image: url('../../../assets/image/wolfenbuttel_D_v2.jpg');
+        background-image: url('../../../assets/image/wolfenbuttel_D_v2.webp');
         background-size: cover;
         background-repeat: no-repeat;
         width: 100%;
@@ -430,7 +430,7 @@
         flex-flow: column wrap;
 
         .main-icon {
-          background-image: url('../../../assets/image/hubertus_D.jpg');
+          background-image: url('../../../assets/image/hubertus_D.webp');
           width: 100%;
           background-repeat: no-repeat;
           background-size: contain;

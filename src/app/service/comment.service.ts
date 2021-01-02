@@ -12,9 +12,13 @@ export class CommentService {
     this.commentsRef = this.db.collection(this.dbPath);
   }
 
+  getAllComm(): AngularFirestoreCollection<any> {
+    return this.commentsRef;
+  }
 
   create(comm: any): Promise<DocumentReference<any>> {
     return this.commentsRef.add({ ...comm });
   }
+
 
 }

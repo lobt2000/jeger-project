@@ -15,6 +15,20 @@
       </p>
     </div>
   </div>
+  <div class="contact__review">
+    <div class="contact__review--visible" (click)="selectClick1()">Users review <img img
+        [attr.src]="angle1" alt=""></div>
+    <div class="contact__review--hidden" [style.height]="myclick1 ? height1 : height1"
+      [style.transition]="'height 1600ms ease-in-out'">
+      <div class="comment" *ngFor="let comm of comments">
+        <p class="comment__user"><span>{{ comm.fname }}</span> <span>{{ comm.sname }}</span></p>
+        <p class="comment__text"> {{ comm.comment}}</p>
+ 
+      </div>
+      
+
+    </div>
+  </div>
   <div class="contact__comment">
     <div class="contact__comment--visible" (click)="selectClick()">Ask a question or leave a review <img img
         [attr.src]="angle" alt=""></div>
