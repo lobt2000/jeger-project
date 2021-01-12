@@ -1,41 +1,39 @@
+@import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
+
 .drink {
   padding-top: 6rem;
   padding-bottom: 6rem;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  align-items: stretch;
+  @include flexbox(row, wrap, space-around, stretch);
 
   &__component {
     width: 31%;
     height: 60vh;
     overflow: hidden;
-    box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    box-shadow: $shadow;
     border-radius: 10px;
     cursor: pointer;
     margin-top: 30px;
 
     &--img {
-      width: 100%;
+      width: $width;
       height: 100%;
-      display: flex;
-      align-items: flex-end;
+      @include flexbox(row, wrap, none, flex-end);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: 50%;
       background-position-y: 25%;
-
       filter: saturate(100%) brightness(100%);
       transition: transform 600ms ease-in-out, filter 600ms ease-in-out;
 
       .title {
         position: relative;
-        width: 100%;
+        width: $width;
         min-height: 10px;
         margin: 0 0 calc(15%) calc(12%);
-        color: white;
+        color: $color;
         font-size: 24px;
         font-style: italic;
 
@@ -53,18 +51,13 @@
         box-sizing: border-box;
         transition: width 1000ms ease-in-out;
       }
-
-
     }
-
-
     &--img:hover {
       transform: scale(1.1);
       filter: saturate(125%) brightness(125%);
     }
 
     &--img:hover>.title::before {
-
       width: 7.5em;
 
     }
@@ -83,10 +76,6 @@
         }
       }
     }
-
-
-
-
   }
 }
 

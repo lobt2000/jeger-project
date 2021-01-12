@@ -1,22 +1,23 @@
 @import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
 
 .drink {
   font-family: sans-serif;
   line-height: 1.5;
   padding-bottom: 6rem;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
   @include flexbox(column, wrap, center, center);
 
 
   &__header {
     background-size: cover;
-    width: 100%;
+    width: $width;
     min-height: 105vh;
     background-repeat: no-repeat;
     background-position: center;
     @include flexbox(column, wrap, center, left);
-    color: white;
+    color: $color;
 
     &--title {
       min-height: 5vh;
@@ -24,7 +25,7 @@
       font-weight: 600;
       margin-left: calc(5%);
       margin-bottom: calc(4%);
-      text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+      text-shadow: $shadow;
     }
 
     &--text {
@@ -175,10 +176,7 @@
       .step {
         width: 200px;
         height: 40vh;
-        display: flex;
-        align-items: center;
-        flex-flow: column;
-        justify-content: center;
+        @include flexbox(column, wrap, center, center);
         font-weight: bolder;
         position: relative;
         background: -webkit-linear-gradient(rgba(221, 90, 18, 0.8), rgba(221, 90, 18, 0.1));
@@ -216,12 +214,13 @@
 @media screen and (max-width:400px) {
 
   .drink {
-    &__header{
-      &--title{
+    &__header {
+      &--title {
         font-size: 20px;
         word-break: break-all;
       }
     }
+
     &__ingred {
       &--list {
         .ingredient {

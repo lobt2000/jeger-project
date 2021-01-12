@@ -1,4 +1,5 @@
 @import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
 
 header {
   height: 0;
@@ -60,31 +61,28 @@ select:-webkit-autofill:focus {
   font-family: sans-serif;
 
   &__container {
-    @include flexbox(none, none, space-around, center);
+    @include flexbox(none, wrap, space-around, center);
     height: 5rem;
 
     &__item:first-child {
       width: 50%;
-
     }
 
     &__item:nth-child(2) {
       width: 37%;
-      @include flexbox(none, none, space-around, center);
-
+      @include flexbox(none, wrap, space-around, center);
     }
 
     &__item:nth-child(3) {
       width: 20%;
-      @include flexbox(none, none, space-around, center);
-
+      @include flexbox(none, wrap, space-around, center);
     }
 
     &__item {
-      @include flexbox(none, none, center, center);
+      @include flexbox(none, wrap, center, center);
 
       &__logo {
-        @include flexbox(none, none, center, center);
+        @include flexbox(none, wrap, center, center);
 
         a {
           background: url('https://firebasestorage.googleapis.com/v0/b/jeger-49c21.appspot.com/o/image%2F2f6ecbae732a75c1aa929a95f095c186.png?alt=media&token=5c948774-3b98-44e9-860d-d8a9c5153573') center center no-repeat;
@@ -101,8 +99,7 @@ select:-webkit-autofill:focus {
         transition: transform 600ms ease-in-out;
         transform: translate3d(0, 0, 0);
         width: 60%;
-        display: flex;
-        align-items: center;
+        @include flexbox(none, wrap, none, center);
         margin-left: 10%;
         margin-top: 10px;
 
@@ -110,9 +107,9 @@ select:-webkit-autofill:focus {
           &__desc {
 
 
-            @include flexbox(none, none, space-around, none);
+            @include flexbox(none, wrap, space-around, none);
             font-size: 22px;
-            width: 100%;
+            width: $width;
             font-weight: bolder;
 
             &__link {
@@ -122,13 +119,12 @@ select:-webkit-autofill:focus {
               display: inline-block;
               min-width: 0.5rem;
               transition-delay: 66ms;
-              color: white;
+              color: $color;
               text-decoration: none;
               margin-right: 10px;
             }
 
             &__link:nth-child(1):hover::before {
-
               opacity: 1;
               z-index: 1;
               transform: translate3d(0, 0, 0);
@@ -138,7 +134,6 @@ select:-webkit-autofill:focus {
             }
 
             &__link:nth-child(2):hover::before {
-
               opacity: 1;
               z-index: 1;
               transform: translate3d(0, 0, 0);
@@ -148,7 +143,6 @@ select:-webkit-autofill:focus {
             }
 
             &__link:nth-child(3):hover::before {
-
               opacity: 1;
               z-index: 1;
               transform: translate3d(0, 0, 0);
@@ -158,7 +152,6 @@ select:-webkit-autofill:focus {
             }
 
             &__link:nth-child(4):hover::before {
-
               opacity: 1;
               z-index: 1;
               transform: translate3d(0, 0, 0);
@@ -169,7 +162,7 @@ select:-webkit-autofill:focus {
 
 
             &__link:nth-child(1)::before {
-              color: white;
+              color: $color;
               opacity: 0;
               z-index: 0;
               line-height: 1;
@@ -183,7 +176,7 @@ select:-webkit-autofill:focus {
             }
 
             &__link:nth-child(2)::before {
-              color: white;
+              color: $color;
               opacity: 0;
               z-index: 0;
               line-height: 1;
@@ -197,7 +190,7 @@ select:-webkit-autofill:focus {
             }
 
             &__link:nth-child(3)::before {
-              color: white;
+              color: $color;
               opacity: 0;
               z-index: 0;
               line-height: 1;
@@ -243,7 +236,6 @@ select:-webkit-autofill:focus {
         line-height: 3.5rem;
         min-width: 3rem;
         background-color: rgb(212, 85, 17);
-
         background-size: 80%;
         border-radius: 8px;
         position: relative;
@@ -685,15 +677,12 @@ select:-webkit-autofill:focus {
     text-align: left;
     width: 50%;
     position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
+    @include flexbox(column, wrap, space-evenly, none);
 
     &--cross {
       width: 100%;
       height: 10vh;
-      display: flex;
-      justify-content: flex-end;
+      @include flexbox(none, wrap, flex-end, none);
 
       img {
         width: 50px;
@@ -710,10 +699,10 @@ select:-webkit-autofill:focus {
     }
 
     &--title {
-      width: 100%;
+      width: $width;
       min-height: 7vh;
       font-size: 34px;
-      color: white;
+      color: $color;
       font-weight: 800;
       text-align: center;
     }
@@ -731,10 +720,7 @@ select:-webkit-autofill:focus {
     &--form {
       width: 100%;
       min-height: 30vh;
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: space-around;
-      align-items: center;
+      @include flexbox(column, wrap, space-around, center);
 
       input {
         width: 80%;
@@ -743,7 +729,7 @@ select:-webkit-autofill:focus {
         border-bottom: 2px solid coral;
         outline: none;
         height: 30px;
-        color: white;
+        color: $color;
         font-size: 18px;
       }
 
@@ -751,7 +737,7 @@ select:-webkit-autofill:focus {
         appearance: menulist-button;
         background-color: transparent !important;
         background-image: none !important;
-        color: white !important;
+        color: $color !important;
       }
 
       label {
@@ -763,10 +749,9 @@ select:-webkit-autofill:focus {
     }
 
     &--logIn {
-      widows: 100%;
+      widows: $width;
       height: 10vh;
-      display: flex;
-      justify-content: center;
+      @include flexbox(none, wrap, center, none);
 
       .login {
         width: 40%;
@@ -799,7 +784,7 @@ select:-webkit-autofill:focus {
   transition: background 600ms ease-in-out;
   transition: position 1ms ease-in-out;
   position: fixed;
-  width: 100%;
+  width: $width;
   height: 100%;
   top: 0;
   left: 0;
@@ -822,20 +807,19 @@ select:-webkit-autofill:focus {
     text-align: left;
     width: 50%;
     position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
+    @include flexbox(column, wrap, space-evenly, none);
+
 
     &--cross {
       width: 100%;
       height: 10vh;
-      display: flex;
-      justify-content: flex-end;
+      @include flexbox(none, wrap, flex-end, none);
+
 
       img {
         width: 50px;
         height: 50px;
-        fill: white;
+        fill: $color;
         transition: transform 600ms ease-in-out;
 
       }
@@ -847,7 +831,7 @@ select:-webkit-autofill:focus {
     }
 
     &--title {
-      width: 100%;
+      width: $width;
       min-height: 7vh;
       font-size: 34px;
       color: white;
@@ -868,11 +852,7 @@ select:-webkit-autofill:focus {
     &--form {
       width: 100%;
       min-height: 18vh;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-around;
-      align-items: center;
-
+      @include flexbox(row, wrap, space-around, center);
 
       .dismiss {
         width: 40%;
@@ -932,7 +912,7 @@ select:-webkit-autofill:focus {
   transition: background 600ms ease-in-out;
   transition: position 1ms ease-in-out;
   position: fixed;
-  width: 100%;
+  width: $width;
   height: 100%;
   top: 0;
   left: 0;
@@ -960,15 +940,14 @@ select:-webkit-autofill:focus {
     justify-content: space-evenly;
 
     &--cross {
-      width: 100%;
+      width: $width;
       height: 10vh;
-      display: flex;
-      justify-content: flex-end;
+      @include flexbox(none, wrap, flex-end, none);
+
 
       img {
         width: 50px;
         height: 50px;
-        fill: white;
         transition: transform 600ms ease-in-out;
 
       }
@@ -980,10 +959,10 @@ select:-webkit-autofill:focus {
     }
 
     &--title {
-      width: 100%;
+      width: $width;
       min-height: 7vh;
       font-size: 34px;
-      color: white;
+      color: $color;
       font-weight: 800;
       text-align: center;
     }
@@ -999,27 +978,25 @@ select:-webkit-autofill:focus {
     }
 
     &--form {
-      width: 100%;
+      width: $width;
       min-height: 30vh;
       display: flex;
       flex-flow: column wrap;
       justify-content: space-around;
       align-items: center;
+      @include flexbox(column, wrap, space-around, center);
+
 
 
       .user-form {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
+        @include flexbox(none, wrap, space-around, center);
+        width: $width;
 
         .userFname {
           height: 10vh;
           width: 40%;
-          display: flex;
-          align-items: center;
-          flex-flow: column;
-          justify-content: space-around;
+          @include flexbox(column, nowrap, space-around, center);
+
 
           input {
             width: 100%;
@@ -1036,11 +1013,11 @@ select:-webkit-autofill:focus {
             appearance: menulist-button;
             background-color: transparent !important;
             background-image: none !important;
-            color: white !important;
+            color: $color !important;
           }
 
           label {
-            width: 100%;
+            width: $width;
             color: bisque;
             font-size: 24px;
             font-weight: 600;
@@ -1050,10 +1027,7 @@ select:-webkit-autofill:focus {
         .userSname {
           height: 10vh;
           width: 40%;
-          display: flex;
-          align-items: center;
-          flex-flow: column;
-          justify-content: space-around;
+          @include flexbox(column, nowrap, space-around, center);
 
           input {
             width: 100%;
@@ -1070,11 +1044,11 @@ select:-webkit-autofill:focus {
             appearance: menulist-button;
             background-color: transparent !important;
             background-image: none !important;
-            color: white !important;
+            color: $color !important;
           }
 
           label {
-            width: 100%;
+            width: $width;
             color: bisque;
             font-size: 24px;
             font-weight: 600;
@@ -1087,21 +1061,16 @@ select:-webkit-autofill:focus {
       }
 
       .regist-form {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
+        @include flexbox(none, wrap, space-around, center);
+        width: $width;
 
         .userEmail {
           height: 10vh;
           width: 40%;
-          display: flex;
-          align-items: center;
-          flex-flow: column;
-          justify-content: space-around;
+          @include flexbox(column, wrap, space-around, center);
 
           input {
-            width: 100%;
+            width: $width;
             background-color: transparent;
             border: none;
             border-bottom: 2px solid coral;
@@ -1131,10 +1100,8 @@ select:-webkit-autofill:focus {
         .userPass {
           height: 10vh;
           width: 40%;
-          display: flex;
-          align-items: center;
-          flex-flow: column;
-          justify-content: space-around;
+          @include flexbox(column, wrap, space-around, center);
+
 
           input {
             width: 100%;
@@ -1155,7 +1122,7 @@ select:-webkit-autofill:focus {
           }
 
           label {
-            width: 100%;
+            width: $width;
             color: bisque;
             font-size: 24px;
             font-weight: 600;
@@ -1167,10 +1134,9 @@ select:-webkit-autofill:focus {
     }
 
     &--logUp {
-      widows: 100%;
+      widows: $width;
       height: 10vh;
-      display: flex;
-      justify-content: center;
+      @include flexbox(none, wrap, center, none);
 
       .regist {
         width: 40%;
@@ -1205,7 +1171,7 @@ select:-webkit-autofill:focus {
   transition: background 600ms ease-in-out;
   transition: position 1ms ease-in-out;
   position: fixed;
-  width: 100%;
+  width: $width;
   height: 100%;
   top: 0;
   left: 0;
@@ -1228,27 +1194,23 @@ select:-webkit-autofill:focus {
     text-align: left;
     width: 70%;
     position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
+    @include flexbox(column, wrap, space-between, none);
     border-radius: 10px;
 
     &--header {
-      width: 100%;
+      width: $width;
       height: 10vh;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+      @include flexbox(none, wrap, space-around, center);
+
 
       .cross {
         width: 40%;
-        display: flex;
-        justify-content: flex-end;
+        @include flexbox(none, wrap, flex-end, none);
+
 
         img {
           width: 50px;
           height: 50px;
-          fill: white;
           margin-right: 10px;
           transition: transform 600ms ease-in-out;
 
@@ -1264,16 +1226,13 @@ select:-webkit-autofill:focus {
       .title {
         width: 40%;
         font-size: 40px;
-        color: white;
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        color: $color;
+        text-shadow: $shadow;
       }
-
-
-
     }
 
     &--main {
-      width: 100%;
+      width: $width;
       height: 30vh;
       padding: 1rem;
       overflow-y: scroll;
@@ -1316,7 +1275,7 @@ select:-webkit-autofill:focus {
           width: 30%;
           min-height: 10vh;
           font-size: 14px;
-          color: white;
+          color: $color;
           font-weight: 800;
           text-align: center;
           align-self: center;
@@ -1353,7 +1312,7 @@ select:-webkit-autofill:focus {
 
             .mybtn:focus {
               outline: none;
-              box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+              box-shadow: $shadow;
 
             }
 
@@ -1373,15 +1332,11 @@ select:-webkit-autofill:focus {
               background-color: black;
             }
           }
-
-
-
-
         }
 
         &__price {
           font-size: 16px;
-          text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          text-shadow: $shadow;
           position: relative;
           color: white;
         }
@@ -1393,7 +1348,7 @@ select:-webkit-autofill:focus {
           &--real {
             font-size: 14px;
             text-decoration: line-through;
-            text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            text-shadow: $shadow;
 
           }
 
@@ -1408,7 +1363,7 @@ select:-webkit-autofill:focus {
     }
 
     &--footer {
-      width: 100%;
+      width: $width;
       @include flexbox(row, nowrap, space-between, center);
       min-height: 10vh;
 
@@ -1437,16 +1392,14 @@ select:-webkit-autofill:focus {
 
           &--text {
             font-size: 20px;
-            text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            text-shadow: $shadow;
             position: relative;
-            color: white;
+            color: $color;
           }
         }
 
         &__button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @include flexbox(none, wrap, center, center);
           flex: 0 0 auto;
           height: 36px;
           width: 182px;
@@ -1485,7 +1438,7 @@ select:-webkit-autofill:focus {
     font-family: sans-serif;
 
     &__container {
-      @include flexbox(none, none, space-evenly, center);
+      @include flexbox(none, wrap, space-evenly, center);
       height: 5rem;
 
       &__item:first-child {
@@ -1495,27 +1448,24 @@ select:-webkit-autofill:focus {
 
       &__item:nth-child(2) {
         width: 20%;
-        @include flexbox(none, none, flex-end, center);
-
-
+        @include flexbox(none, wrap, flex-end, center);
       }
 
       &__item:nth-child(3) {
         width: 36%;
-        @include flexbox(none, none, flex-end, center);
+        @include flexbox(none, wrap, flex-end, center);
 
       }
 
       &__item {
-        @include flexbox(none, none, center, space-around);
+        @include flexbox(none, wrap, center, space-around);
 
         &__logo {
-          @include flexbox(none, none, space-between, center);
+          @include flexbox(none, wrap, space-between, center);
           width: 100%;
           margin-right: calc(23%);
 
           a {
-            // background: url('../../../assets/image/2f6ecbae732a75c1aa929a95f095c186.png') center center no-repeat;
             display: inline-block;
             vertical-align: middle;
             height: 4rem;
@@ -1606,12 +1556,11 @@ select:-webkit-autofill:focus {
     margin: 0;
     box-sizing: border-box;
     overflow-y: auto;
-    @include flexbox(column, none, space-around, none);
+    @include flexbox(column, wrap, space-around, none);
     font-family: sans-serif;
 
     &__adapt {
-      display: flex;
-      flex-flow: column;
+      @include flexbox(column, wrap, space-around, flex-start);
       position: relative;
       width: 100%;
       height: 100px;
@@ -1620,14 +1569,11 @@ select:-webkit-autofill:focus {
       min-height: 100%;
       padding: 6rem 2rem 0;
       box-sizing: border-box;
-      justify-content: space-evenly;
 
       &__desc {
-        display: flex;
-        flex-flow: column;
+        @include flexbox(column, wrap, none, none);
         font-size: 36px;
         font-weight: bolder;
-        //  display: none;
 
         &__link {
           position: relative;
@@ -1636,7 +1582,7 @@ select:-webkit-autofill:focus {
           display: inline-block;
           min-width: 0.5rem;
           transition-delay: 66ms;
-          color: white;
+          color: $color;
           text-decoration: none;
           margin-right: 10px;
           margin-bottom: 30px;
@@ -2182,7 +2128,7 @@ select:-webkit-autofill:focus {
 
               .mybtn:focus {
                 outline: none;
-                box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+                box-shadow: $shadow;
 
               }
 
@@ -2267,9 +2213,7 @@ select:-webkit-autofill:focus {
           }
 
           &__button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flexbox(none, none, center, center);
             flex: 0 0 auto;
             height: 36px;
             width: 182px;
@@ -2532,7 +2476,7 @@ select:-webkit-autofill:focus {
 
               .mybtn:focus {
                 outline: none;
-                box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+                box-shadow: $shadow;
 
               }
 

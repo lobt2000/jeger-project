@@ -59,6 +59,18 @@ export class ProdDetailsComponent implements OnInit {
 
     }
   }
+
+  inputCount(prod: IProd): void {
+    // console.log(this.inputC);
+    if(this.inputC > 0){
+      prod.count = this.inputC;
+    }
+    else{
+      this.inputC = 1
+      prod.count = this.inputC;
+    }
+    
+  }
   getDisc() {
 
     this.discService.getAllDisc().snapshotChanges().pipe(
@@ -103,6 +115,7 @@ export class ProdDetailsComponent implements OnInit {
 
 
   prodCount(prod: any, status: boolean): void {
+console.log('jhghjg');
 
     if (status) {
       prod.count++;
@@ -119,8 +132,6 @@ export class ProdDetailsComponent implements OnInit {
     prod.count = 1;
   }
 
-  inputCount(prod: IProd): void {
-    prod.count = this.inputC;
-  }
+ 
 
 }

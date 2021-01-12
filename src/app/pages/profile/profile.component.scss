@@ -1,3 +1,12 @@
+@import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
+
+
+
+
+
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -17,41 +26,33 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@import "../../../assets/style/mixins";
 
 .prof {
   padding-top: 6rem;
 
-  width: 100%;
+  width: $width;
   min-height: 20vh;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  align-items: stretch;
+  @include flexbox(row, wrap, space-around, stretch);
 
   h1 {
     width: 100%;
     height: 10vh;
-    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    text-shadow: $shadow;
     text-transform: uppercase;
     font-size: 30px;
-    color: white;
+    color: $color;
     text-align: center;
   }
 
   &__container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: $width;
+    @include flexbox(row, wrap, space-between, center);
     min-height: 10vh;
 
     &--photo {
       width: 30%;
       min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flexbox(row, wrap, center, center);
 
       img {
         width: 200px;
@@ -74,7 +75,7 @@ select:-webkit-autofill:focus {
 
         p {
           font-size: 30px;
-          width: 100%;
+          width: $width;
           min-height: 5vh;
           border: none;
           margin-top: 10px;
@@ -84,11 +85,11 @@ select:-webkit-autofill:focus {
       .userData {
         width: 60%;
         min-height: 10vh;
-        color: white;
+        color: $color;
 
         p {
           font-size: 30px;
-          width: 100%;
+          width: $width;
           min-height: 5vh;
           border: none;
           margin-top: 10px;
@@ -98,7 +99,7 @@ select:-webkit-autofill:focus {
 
         input {
           font-size: 30px;
-          width: 100%;
+          width: $width;
           min-height: 5vh;
           border: none;
           margin-top: 10px;
@@ -118,7 +119,7 @@ select:-webkit-autofill:focus {
 
         .btn {
           border: 2px solid #fe8c00;
-          color: white;
+          color: $color;
           background: #fe8c00;
           background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
           background: linear-gradient(to right, #f83600, #fe8c00);
@@ -127,12 +128,8 @@ select:-webkit-autofill:focus {
           font-size: 20px;
           font-weight: bold;
           cursor: pointer;
-
           transition: background .250s linear, color .250s linear, border .250s linear;
         }
-
-
-
 
         .upload-btn-wrapper input[type=file] {
           font-size: 100px;
@@ -150,7 +147,7 @@ select:-webkit-autofill:focus {
   }
 
   &__button {
-    width: 100%;
+    width: $width;
     height: 10vh;
     display: flex;
     align-items: center;
@@ -162,7 +159,7 @@ select:-webkit-autofill:focus {
       height: 50px;
       border-radius: 10px;
       background-color: orangered;
-      color: white;
+      color: $color;
       border: 1px solid orangered;
       transition: background .250s linear, color .250s linear, border .250s linear;
 
@@ -182,21 +179,21 @@ select:-webkit-autofill:focus {
   }
 
   &__orders {
-    width: 100%;
+    width: $width;
     min-height: 10vh;
 
     h2 {
-      width: 100%;
+      width: $width;
       height: 10vh;
-      text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+      text-shadow: $shadow;
       text-transform: uppercase;
       font-size: 30px;
-      color: white;
+      color: $color;
       @include flexbox(row, wrap, center, center);
     }
 
     &--list {
-      width: 100%;
+      width: $width;
       min-height: 10vh;
       padding: 1rem;
       overflow-x: scroll;
@@ -211,7 +208,7 @@ select:-webkit-autofill:focus {
       }
 
       .empty {
-        width: 100%;
+        width: $width;
         margin: 10px auto;
         text-align: center;
 
@@ -235,15 +232,15 @@ select:-webkit-autofill:focus {
         margin-top: 20px;
 
         .basket {
-          width: 100%;
+          width: $width;
           height: 150px;
           overflow-y: scroll;
 
           &__prod {
-            width: 100%;
+            width: $width;
             height: 150px;
             @include flexbox(row, wrap, center, center);
-            color: white;
+            color: $color;
 
             &--img {
               width: 80px;
@@ -260,10 +257,7 @@ select:-webkit-autofill:focus {
             &--text {
               width: 50%;
               min-height: 1vh;
-              display: flex;
-              align-items: flex-start;
-              flex-flow: column;
-              justify-content: space-around;
+              @include flexbox(column, wrap, space-around, flex-start);
               margin-left: 20px;
 
               .title {
@@ -292,18 +286,16 @@ select:-webkit-autofill:focus {
             }
 
             &--price {
-              display: flex;
-              align-items: flex-end;
+              @include flexbox(none, none, flex-end, flex-end);
               min-width: 10px;
-              justify-content: flex-end;
               margin-top: 10px;
               margin-bottom: 10px;
 
               .price {
                 font-size: 16px;
-                text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+                text-shadow: $shadow;
                 position: relative;
-                color: white;
+                color: $color;
               }
 
               .discount {
@@ -313,7 +305,7 @@ select:-webkit-autofill:focus {
                 &__real {
                   font-size: 14px;
                   text-decoration: line-through;
-                  text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+                  text-shadow: $shadow;
 
                 }
 
@@ -330,16 +322,16 @@ select:-webkit-autofill:focus {
         }
 
         .details {
-          width: 100%;
+          width: $width;
           min-height: 10vh;
 
           &__allP {
-            width: 100%;
+            width: $width;
             min-height: 50px;
             @include flexbox(column, wrap, space-between, center);
 
             &--title {
-              color: white;
+              color: $color;
               font-size: 20px;
               font-weight: 700;
               text-align: center;
@@ -347,7 +339,7 @@ select:-webkit-autofill:focus {
             }
 
             &--text {
-              color: white;
+              color: $color;
               font-size: 20px;
               font-weight: 700;
             }
@@ -357,7 +349,7 @@ select:-webkit-autofill:focus {
           &__order {
             display: flex;
             align-items: center;
-            width: 100%;
+            width: $width;
             min-height: 5vh;
             justify-content: center;
             margin-top: 10px;
@@ -370,7 +362,7 @@ select:-webkit-autofill:focus {
               border: 1px solid rgb(185 22 69);
               border-radius: 6px;
               text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-              color: #ffffff;
+              color: $color;
               font-size: 20px;
               line-height: 44px;
               outline: none;
@@ -403,12 +395,12 @@ select:-webkit-autofill:focus {
       flex-flow: column;
 
       &--photo {
-        width: 100%;
+        width: $width;
       }
 
       &--inform {
         margin-top: 10px;
-        width: 100%;
+        width: $width;
         justify-content: center;
 
         .userTitle {
@@ -434,7 +426,7 @@ select:-webkit-autofill:focus {
     &__orders {
       &--list {
         .prod {
-          width: 100%;
+          width: $width;
         }
       }
     }
@@ -447,12 +439,12 @@ select:-webkit-autofill:focus {
       flex-flow: column;
 
       &--photo {
-        width: 100%;
+        width: $width;
       }
 
       &--inform {
         margin-top: 10px;
-        width: 100%;
+        width: $width;
         justify-content: center;
         // flex-flow: column;
         align-items: center;
@@ -477,14 +469,6 @@ select:-webkit-autofill:focus {
           }
         }
 
-      }
-    }
-
-    &__orders {
-      &--list {
-        .prod {
-          .details {}
-        }
       }
     }
   }

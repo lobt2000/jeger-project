@@ -45,7 +45,7 @@
       <div class="counter">
         <span class="counter__amount">Amount:</span>
         <button class="mybtn" (click)="prodCount(product, false)">-</button>
-        <input type="text" minlength='1' [value]="product?.count">
+        <input type="text" minlength='1' [(ngModel)]="inputC" name="inputC"  (input)="inputCount(product)" [value]="product?.count">
         <button class="mybtn" (click)="prodCount(product, true)">+</button>
       </div>
       <button class="makeOrder" (click)="addToBasket(product)">Add to Basket</button>
@@ -65,10 +65,10 @@
 
 
       </div>
-      <div class="counter">
+      <div class="counter" >
         <span class="counter__amount">Amount:</span>
         <button class="mybtn" (click)="prodCount(product, false)">-</button>
-        <input type="text" minlength='1' [(ngModel)]="inputC" name="inputC" (input)="inputCount(product)" [value]="product.count">
+        <input type="text" minlength='1' [value]="product.count" [(ngModel)]="inputC" name="inputC"  (input)="inputCount(product)" >
         <button class="mybtn" (click)="prodCount(product, true)">+</button>
       </div>
       <button class="makeOrder" (click)="addToBasket(product)">Add to Basket</button>

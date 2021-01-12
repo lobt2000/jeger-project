@@ -1,13 +1,16 @@
+@import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
+
+
 .myblogs {
-  width: 100%;
+  width: $width;
   min-height: 10vh;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
+  @include flexbox(column, wrap, center, center);
+
 
 
   h1 {
-    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    text-shadow: $shadow;
     text-transform: uppercase;
     font-size: 30px;
   }
@@ -75,20 +78,17 @@
   .formStyle {
     margin-top: 20px;
     margin-bottom: 20px;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
-    flex-flow: row wrap;
+    width: $width;
+    @include flexbox(row, wrap, space-around, center);
+
+
 
     &__input {
       margin-top: 10px;
       width: 40%;
       min-height: 10vh;
-      display: flex;
-      flex-flow: column;
-      justify-content: space-between;
-      align-items: center;
+      @include flexbox(column, wrap, space-between, center);
+
 
       &--button {
         height: 5vh;
@@ -118,11 +118,9 @@
         margin-bottom: 15px;
         width: 100%;
         min-height: 15vh;
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        align-items: center;
         font-size: 16px;
+        @include flexbox(column, wrap, space-between, center);
+
       }
 
     }
@@ -133,11 +131,9 @@
 
   .formStyle-last {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
     width: 100%;
-    align-items: center;
-    flex-flow: row wrap;
+    @include flexbox(row, wrap, space-around, center);
+
 
     .upload-btn-wrapper {
       position: relative;
@@ -150,12 +146,8 @@
       border: 2px solid #fe8c00;
       color: white;
       background: #fe8c00;
-      /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
-      /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, #f83600, #fe8c00);
-      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
       padding: 8px 20px;
       border-radius: 8px;
       font-size: 20px;
@@ -278,17 +270,15 @@
     text-align: left;
     width: 50%;
     position: relative;
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
+    @include flexbox(column, wrap, none, center);
+
 
     &--cross {
       width: 100%;
       height: 5vh;
-      display: flex;
-      justify-content: flex-end;
       cursor: pointer;
-      align-items: center;
+      @include flexbox(row, wrap, flex-end, center);
+
 
       img {
         width: 45px;
@@ -326,35 +316,29 @@
     }
 
     &--style {
-      display: flex;
-      justify-content: space-between;
       width: 100%;
-      align-items: center;
-      flex-flow: column wrap;
+
 
       .input {
         width: 100%;
         min-height: 10vh;
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        align-items: center;
         margin-top: 20px;
+        @include flexbox(column, wrap, space-between, center);
+
 
         input {
           width: 80%;
         }
 
         &__quill {
-          display: flex;
           width: 100%;
-          align-items: center;
-          justify-content: space-around;
-          flex-flow: row wrap;
           min-height: 10vh;
+          @include flexbox(row, wrap, space-around, center);
+
 
 
         }
+
         #textarea {
           width: 80%;
           font-family: -webkit-pictograph;
@@ -388,10 +372,8 @@
           margin-top: 15px;
           margin-bottom: 15px;
           width: 100%;
-          display: flex;
-          flex-flow: column;
-          justify-content: center;
-          align-items: center;
+          @include flexbox(column, wrap, center, center);
+
           font-size: 16px;
 
           label {
@@ -433,10 +415,8 @@
       width: 100%;
       margin-top: 20px;
       min-height: 15vh;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-around;
-      align-items: center;
+      @include flexbox(row, wrap, space-around, center);
+
 
 
       .dismiss {
@@ -456,7 +436,8 @@
       .dismiss:hover {
         background: transparent;
       }
-      .dismiss:focus{
+
+      .dismiss:focus {
         border: 1px solid black;
         outline: none;
         box-shadow: 0 0 2px 3px black;

@@ -1,23 +1,22 @@
 @import "../../../assets/style/mixins";
-
-
+@import "../../../assets/style/variable";
 
 .blog {
   font-family: sans-serif;
   line-height: 1.5;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
   @include flexbox(column, wrap, center, center);
   overflow: hidden;
 
   &__header {
     background-size: cover;
-    width: 100%;
+    width: $width;
     min-height: 105vh;
     background-repeat: no-repeat;
     background-position: center;
     @include flexbox(column, wrap, center, left);
-    color: white;
+    color: $color;
 
     &--title {
       min-height: 5vh;
@@ -28,7 +27,7 @@
       margin-bottom: calc(4%);
       position: relative;
       z-index: 2;
-      text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+      text-shadow: $shadow;
     }
 
     &--text {
@@ -59,7 +58,7 @@
   }
 
   &__desc {
-    width: 100%;
+    width: $width;
     margin-top: 50px;
     @include flexbox(row, wrap, center, center);
     color: white;
@@ -72,7 +71,7 @@
       border: none;
 
       img {
-        width: 100%;
+        width: $width;
         min-height: 60vh;
         background-size: cover;
         background-repeat: no-repeat;
@@ -89,14 +88,14 @@
 
       .title {
 
-        width: 100%;
+        width: $width;
         text-align: center;
         min-height: 5vh;
         font-size: 32px;
         font-weight: 600;
         margin-bottom: calc(4%);
         margin-top: calc(28%);
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
       }
 
       .text {
@@ -113,7 +112,7 @@
   }
 
   &__footer {
-    width: 100%;
+    width: $width;
     min-height: 80vh;
     background-repeat: no-repeat;
     background-size: cover;

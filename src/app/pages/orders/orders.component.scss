@@ -1,8 +1,9 @@
 @import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
 
 hr {
   height: 2px;
-  background-color: white;
+  background-color: $color;
 }
 
 
@@ -10,23 +11,23 @@ hr {
   font-family: sans-serif;
   line-height: 1.5;
   padding: 2rem;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
   @include flexbox(column, wrap, center, center);
 
 
   &__header {
-    width: 100%;
+    width: $width;
     min-height: 20vh;
     @include flexbox(row, wrap, center, center);
-    color: white;
-    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    color: $color;
+    text-shadow: $shadow;
     text-transform: uppercase;
     font-size: 30px;
   }
 
   &__details {
-    width: 100%;
+    width: $width;
     min-height: 20vh;
     @include flexbox(row, wrap, space-around, flex-start);
 
@@ -36,19 +37,19 @@ hr {
       @include flexbox(column, wrap, space-between, center);
 
       .user {
-        width: 100%;
+        width: $width;
         @include flexbox(column, wrap, space-between, center);
         min-height: 20vh;
 
         &__li {
-          width: 100%;
+          width: $width;
           min-height: 10vh;
           @include flexbox(row, wrap, flex-start, center);
 
-          span {
+          &--span {
             width: 40px;
-            color: white;
-            border: 1px solid white;
+            color: $color;
+            border: 1px solid $color;
             border-radius: 50%;
             height: 40px;
             text-align: center;
@@ -56,10 +57,10 @@ hr {
             font-size: 28px;
           }
 
-          h2 {
+          &--h2 {
             margin-left: 20px;
             width: 200px;
-            color: white;
+            color: $color;
             font-size: 30px;
 
 
@@ -67,7 +68,7 @@ hr {
         }
 
         &__info {
-          width: 100%;
+          width: $width;
           @include flexbox(row, wrap, space-between, center);
 
           &--input {
@@ -75,7 +76,7 @@ hr {
             margin-top: 20px;
 
             input {
-              width: 100%;
+              width: $width;
               margin-top: 10px;
               background-color: transparent;
               border: none;
@@ -97,7 +98,7 @@ hr {
             label {
               width: 100%;
               text-align: center;
-              color: white;
+              color: $color;
               font-size: 20px;
             }
           }
@@ -117,22 +118,11 @@ hr {
           @include flexbox(row, wrap, flex-start, center);
 
           span {
-            width: 40px;
-            color: white;
-            border: 1px solid white;
-            border-radius: 50%;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            font-size: 28px;
+            @extend .user__li--span;
           }
 
           h2 {
-            margin-left: 20px;
-            width: 200px;
-            color: white;
-            font-size: 30px;
-
+            @extend .user__li--h2;
 
           }
         }
@@ -151,7 +141,7 @@ hr {
               height: 40px;
               font-size: 26px;
               border-bottom: 1px dashed bisque;
-              color: white;
+              color: $color;
               cursor: pointer;
 
             }
@@ -205,10 +195,11 @@ hr {
 
                 &__city {
                   width: 80%;
-                  display: flex;
-                  align-items: center;
-                  flex-flow: column;
-                  justify-content: flex-start;
+                  // display: flex;
+                  // align-items: center;
+                  // flex-flow: column;
+                  // justify-content: flex-start;
+                  @include flexbox(column, wrap, flex-start, center);
                   overflow-x: hidden;
                   overflow-y: scroll;
                   height: 150px;
@@ -303,23 +294,13 @@ hr {
           @include flexbox(row, wrap, flex-start, center);
 
           span {
-            width: 40px;
-            color: white;
-            border: 1px solid white;
-            border-radius: 50%;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            font-size: 28px;
+
+            @extend .user__li--span;
+            
           }
 
           h2 {
-            margin-left: 20px;
-            width: 200px;
-            color: white;
-            font-size: 30px;
-
-
+            @extend .user__li--h2;
           }
         }
 
@@ -332,9 +313,9 @@ hr {
             margin-top: 20px;
 
             .title {
-              color: white;
+              color: $color;
               font-size: 24px;
-              border: 1px solid white;
+              border: 1px solid $color;
               border-radius: 10px;
               width: 200px;
               height: 50px;
@@ -361,7 +342,7 @@ hr {
               }
 
               &__text {
-                color: white;
+                color: $color;
                 font-size: 14px;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -423,7 +404,7 @@ hr {
                     label {
                       width: 100%;
                       text-align: center;
-                      color: white;
+                      color: $color;
                       font-size: 20px;
                     }
                   }
@@ -437,7 +418,7 @@ hr {
                   .checkbox {
                     width: 100%;
                     min-height: 20px;
-                    color: white;
+                    color: $color;
                     font-size: 16px;
 
                     span {
@@ -504,21 +485,23 @@ hr {
           @include flexbox(row, wrap, flex-start, center);
 
           span {
-            width: 40px;
-            color: white;
-            border: 1px solid white;
-            border-radius: 50%;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            font-size: 28px;
+            // width: 40px;
+            // color: $color;
+            // border: 1px solid white;
+            // border-radius: 50%;
+            // height: 40px;
+            // text-align: center;
+            // line-height: 40px;
+            // font-size: 28px;
+            @extend .user__li--span;
           }
 
           h2 {
-            margin-left: 20px;
-            width: 200px;
-            color: white;
-            font-size: 30px;
+            // margin-left: 20px;
+            // width: 200px;
+            // color: $color;
+            // font-size: 30px;
+            @extend .user__li--h2;
 
 
           }
@@ -597,8 +580,8 @@ hr {
 
           span {
             width: 40px;
-            color: white;
-            border: 1px solid white;
+            color: $color;
+            border: 1px solid $color;
             border-radius: 50%;
             height: 40px;
             text-align: center;
@@ -808,19 +791,19 @@ hr {
 
             .price {
               font-size: 16px;
-              text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+              text-shadow: $shadow;
               position: relative;
               color: white;
             }
 
             .discount {
               position: relative;
-              color: white;
+              color: $color;
 
               &__real {
                 font-size: 14px;
                 text-decoration: line-through;
-                text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+                text-shadow: $shadow;
 
               }
 
@@ -846,14 +829,14 @@ hr {
           @include flexbox(row, wrap, space-between, center);
 
           &--title {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
 
           }
 
           &--text {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
           }
@@ -866,14 +849,14 @@ hr {
           @include flexbox(row, wrap, space-between, center);
 
           &--title {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
 
           }
 
           &--text {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
           }
@@ -886,14 +869,14 @@ hr {
           @include flexbox(row, wrap, space-between, center);
 
           &--title {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
 
           }
 
           &--text {
-            color: white;
+            color: $color;
             font-size: 20px;
             font-weight: 700;
           }
@@ -1145,5 +1128,4 @@ hr {
       }
     }
   }
-
 }

@@ -1,6 +1,9 @@
+@import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
+
 .img {
   background-image: url('../../../assets/image/07_D_product_page_INT.webp');
-  width: 100%;
+  width: $width;
   min-height: 80vh;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -9,31 +12,28 @@
 
 .blog {
   padding-top: 5rem;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
 
   &__component:first-child {
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
+    width: $width;
+    @include flexbox(row, wrap, none, none);
     min-height: 60vh;
 
 
   }
 
   &__component:nth-child(2) {
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
+    width: $width;
+    @include flexbox(row, wrap, none, none);
     min-height: 50vh;
 
 
   }
 
   &__component {
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
+    width: $width;
+    @include flexbox(row, wrap, none, none);
     min-height: 50vh;
 
     &__item:first-child {
@@ -56,23 +56,19 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: 50%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
+      @include flexbox(row, wrap, flex-start, flex-end);
       transition: animation 600ms ease-in-out;
       transition: width 600ms ease-in-out;
-
-
       cursor: pointer;
 
       &__title {
         position: relative;
         margin: 7vh;
-        color: white;
+        color: $color;
         font-size: 26px;
         font-weight: 600;
         font-style: italic;
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
         text-transform: uppercase;
 
       }
@@ -93,7 +89,6 @@
     }
 
     &__item:hover:first-child>.blog__component__item__title::after {
-
       width: 10em;
     }
 
@@ -102,12 +97,10 @@
     }
 
     &__item:hover:last-child>.blog__component__item__title::after {
-
       width: 10em;
     }
 
     &__itemBot:hover>.blog__component__itemBot__title::after {
-
       width: 10em;
     }
 
@@ -132,9 +125,7 @@
       background-repeat: no-repeat;
       min-height: 20vh;
       background-position: 50%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
+      @include flexbox(row, wrap, flex-start, flex-end);
       cursor: pointer;
       transition: width 600ms ease-in-out;
 
@@ -146,7 +137,7 @@
         font-size: 20px;
         font-weight: 600;
         font-style: italic;
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
         text-transform: uppercase;
 
       }
@@ -171,26 +162,20 @@
       background-repeat: no-repeat;
       min-height: 60vh;
       background-position: 50%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      // background-image: url('../../../assets/image/03-JM-Manifest.jpg');
+      @include flexbox(row, wrap, flex-start, flex-end);
       transition: all 600ms ease-in-out;
-
       cursor: pointer;
 
       &__title {
         position: relative;
         margin: 7vh;
         margin-left: 4vh;
-        color: white;
+        color: $color;
         font-size: 20px;
         font-weight: 600;
         font-style: italic;
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
         text-transform: uppercase;
-
-
       }
 
       &__title::after {
@@ -209,8 +194,6 @@
 
     &__itemBot:nth-child(1) {
       background-image: url('../../../assets/image/03-JM-Manifest.webp');
-
-
     }
 
     &__itemBot:hover {
@@ -221,42 +204,30 @@
       animation: backPosImg infinite 15s ease-in-out;
     }
 
-    &__itemBot:nth-child(2) {
-      // background-image: url('../../../assets/image/HP_img_fts.webp');
-
-
-    }
-
     &__itemBot:nth-child(3) {
       background-image: url('../../../assets/image/20180719_Header_16x9.webp ');
       background-position: 10%;
       transition: width 600ms ease-in-out;
 
     }
-
-
   }
 
 }
-
-
-
-
 
 @media screen and (max-width:990px) {
   .blog {
     &__component {
       &__item:nth-child(1) {
-        width: 100%;
+        width: $width;
         max-width: 100%;
       }
 
       &__item:nth-child(2) {
-        width: 100%;
+        width: $width;
       }
 
       &__itemBot {
-        width: 100%;
+        width: $width;
         min-height: 50vh;
       }
 
@@ -285,6 +256,7 @@
 
         width: 7em;
       }
+
       &__item:hover:first-child>.blog__component__item__title::after {
 
         width: 7em;

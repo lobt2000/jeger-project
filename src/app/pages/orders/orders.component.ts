@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { map } from 'rxjs/operators';
@@ -65,7 +66,8 @@ export class OrdersComponent implements OnInit {
   regExpBranch = /^[a-zA-Z0-9\,\ ]{3,}$/;
   constructor(private orderService: OrderService,
     private discService: DiscountService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getLocalProducts();
@@ -297,91 +299,101 @@ export class OrdersComponent implements OnInit {
   addOrder(): void {
     this.id += 1;
     if (this.basket.length > 0) {
-      if (!this.checked) {
-        this.userOrder =
-        {
-          product: this.basket,
-          id: `${this.id}`,
-          fname: this.fuser,
-          sname: this.suser,
-          phone: this.phoneUser,
-          email: this.emailUser,
-          city: this.userCity,
-          region: this.userRegion,
-          branch: this.addressBranch,
-          payWay: this.payway,
-          price: this.totalPrice,
-          data: new Date,
-          comments: this.comment,
-        };
-      }
-      else {
-
-        this.userOrder =
-        {
-          product: this.basket,
-          id: `${this.id}`,
-          fname: this.fuser,
-          sname: this.suser,
-          phone: this.phoneUser,
-          email: this.emailUser,
-          city: this.userCity,
-          region: this.userRegion,
-          stret: this.street,
-          house: this.house,
-          flatOffice: this.flOf,
-          payWay: this.payway,
-          price: this.totalPrice,
-          data: new Date,
-          comments: this.comment,
-        };
-      }
-      if (localStorage.getItem('user')) {
-        this.user = JSON.parse(localStorage.getItem('user'));
-        if (typeof this.user.orders != 'undefined') {
-          this.user.orders.push({ ...this.userOrder })
+      if(this.regExpEmail.test(this.emailUser) && this.regExpFname.test(this.fuser) && this.regExpSname.test(this.suser) &&  this.regExpPhone.test(this.phoneUser) && this.regExpBranch.test(this.addressBranch)){
+        if (!this.checked) {
+          this.userOrder =
+          {
+            product: this.basket,
+            id: `${this.id}`,
+            fname: this.fuser,
+            sname: this.suser,
+            phone: this.phoneUser,
+            email: this.emailUser,
+            city: this.userCity,
+            region: this.userRegion,
+            branch: this.addressBranch,
+            payWay: this.payway,
+            price: this.totalPrice,
+            data: new Date,
+            comments: this.comment,
+          };
         }
         else {
-          this.user.orders = [];
-          this.user.orders.push(this.userOrder)
+  
+          this.userOrder =
+          {
+            product: this.basket,
+            id: `${this.id}`,
+            fname: this.fuser,
+            sname: this.suser,
+            phone: this.phoneUser,
+            email: this.emailUser,
+            city: this.userCity,
+            region: this.userRegion,
+            stret: this.street,
+            house: this.house,
+            flatOffice: this.flOf,
+            payWay: this.payway,
+            price: this.totalPrice,
+            data: new Date,
+            comments: this.comment,
+          };
         }
-        this.orderService.update(this.user.id, this.user).then(
-          () => {
-            this.basket = [];
-            this.resetForm();
-
-            localStorage.removeItem('basket');
-            this.orderService.basket.next(this.basket);
-            this.totalPrice = 0;
-            this.toastr.success('Thanks for your orders!', 'Success');
-            this.updateLocal();
+        if (localStorage.getItem('user')) {
+          this.user = JSON.parse(localStorage.getItem('user'));
+          if (typeof this.user.orders != 'undefined') {
+            this.user.orders.push({ ...this.userOrder })
           }
-        )
-        this.orderService.updateID(this.id).then(
-          () => {
+          else {
+            this.user.orders = [];
+            this.user.orders.push(this.userOrder)
           }
-        )
-        this.orderService.create(this.userOrder).then()
+          this.orderService.update(this.user.id, this.user).then(
+            () => {
+              this.basket = [];
+              this.resetForm();
+  
+              localStorage.removeItem('basket');
+              this.orderService.basket.next(this.basket);
+              this.totalPrice = 0;
+              this.toastr.success('Thanks for your orders!', 'Success');
+              this.router.navigateByUrl('home');
+  
+              this.updateLocal();
+            }
+          )
+          this.orderService.updateID(this.id).then(
+            () => {
+            }
+          )
+          this.orderService.create(this.userOrder).then()
+          this.resetForm();
+  
+        }
+        else {
+          this.orderService.updateID(this.id).then(
+            () => {
+            }
+          )
+          this.orderService.create(this.userOrder).then(
+            () => {
+              this.basket = [];
+              this.resetForm();
+              localStorage.removeItem('basket');
+              this.orderService.basket.next(this.basket);
+              this.toastr.success('Thanks for your orders!', 'Success');
+              this.router.navigateByUrl('home');
+  
+              this.totalPrice = 0;
+            });
+        }
+  
+      }
+      else{
+        this.toastr.error('Please buy something!', 'Denied');
         this.resetForm();
-
       }
-      else {
-        this.orderService.updateID(this.id).then(
-          () => {
-          }
-        )
-        this.orderService.create(this.userOrder).then(
-          () => {
-            this.basket = [];
-            this.resetForm();
-            localStorage.removeItem('basket');
-            this.orderService.basket.next(this.basket);
-            this.toastr.success('Thanks for your orders!', 'Success');
-            this.totalPrice = 0;
-
-          });
-      }
-
+     
     }
     else {
       this.toastr.error('Please buy something!', 'Denied');

@@ -1,4 +1,5 @@
 @import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
 
 
 
@@ -6,19 +7,19 @@
   font-family: sans-serif;
   line-height: 1.5;
   padding-bottom: 6rem;
-  width: 100%;
+  width: $width;
   min-height: 20vh;
   @include flexbox(column, wrap, center, center);
 
 
   &__header {
     background-size: cover;
-    width: 100%;
+    width: $width;
     min-height: 105vh;
     background-repeat: no-repeat;
     background-position: center;
     @include flexbox(column, wrap, center, left);
-    color: white;
+    color: $color;
 
     &--title {
       min-height: 5vh;
@@ -29,7 +30,7 @@
       margin-bottom: calc(4%);
       position: relative;
       z-index: 2;
-      text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+      text-shadow: $shadow;
     }
     &--title::before {
       content: "";
@@ -62,10 +63,10 @@
   }
 
   &__desc {
-    width: 100%;
+    width: $width;
     margin-top: 50px;
     @include flexbox(row, wrap, space-between, center);
-    color: white;
+    color: $color;
 
     &--img {
       width: 50%;
@@ -74,7 +75,7 @@
       border: none;
 
       img {
-        width: 100%;
+        width: $width;
         min-height: 60vh;
         background-size: cover;
         background-repeat: no-repeat;
@@ -89,14 +90,14 @@
 
       .title {
 
-        width: 100%;
+        width: $width;
         text-align: center;
         min-height: 5vh;
         font-size: 32px;
         font-weight: 600;
         margin-bottom: calc(4%);
         margin-top: calc(28%);
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow:$shadow;
       }
 
       .text {
@@ -121,28 +122,20 @@
 
 
         &__text {
-          display: flex;
-          align-items: left;
-          flex-flow: column;
-          justify-content: space-between;
+          @include flexbox(column, wrap, space-between, left);
           width: 50%;
           min-height: 50px;
-
-
         }
 
 
         &__static {
-          display: flex;
-          align-items: left;
-          flex-flow: column;
-          justify-content: space-between;
+          @include flexbox(column, wrap, space-between, left);
           width: 50%;
           min-height: 50px;
 
           &--p {
             margin-left: 10px;
-            width: 100%;
+            width: $width;
             height: 20px;
             border: 3px solid white;
             display: flex;
@@ -153,66 +146,56 @@
               height: 15.5px;
               margin-left: -1px;
               margin-top: calc(-0.3%);
-
-
             }
           }
 
           &--p:nth-child(1) {
             span {
               background-color: brown;
-
             }
           }
 
           &--p:nth-child(2) {
             span {
               background-color: darkgoldenrod;
-
-
             }
           }
 
           &--p:nth-child(3) {
             span {
               background-color: darkred;
-
-
             }
           }
 
           &--p:nth-child(4) {
             span {
               background-color: orangered;
-
             }
           }
         }
 
       }
-
-
     }
   }
 
   &__footer {
     @include flexbox(column, wrap, space-between, center);
-    width: 100%;
+    width: $width;
     min-height: 20vh;
 
     &--order {
       margin-top: 50px;
-      width: 100%;
+      width: $width;
       @include flexbox(column, wrap, space-between, center);
       min-height: 10vh;
 
       .price {
         width: 100%;
         text-align: center;
-        color: white;
+        color: $color;
         position: relative;
         font-size: 35px;
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
 
         &__text {
           font-size: 35px;
@@ -229,7 +212,7 @@
 
         &__still {
           font-size: 35px;
-          text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          text-shadow: $shadow;
           position: relative;
 
           &--cross {
@@ -279,7 +262,7 @@
 
         .mybtn:focus {
           outline: none;
-          box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          box-shadow: $shadow;
 
         }
 
@@ -292,7 +275,7 @@
           color: white;
           font-size: 24px;
           width: 150px;
-          text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+          text-shadow: $shadow;
         }
 
         .mybtn:last-child {
@@ -322,9 +305,6 @@
         -webkit-transition: background .250s linear, color .250s linear, border .250s linear;
         -o-transition: background .250s linear, color .250s linear, border .250s linear;
         transition: background .250s linear, color .250s linear, border .250s linear;
-
-
-
       }
 
       .makeOrder:hover {
@@ -350,7 +330,7 @@
         font-weight: 600;
         margin-left: calc(5%);
         margin-bottom: calc(4%);
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow:$shadow;
       }
 
       &--text {
@@ -456,7 +436,7 @@
 
           .mybtn:focus {
             outline: none;
-            box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            box-shadow: $shadow;
 
           }
 
@@ -473,36 +453,6 @@
           }
 
         }
-
-        .makeOrder {
-          margin-top: 50px;
-          cursor: pointer;
-          font-family: sans-serif;
-          border: 1px solid orangered;
-          padding: 16px 41px 14px;
-          font-size: 16px;
-          line-height: 16px;
-          color: #fefefe;
-          background: orangered;
-          -webkit-border-radius: 22px;
-          border-radius: 22px;
-          font-weight: 700;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-transition: background .250s linear, color .250s linear, border .250s linear;
-          -o-transition: background .250s linear, color .250s linear, border .250s linear;
-          transition: background .250s linear, color .250s linear, border .250s linear;
-
-
-
-        }
-
-        .makeOrder:hover {
-          background: transparent;
-          color: orangered;
-        }
       }
     }
 
@@ -518,7 +468,7 @@
         font-weight: 600;
         margin-left: calc(5%);
         margin-bottom: calc(4%);
-        text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+        text-shadow: $shadow;
       }
 
       &--text {
@@ -530,13 +480,11 @@
       flex-flow: column;
 
       &--img {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: $width;
+     @include flexbox(none, none, center, center);
 
         img {
-          width: 100%;
+          width: $width;
           min-height: 60vh;
           background-size: cover;
           background-repeat: no-repeat;
@@ -547,7 +495,7 @@
 
       &--content {
 
-        width: 100%;
+        width: $width;
 
         .title {
           font-size: 24px;
@@ -608,11 +556,11 @@
         }
 
         .counter {
-          width: 100%;
+          width: $width;
           @include flexbox(row, wrap, center, center);
 
           &__amount {
-            width: 100%;
+            width: $width;
             margin-right: 0px;
             font-size: 30px;
 
@@ -635,7 +583,7 @@
 
           .mybtn:focus {
             outline: none;
-            box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+            box-shadow: $shadow;
 
           }
 
@@ -653,35 +601,7 @@
 
         }
 
-        .makeOrder {
-          margin-top: 50px;
-          cursor: pointer;
-          font-family: sans-serif;
-          border: 1px solid orangered;
-          padding: 16px 41px 14px;
-          font-size: 16px;
-          line-height: 16px;
-          color: #fefefe;
-          background: orangered;
-          -webkit-border-radius: 22px;
-          border-radius: 22px;
-          font-weight: 700;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          -webkit-transition: background .250s linear, color .250s linear, border .250s linear;
-          -o-transition: background .250s linear, color .250s linear, border .250s linear;
-          transition: background .250s linear, color .250s linear, border .250s linear;
-
-
-
-        }
-
-        .makeOrder:hover {
-          background: transparent;
-          color: orangered;
-        }
+        
       }
     }
 

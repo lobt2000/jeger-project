@@ -1,14 +1,15 @@
+@import "../../../assets/style/mixins";
+@import "../../../assets/style/variable";
+
 .myprod {
   width: 100%;
   min-height: 10vh;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
+  @include flexbox(column, wrap, center, center);
+
 
 
   h1 {
-    text-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 5px #0073e6, 0 0 10px #0073e6, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6;
+    text-shadow: $shadow;
     text-transform: uppercase;
     font-size: 30px;
   }
@@ -68,21 +69,17 @@
   .formStyle {
     margin-top: 20px;
     margin-bottom: 20px;
-    display: flex;
-    justify-content: space-around;
     width: 100%;
-    align-items: center;
-    flex-flow: row wrap;
+    @include flexbox(row, wrap, space-around, center);
+
 
     &__input {
       margin-top: 10px;
       width: 40%;
       min-height: 10vh;
-      display: flex;
-      flex-flow: column;
-      justify-content: space-between;
-      align-items: center;
       position: relative;
+      @include flexbox(column, wrap, space-between, center);
+
 
       select {
         width: 100%;
@@ -189,10 +186,11 @@
     .formStyle {
       flex-flow: column;
     }
+
     &__input {
-      select:first-child{
+      select:first-child {
         // width: 150px;
-        font-size: 10px!important;
+        font-size: 10px !important;
       }
     }
 
@@ -209,7 +207,8 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
-        option{
+
+        option {
           width: 150px;
           font-size: 10px;
         }
@@ -255,8 +254,9 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
+
         select {
-  
+
           option {
             font-size: 10px;
           }
@@ -267,6 +267,7 @@
 
   }
 }
+
 @media screen and (max-width: 280px) {
   .myprod {
     .formStyle {
@@ -277,8 +278,9 @@
       &__input {
         flex-flow: row wrap;
         width: 100%;
+
         select {
-  
+
           option {
             font-size: 8px;
           }

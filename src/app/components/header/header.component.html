@@ -113,10 +113,10 @@
       <div class="modalI__signIn--title">Sign In</div>
       <div class="modalI__signIn--text">You can enter to your club account here</div>
       <div class="modalI__signIn--form">
-        <label for="clubNumber">Club number</label>
+        <label for="clubNumber">Email</label>
         <input type="text" [(ngModel)]="inputUser" (input)="regCheck()"
           [style.borderColor]="regCheck() ? 'green' : 'red'" name="inputUser" id="clubNumber"
-          placeholder="Please enter your club number">
+          placeholder="Please enter your club email">
         <label for="password">Password</label>
         <input type="password" [(ngModel)]="inputPass" (input)="regCheckPass()"
           [style.borderColor]="regCheckPass() ? 'green' : 'red'" name="inputPass" id="password"
