@@ -145,7 +145,7 @@ export class BlogComponent implements OnInit {
 
   saveBlog(): void {
     this.blogs[this.blogsId].title = this.blogTitle;
-    this.blogs[this.blogsId].text = this.textarea;
+    this.blogs[this.blogsId].text = this.editorForm.get('editor').value;
     this.blogs[this.blogsId].image = this.blogImg;
     this.editBlogStatus = false;
     this.resetBlog();
